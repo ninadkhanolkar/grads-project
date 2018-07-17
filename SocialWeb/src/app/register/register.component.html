@@ -1,3 +1,106 @@
-<p>
-  register works!
-</p>
+<form class="example-form" [formGroup]="registerForm" (submit)="register()">
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Employee ID" formControlName='empId'>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" formControlName='firstName'>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" formControlName='lastName'>
+    </mat-form-field>
+    <br/>
+    <br/>
+    <mat-radio-group>
+        <mat-radio-button value="1">Male </mat-radio-button>
+        &nbsp;&nbsp;
+        <mat-radio-button value="2">Female</mat-radio-button>
+    </mat-radio-group>
+    <br/>
+    <br/>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="DOB" formControlName='dob'>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>mm/dd/yyyy</mat-hint>
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="example-full-width">
+        <input type='email' matInput placeholder="Email" formControlName='email'>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input type='number' matInput placeholder="Mobile" formControlName='mobile'>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input type='number' matInput placeholder="Work phone" formControlName='workPhone'>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Manager Id" formControlName='managerId'>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Current Position" formControlName='currentPosition'>
+    </mat-form-field>
+
+    <div class='container' style="background: gray">
+        <h4>Address</h4>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Street" formControlName='street'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="City" formControlName='city'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="State" formControlName='state'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Country" formControlName='country'>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input type='number' matInput placeholder="Zip" formControlName='zip'>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Highest qualification" formControlName='education'>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Institution Name" formControlName='institutionName'>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Bio" formControlName='bio'></textarea>
+        <mat-hint>Write a summary about you</mat-hint>
+    </mat-form-field>
+    {{registerForm.get('email').value}}
+    <br/>
+    <br/>
+    <div formArrayName="skills">
+        <h3>Skills</h3>
+        <div class="example-full-width" *ngFor="let skill of registerForm.controls.skills.controls; let i=index;">
+            <mat-form-field>
+                <label>skill {{i + 1}}</label>
+                <input matInput type="text" [formControlName]="i">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removeSkill(i)">remove</button>
+        </div>
+        <button type="button" (click)="addSkill()">Add Skill</button>
+    </div>
+    <div formArrayName="certificates">
+        <h3>Skills</h3>
+        <div class="example-full-width" *ngFor="let certificate of registerForm.controls.certificates.controls; let i=index;">
+            <mat-form-field>
+                <label>Certificate {{i + 1}}</label>
+                <input matInput type="text" [formControlName]="i">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removeCertificate(i)">remove</button>
+        </div>
+        <button type="button" (click)="addCertificate()">Add Certificate</button>
+    </div>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Resume" formControlName='resume'>
+    </mat-form-field>
+    <button class='btn btn-primary'>Submit</button>
+
+</form>

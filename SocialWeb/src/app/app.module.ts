@@ -14,9 +14,16 @@ import {RouterModule, Routes} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 
+
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatMomentDateModule} from '@angular/material-moment-adapter'
+
+
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'register',component:RegisterComponent}
 ];
 
 @NgModule({
@@ -35,7 +42,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatInputModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
