@@ -1,5 +1,40 @@
-  
-  <table class="table">
+ <br/>
+<div class="container target">
+	<div class="row">
+		<div class="col-sm-10">
+			<h1 class="">Wissen</h1>
+
+			<br>
+		</div>
+		<div class="col-sm-2 container">
+			<img src="images/ninad.JPG" class="img-fluid" alt="profile pic">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-3">
+			<ul class="list-group">
+				<li class="list-group-item text-muted" contenteditable="false">Profile</li>
+				<li class="list-group-item text-right"><span class="pull-left"><strong
+						class="">Joined</strong></span></li>
+				<li class="list-group-item text-right"><span class="pull-left"><strong
+						class="">Last seen</strong></span> Yesterday</li>
+				<li class="list-group-item text-right"><span class="pull-left"><strong
+						class="">Real name</strong></span> Joseph Doe</li>
+				<li class="list-group-item text-right"><span class="pull-left"><strong
+						class="">Role: </strong></span> Pet Sitter</li>
+			</ul>
+
+
+
+
+		</div>
+		
+		<div class="col-sm-9" contenteditable="false" style="">
+
+
+			
+			<table class="table">
     <thead>
       <tr>
         <th>Id</th>
@@ -8,13 +43,24 @@
          <th>ProfileLink</th>
       </tr>
     </thead>
-    <tbody *ngFor="let employee of employees">
+    <tbody *ngFor="let employee of employeeCredentials">
       <tr >
         <td>{{employee.id}}</td>
         <td>{{employee.firstName}}</td>
         <td>{{employee.lastName}}</td>
-         <td><button type="button" class="btn btn-primary btn-sm" (click)="viewProfile()">ViewProfile</button></td>
+         <td><button type="button" class="btn btn-primary btn-sm" (click)="viewProfile(employee.url)">ViewProfile</button></td>
       </tr>
     </tbody>
   </table>
+		</div>
+
+
+		<div id="push"></div>
+	</div>
+
+
+	
+
+</div> 
+  
 

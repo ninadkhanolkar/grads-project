@@ -13,8 +13,7 @@ export class EmployeeService {
     return this.http.get(url);
   }
 
-  fetchDetails(id) {
-    let url = `http://localhost:8181/api/wiseconnect/v1/employee/${id}`;
+  fetchDetails(url) {
     return this.http.get(url);
   }
 }

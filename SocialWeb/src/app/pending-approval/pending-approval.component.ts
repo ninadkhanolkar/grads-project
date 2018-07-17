@@ -1,0 +1,31 @@
+import {Component, OnInit} from '@angular/core';
+import {EmployeeService} from '../employee.service';
+
+@Component({
+  selector: 'app-pending-approval',
+  templateUrl: './pending-approval.component.html',
+  styleUrls: ['./pending-approval.component.css']
+})
+export class PendingApprovalComponent implements OnInit {
+
+  constructor(private employeeService: EmployeeService) {}
+  PendingEmployeeDetails: any = [];
+  ngOnInit() {
+    this.getPendingEmployeeDetails();
+  }
+
+  getPendingEmployeeDetails() {
+    this.employeeService.loadEmployee()
+      .subscribe((credentials) => {
+
+        this.PendingEmployeeDetails = credentials;
+      });
+  }
+  viewProfile(url) {
+    this.employeeService.fetchDetails(url)
+      .subscribe((employee) => {
+        console.log(employee);
+      });
+  }
+
+}

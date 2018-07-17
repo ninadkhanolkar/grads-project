@@ -11,22 +11,41 @@ import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from './profile/profile.component';
 import {RouterModule, Routes} from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './register/register.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RegisterComponent} from './register/register.component';
 import {EmployeeService} from './employee.service';
+import {PendingApprovalComponent} from './pending-approval/pending-approval.component';
 
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import { TableComponent } from './table/table.component'
+import {TableComponent} from './table/table.component'
 import {HttpClientModule} from '@angular/common/http';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'register',component:RegisterComponent}
-  
+  {path: 'register', component: RegisterComponent},
+  {
+    path: 'profile',
+    children: [
+      {
+        path: '',
+        component: ProfileComponent,
+        //        canActivate: [AuthGuardService], // guard
+      },
+      {
+        path: 'pending-approval',
+        component: PendingApprovalComponent,
+
+      },
+       {
+        path: 'table',
+        component: TableComponent,
+
+      }
+    ]
+  },
 ];
 
 @NgModule({
@@ -36,7 +55,11 @@ const routes: Routes = [
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    TableComponent
+    TableComponent,
+    PendingApprovalComponent,
+    ProfileComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +72,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatRadioModule,
     MatDatepickerModule,
-      HttpClientModule,
+    HttpClientModule,
     MatMomentDateModule
+    
   ],
   providers: [
-  EmployeeService
+    EmployeeService
   ],
   bootstrap: [AppComponent]
 })

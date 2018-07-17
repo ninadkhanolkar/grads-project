@@ -11,35 +11,12 @@ export class ProfileComponent implements OnInit {
   @Input() send: any;
   employeeCredentials: any = [];
   constructor(private employeeService: EmployeeService) {}
-   
-   
-  
+
   ngOnInit() {
 
   }
 
-  getCredentials() {
-    //    this.employeeService.loadEmployee()
-    //      .subscribe((credentials) => {
-    //        
-    //        //this.employeeCredentials = credentials;
-    //      });
-    this.employeeCredentials = [
-      {
-        'id': 1,
-        'firstName': 'sub',
-        'lastName': 'sahay',
-        'link': 'http://jdjkj'
-      },
-      {
-        'id': 1,
-        'firstName': 'sub',
-        'lastName': 'sahay',
-        'link': 'http://jdjkj'
-      }
+ 
 
-    ]
-  }
-  
 
 }
