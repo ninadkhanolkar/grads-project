@@ -13,17 +13,20 @@ import {ProfileComponent} from './profile/profile.component';
 import {RouterModule, Routes} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
-
+import {EmployeeService} from './employee.service';
 
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatMomentDateModule} from '@angular/material-moment-adapter'
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { TableComponent } from './table/table.component'
+import {HttpClientModule} from '@angular/common/http';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'register',component:RegisterComponent}
+  
 ];
 
 @NgModule({
@@ -32,7 +35,8 @@ const routes: Routes = [
     NavbarComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +49,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatRadioModule,
     MatDatepickerModule,
+      HttpClientModule,
     MatMomentDateModule
   ],
-  providers: [],
+  providers: [
+  EmployeeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

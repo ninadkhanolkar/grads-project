@@ -16,7 +16,7 @@
 			<ul class="list-group">
 				<li class="list-group-item text-muted" contenteditable="false">Profile</li>
 				<li class="list-group-item text-right"><span class="pull-left"><strong
-						class="">Joined</strong></span>{{send.username}}</li>
+						class="">Joined</strong></span></li>
 				<li class="list-group-item text-right"><span class="pull-left"><strong
 						class="">Last seen</strong></span> Yesterday</li>
 				<li class="list-group-item text-right"><span class="pull-left"><strong
@@ -37,8 +37,10 @@
 			<br /> <br />
 			<button type="button" class="btn btn-success" >Pending Approvals</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info">View Employees</button>
-           
+			<button type="button" class="btn btn-info" (click)="getCredentials()">View Employees</button>
+			<br/>
+			<br/>
+           <app-table  [employees]="employeeCredentials"></app-table>
 		</div>
 
 
