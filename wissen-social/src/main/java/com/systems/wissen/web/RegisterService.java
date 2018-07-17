@@ -1,6 +1,9 @@
 package com.systems.wissen.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,10 +18,24 @@ public class RegisterService {
 	@Autowired 
 	private EmployeeRepository employeeRepository;
 	
-	@RequestMapping(value="/api/wiseconnect/v1", method=RequestMethod.POST)
+	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.POST)
 	public Employee post(@RequestBody Employee employee)
 	{
 		Employee addedEmployee = employeeRepository.addEmpoloyee(employee);
 		return addedEmployee;
+	}
+	
+	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.GET)
+	public List<Employee> get()
+	{
+		List<Employee> allEmployees = employeeRepository.getAllEmployees();
+		return allEmployees;
+	}
+	
+	@RequestMapping(value="/api/wiseconnect/v1/employee/{employeeId}", method=RequestMethod.GET)
+	public Employee get(@PathVariable String employeeId)
+	{
+		Employee employee = employeeRepository.getEmployeeById(employeeId);
+		return employee;
 	}
 }
