@@ -20,32 +20,42 @@ export class RegisterComponent implements OnInit {
       lastName: [''],
       bioPic:[''],
       gender:['Male'],
-      password:[''],
-      confirmPassword:[''],
+      password:['',Validators.required],
+      confirmPassword:['',Validators.required],
       maritalStatus:['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
       dateOfBirth: ['', Validators.required],
       contactNumberPersonal: [''],
-      contactNumberWork: [''],
+      contactNumberWork: ['',Validators.required],
       managerId: [''],
-      currentPosition: [''],
+      currentPosition: ['',Validators.required],
       address: this.fb.group({
         street: [''],
-        city: [''],
+        city: ['',Validators.required],
         state: [''],
         country: [''],
-        zipcode: [''],
+        zipcode: ['',Validators.required],
       }),
-      qualificationDegree: [''],
-      instituteName: [''],
+      qualificationDegree: ['',Validators.required],
+      instituteName: ['',Validators.required],
       bio: [''],
       skills: this.fb.array([this.createSkill()]),
       certifications: this.fb.array([this.createCertificate()]),
       resume: ['']
+    },{validator: this.checkIfMatchingPasswords('password', 'confirmPassword')});
+  }
 
-
-      // skills:this.fb.array([this.createSkill()])
-    })
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string){
+    return (group: FormGroup) => {
+      let passwordInput = group.controls[passwordKey],
+          passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true})
+      }
+      else {
+          return passwordConfirmationInput.setErrors(null);
+      }
+    }
   }
 
   createSkill(){
@@ -81,8 +91,4 @@ export class RegisterComponent implements OnInit {
     e.preventDefault();
     console.log(JSON.stringify(this.registerForm.value))
   }
-
-
-
-
 }
