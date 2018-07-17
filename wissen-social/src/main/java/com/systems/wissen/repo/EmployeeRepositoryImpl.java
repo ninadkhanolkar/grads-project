@@ -1,6 +1,8 @@
 package com.systems.wissen.repo;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.systems.wissen.model.Employee;
+import com.systems.wissen.web.EmployeeViewResponse;
 
 @Repository
 @Transactional
@@ -27,6 +30,20 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	@Override
 	public List<Employee> getAllEmployees() {
 		return manager.createQuery("from Employee").getResultList();
+	}
+	
+	@Override
+	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
+		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
+		Stream<Employee> stream = resultList.stream();
+		return stream.map((e)->{
+			EmployeeViewResponse employeeViewResponse = new EmployeeViewResponse();
+			employeeViewResponse.setFirstName(e.getFirstName());
+			employeeViewResponse.setLastName(e.getLastName());
+			employeeViewResponse.setId(e.getEmpId());
+			employeeViewResponse.setUrl();
+			return employeeViewResponse;
+		}).collect(Collectors.toList());
 	}
 
 	@Override

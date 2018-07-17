@@ -38,4 +38,11 @@ public class RegisterService {
 		Employee employee = employeeRepository.getEmployeeById(employeeId);
 		return employee;
 	}
+	
+	@RequestMapping(value="/api/wiseconnect/v1/employeeResponse", method=RequestMethod.GET)
+	public List<EmployeeViewResponse> getAll()
+	{
+		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
+		return allEmployeeViewResponse;
+	}
 }
