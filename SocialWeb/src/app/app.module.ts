@@ -28,12 +28,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {
     path: 'profile',
+    component: ProfileComponent,
     children: [
-      {
-        path: '',
-        component: ProfileComponent,
-        //        canActivate: [AuthGuardService], // guard
-      },
+     
       {
         path: 'pending-approval',
         component: PendingApprovalComponent,
