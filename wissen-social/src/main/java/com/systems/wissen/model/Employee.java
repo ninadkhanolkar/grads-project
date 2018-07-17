@@ -1,6 +1,8 @@
 package com.systems.wissen.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,6 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="emp_id")
 	private String empId;
 
@@ -29,10 +30,10 @@ public class Employee implements Serializable {
 	private String bioPic;
 
 	@Column(name="contact_number_personal")
-	private int contactNumberPersonal;
+	private long contactNumberPersonal;
 
 	@Column(name="contact_number_work")
-	private int contactNumberWork;
+	private long contactNumberWork;
 
 	@Column(name="current_position")
 	private String currentPosition;
@@ -72,9 +73,9 @@ public class Employee implements Serializable {
 	private List<Certification> certifications;
 
 	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="manager_id")
-	private Employee employee;
+//	@ManyToOne
+//	@JoinColumn(name="manager_id")
+//	private Employee employee;
 	
 //	//bi-directional many-to-one association to Employee
 //	@OneToMany(mappedBy="employee")
@@ -119,19 +120,19 @@ public class Employee implements Serializable {
 		this.bioPic = bioPic;
 	}
 
-	public int getContactNumberPersonal() {
+	public long getContactNumberPersonal() {
 		return this.contactNumberPersonal;
 	}
 
-	public void setContactNumberPersonal(int contactNumberPersonal) {
+	public void setContactNumberPersonal(long contactNumberPersonal) {
 		this.contactNumberPersonal = contactNumberPersonal;
 	}
 
-	public int getContactNumberWork() {
+	public long getContactNumberWork() {
 		return this.contactNumberWork;
 	}
 
-	public void setContactNumberWork(int contactNumberWork) {
+	public void setContactNumberWork(long contactNumberWork) {
 		this.contactNumberWork = contactNumberWork;
 	}
 
@@ -259,13 +260,13 @@ public class Employee implements Serializable {
 		return certification;
 	}
 
-	public Employee getEmployee() {
-		return this.employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+//	public Employee getEmployee() {
+//		return this.employee;
+//	}
+//
+//	public void setEmployee(Employee employee) {
+//		this.employee = employee;
+//	}
 
 //	public List<Employee> getEmployees() {
 //		return this.employees;

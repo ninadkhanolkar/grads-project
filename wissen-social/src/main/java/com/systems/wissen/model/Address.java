@@ -3,6 +3,8 @@ package com.systems.wissen.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the address database table.
@@ -31,6 +33,7 @@ public class Address implements Serializable {
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
 	@JoinColumn(name="emp_id")
+	@JsonIgnore
 	private Employee employee;
 
 	public Address() {

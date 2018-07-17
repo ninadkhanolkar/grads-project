@@ -2,6 +2,9 @@ package com.systems.wissen.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -24,6 +27,7 @@ public class AllSkill implements Serializable {
 
 	//bi-directional many-to-one association to Skill
 	@OneToMany(mappedBy="allSkill")
+	@JsonIgnore
 	private List<Skill> skills;
 
 	public AllSkill() {
