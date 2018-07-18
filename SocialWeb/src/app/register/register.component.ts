@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import { RegistrationService } from '../registration.service';
 import { Router } from '@angular/router';
 import { AllSkillsService } from '../all-skills.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   skills:any=[];
+  //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
               , private registrationService: RegistrationService
@@ -54,6 +56,7 @@ export class RegisterComponent implements OnInit {
         this.skills=skills;
         console.log(this.skills);
     })
+
   }
 
 
@@ -99,9 +102,14 @@ export class RegisterComponent implements OnInit {
     (<FormArray>this.registerForm.get('certifications')).removeAt(i);
   }
 
+  displayFn(skill?): string | undefined {
+    return skill ? skill.name : undefined;
+  }
+
   register(e) {
     e.preventDefault();
     if (this.registerForm.valid) {
+      //  if(true){
       console.log(JSON.stringify(this.registerForm.value));
       this.registrationService.register(this.registerForm.value).subscribe(e => {
         console.log(e);
