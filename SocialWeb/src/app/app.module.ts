@@ -22,21 +22,24 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {TableComponent} from './table/table.component'
 import {HttpClientModule} from '@angular/common/http';
 import {FileUploadModule} from 'primeng/fileupload';
+import {ProfileInfoComponent} from './profile-info/profile-info.component';
+
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
+  {path: 'profile-info', component: ProfileInfoComponent},
   {path: 'register', component: RegisterComponent},
   {
     path: 'profile',
     component: ProfileComponent,
     children: [
-     
+
       {
         path: 'pending-approval',
         component: PendingApprovalComponent,
 
       },
-       {
+      {
         path: 'table',
         component: TableComponent,
 
@@ -56,7 +59,8 @@ const routes: Routes = [
     PendingApprovalComponent,
     ProfileComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,7 @@ const routes: Routes = [
     HttpClientModule,
     MatMomentDateModule,
     FileUploadModule
-    
+
   ],
   providers: [
     EmployeeService

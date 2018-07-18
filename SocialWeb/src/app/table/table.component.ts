@@ -11,9 +11,9 @@ export class TableComponent implements OnInit {
 
   @Input() employees: any;
   employeeCredentials: any = [];
-  router: Router;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService,
+  private router:Router) {}
 
   ngOnInit() {
     this.getCredentials();
@@ -31,6 +31,7 @@ export class TableComponent implements OnInit {
     console.log(url);
     this.employeeService.fetchDetails(url)
     .subscribe((employee)=>{
+      this.router.navigate(['ProfileInfoComponent', {p1:employee}]);
       //this.router.navigate()
     });
   }
