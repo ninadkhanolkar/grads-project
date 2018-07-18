@@ -49,8 +49,11 @@ public class EmployeeRegistrationService {
 		}
 		employee.setContactNumberPersonal((long) jo.get("contactNumberWork"));
 		employee.setContactNumberWork((long) jo.get("contactNumberPersonal"));
-		Employee managerEmployee = new Employee();
-		managerEmployee.setEmpId((String) jo.get("managerId"));
+		Employee managerEmployee=null;
+		if(!(((String)jo.get("managerId")).equals("")||(String)jo.get("managerId")==null)) {
+			managerEmployee = new Employee();
+			managerEmployee.setEmpId((String) jo.get("managerId"));
+		}
 		employee.setEmployee(managerEmployee);
 		employee.setCurrentPosition((String) jo.get("currentPosition"));
 
