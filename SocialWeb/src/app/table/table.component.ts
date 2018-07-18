@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {EmployeeService} from '../employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -10,6 +11,7 @@ export class TableComponent implements OnInit {
 
   @Input() employees: any;
   employeeCredentials: any = [];
+  router: Router;
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -20,16 +22,16 @@ export class TableComponent implements OnInit {
   getCredentials() {
     this.employeeService.loadEmployee()
       .subscribe((credentials) => {
-
         this.employeeCredentials = credentials;
       });
 
   }
 
   viewProfile(url) {
+    console.log(url);
     this.employeeService.fetchDetails(url)
     .subscribe((employee)=>{
-      console.log(employee);
+      //this.router.navigate()
     });
   }
 

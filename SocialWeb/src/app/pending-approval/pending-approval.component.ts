@@ -15,10 +15,26 @@ export class PendingApprovalComponent implements OnInit {
   }
 
   getPendingEmployeeDetails() {
-    this.employeeService.loadEmployee()
+    this.employeeService.loadPendingListEmployees()
       .subscribe((credentials) => {
 
         this.PendingEmployeeDetails = credentials;
+      });
+  }
+
+  acceptEmployee(url) {
+    this.employeeService.acceptEmployeeByAdmin(url)
+      .subscribe((credentials) => {
+
+        //        this.PendingEmployeeDetails = credentials;
+      });
+  }
+   
+   rejectEmployee(url) {
+    this.employeeService.rejectEmployeeByAdmin(url)
+      .subscribe((credentials) => {
+
+        //        this.PendingEmployeeDetails = credentials;
       });
   }
   viewProfile(url) {
