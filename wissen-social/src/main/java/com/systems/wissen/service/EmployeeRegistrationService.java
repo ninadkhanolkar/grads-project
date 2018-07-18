@@ -47,8 +47,11 @@ public class EmployeeRegistrationService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		employee.setContactNumberPersonal((long) jo.get("contactNumberWork"));
-		employee.setContactNumberWork((long) jo.get("contactNumberPersonal"));
+		if(!jo.get("contactNumberPersonal").toString().equals("")) {
+			employee.setContactNumberPersonal(Long.parseLong(jo.get("contactNumberPersonal").toString()));
+		}
+		
+		employee.setContactNumberWork(Long.parseLong(jo.get("contactNumberWork").toString()));
 		Employee managerEmployee=null;
 		if(!(((String)jo.get("managerId")).equals("")||(String)jo.get("managerId")==null)) {
 			managerEmployee = new Employee();
@@ -97,10 +100,10 @@ public class EmployeeRegistrationService {
 		while (i2.hasNext()) {
 			Skill skill = new Skill();
 			LinkedHashMap map2 = (LinkedHashMap) i2.next();
-			String skillid = (String) map2.get("allSkillId");
+			LinkedHashMap map22 = (LinkedHashMap) map2.get("allSkillId"); 
 
 			AllSkill allSkill = new AllSkill();
-			allSkill.setAllSkillId(Integer.parseInt(skillid));
+			allSkill.setAllSkillId((int) map22.get("allSkillId"));
 			skill.setAllSkill(allSkill);
 			skill.setEmployee(employee);
 			skills.add(skill);
