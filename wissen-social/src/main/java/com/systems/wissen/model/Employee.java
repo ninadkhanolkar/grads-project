@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +78,7 @@ public class Employee implements Serializable {
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
 	@JoinColumn(name="manager_id")
+	@JsonIgnore
 	private Employee employee;
 	
 	//bi-directional many-to-one association to Employee

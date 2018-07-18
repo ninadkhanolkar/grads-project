@@ -3,6 +3,8 @@ package com.systems.wissen.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the user_credential database table.
@@ -21,6 +23,7 @@ public class UserCredential implements Serializable {
 	
 	@JoinColumn(name="emp_id")
 	@OneToOne
+	@JsonIgnore
 	private Employee employee;
 
 	public Employee getEmployee() {
