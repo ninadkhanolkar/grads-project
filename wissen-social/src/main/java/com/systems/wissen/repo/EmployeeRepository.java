@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.web.EmployeeViewResponse;
+import com.systems.wissen.web.ResponseObject;
 
 public interface EmployeeRepository {
 
@@ -14,6 +15,6 @@ public interface EmployeeRepository {
 	Employee getEmployeeById(String id);
 	List<EmployeeViewResponse> getAllEmployeeViewResponse();
 	List<EmployeeViewResponse> getAllPendingEmployeeViewResponse();
-	String changeEmployeeApplicationStatus(String id);
+	ResponseObject changeEmployeeApplicationStatus(String id);
 	void removeEmployee(String employeeId);
 }

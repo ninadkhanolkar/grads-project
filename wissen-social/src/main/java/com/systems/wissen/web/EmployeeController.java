@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,9 +58,10 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/accept", method = RequestMethod.PUT)
-	public ResponseEntity<String> put(@PathVariable String employeeId) {
-		String changeEmployeeApplicationStatus = employeeRepository.changeEmployeeApplicationStatus(employeeId);
-		return new ResponseEntity<String>(changeEmployeeApplicationStatus, null, HttpStatus.OK);
+	public ResponseObject put(@PathVariable String employeeId) {
+		ResponseObject responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
+		//return changeEmployeeApplicationStatus;
+		return responseObject;
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/reject", method = RequestMethod.DELETE)
