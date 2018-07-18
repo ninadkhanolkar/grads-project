@@ -8,7 +8,6 @@ import {EmployeeService} from '../employee.service';
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() send: any;
   employeeCredentials: any = [];
   constructor(private employeeService: EmployeeService) {}
 
