@@ -17,18 +17,17 @@ import com.systems.wissen.repo.EmployeeRepository;
 import com.systems.wissen.service.EmployeeRegistrationService;
 
 @RestController
-@CrossOrigin(origins= {"*"})
+@CrossOrigin(origins = { "*" })
 public class EmployeeController {
-	
-	@Autowired 
+
+	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+
 	@Autowired
 	private EmployeeRegistrationService registrationService;
-	
-	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.GET)
-	public List<Employee> get()
-	{
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.GET)
+	public List<Employee> get() {
 		List<Employee> allEmployees = employeeRepository.getAllEmployees();
 		return allEmployees;
 	}
@@ -44,18 +43,29 @@ public class EmployeeController {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
 		return allEmployeeViewResponse;
 	}
-	
+
 	@RequestMapping(value = "/api/wiseconnect/v1/pendingEmployees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getPendingEmployee() {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllPendingEmployeeViewResponse();
 		return allEmployeeViewResponse;
 	}
-	
-	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.POST)
-	public Map post(@RequestBody Map jo)
-	{	
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.POST)
+	public Map post(@RequestBody Map jo) {
 		JSONObject resultObject = new JSONObject(jo);
 		registrationService.registerEmployee(resultObject);
 		return jo;
+	}
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/accept", method = RequestMethod.PUT)
+	public ResponseObject put(@PathVariable String employeeId) {
+		ResponseObject responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
+		//return changeEmployeeApplicationStatus;
+		return responseObject;
+	}
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/reject", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String employeeId) {
+		employeeRepository.removeEmployee(employeeId);
 	}
 }

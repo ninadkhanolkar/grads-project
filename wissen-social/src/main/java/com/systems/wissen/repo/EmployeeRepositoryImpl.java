@@ -22,6 +22,7 @@ import com.systems.wissen.model.Employee;
 import com.systems.wissen.model.Skill;
 import com.systems.wissen.model.UserCredential;
 import com.systems.wissen.web.EmployeeViewResponse;
+import com.systems.wissen.web.ResponseObject;
 
 @Repository
 @Transactional
@@ -70,5 +71,30 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus=0").getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
+	}
+
+	@Override
+	public ResponseObject changeEmployeeApplicationStatus(String id) {
+		Employee emp = manager.find(Employee.class, id);
+		ResponseObject responseObject = new ResponseObject();
+		if (emp != null && emp.getApplicationStatus() == 0) {
+			emp.setApplicationStatus(1);
+			manager.merge(emp);
+			responseObject.setMessage("Status changed Successfully");
+			return responseObject;
+		} else if (emp != null && emp.getApplicationStatus() == 1) {
+			responseObject.setMessage("Status changed Successfully");
+			return responseObject;
+		} else
+		{	responseObject.setMessage("No employee found for EmployeeId: " + id);
+			return responseObject;
+		}
+	}
+
+	@Override
+	public void removeEmployee(String employeeId) {
+		Employee find = manager.find(Employee.class, employeeId);
+		if (find != null)
+			manager.remove(find);
 	}
 }
