@@ -1,5 +1,9 @@
 package com.systems.wissen.repo;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,9 +12,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
+import com.systems.wissen.model.Address;
+import com.systems.wissen.model.Certification;
 import com.systems.wissen.model.Employee;
+import com.systems.wissen.model.Skill;
+import com.systems.wissen.model.UserCredential;
 import com.systems.wissen.web.EmployeeViewResponse;
 
 @Repository
@@ -31,7 +41,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public List<Employee> getAllEmployees() {
 		return manager.createQuery("from Employee").getResultList();
 	}
-	
+
 	@Override
 	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
 		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
@@ -40,7 +50,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 
 	private List<EmployeeViewResponse> getListOfEmployeeViewResponse(Stream<Employee> stream) {
-		return stream.map((e)->{
+		return stream.map((e) -> {
 			EmployeeViewResponse employeeViewResponse = new EmployeeViewResponse();
 			employeeViewResponse.setFirstName(e.getFirstName());
 			employeeViewResponse.setLastName(e.getLastName());

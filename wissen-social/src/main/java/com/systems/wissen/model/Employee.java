@@ -56,8 +56,8 @@ public class Employee implements Serializable {
 	@Column(name="last_name")
 	private String lastName;
 
-	@Column(name="maritial_status")
-	private String maritialStatus;
+	@Column(name="marital_status")
+	private String maritalStatus;
 
 	@Column(name="qualification_degree")
 	private String qualificationDegree;
@@ -65,24 +65,24 @@ public class Employee implements Serializable {
 	private String resume;
 
 	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="employee")
+	@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
 	private List<Address> addresses;
 
 	//bi-directional many-to-one association to Certification
-	@OneToMany(mappedBy="employee")
+	@OneToMany(mappedBy="employee",cascade= CascadeType.ALL)
 	private List<Certification> certifications;
 
 	//bi-directional many-to-one association to Employee
-//	@ManyToOne
-//	@JoinColumn(name="manager_id")
-//	private Employee employee;
+	@ManyToOne
+	@JoinColumn(name="manager_id")
+	private Employee employee;
 	
-//	//bi-directional many-to-one association to Employee
-//	@OneToMany(mappedBy="employee")
-//	private List<Employee> employees;
+	//bi-directional many-to-one association to Employee
+	@OneToMany(mappedBy="employee")
+	private List<Employee> employees;
 
 	//bi-directional many-to-one association to Skill
-	@OneToMany(mappedBy="employee")
+	@OneToMany(mappedBy="employee",cascade= CascadeType.ALL)
 	private List<Skill> skills;
 
 	public Employee() {
@@ -192,12 +192,13 @@ public class Employee implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getMaritialStatus() {
-		return this.maritialStatus;
+
+	public String getMaritalStatus() {
+		return maritalStatus;
 	}
 
-	public void setMaritialStatus(String maritialStatus) {
-		this.maritialStatus = maritialStatus;
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
 	}
 
 	public String getQualificationDegree() {
@@ -260,35 +261,35 @@ public class Employee implements Serializable {
 		return certification;
 	}
 
-//	public Employee getEmployee() {
-//		return this.employee;
-//	}
-//
-//	public void setEmployee(Employee employee) {
-//		this.employee = employee;
-//	}
+	public Employee getEmployee() {
+		return this.employee;
+	}
 
-//	public List<Employee> getEmployees() {
-//		return this.employees;
-//	}
-//
-//	public void setEmployees(List<Employee> employees) {
-//		this.employees = employees;
-//	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
-//	public Employee addEmployee(Employee employee) {
-//		getEmployees().add(employee);
-//		employee.setEmployee(this);
-//
-//		return employee;
-//	}
-//
-//	public Employee removeEmployee(Employee employee) {
-//		getEmployees().remove(employee);
-//		employee.setEmployee(null);
-//
-//		return employee;
-//	}
+	public List<Employee> getEmployees() {
+		return this.employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public Employee addEmployee(Employee employee) {
+		getEmployees().add(employee);
+		employee.setEmployee(this);
+
+		return employee;
+	}
+
+	public Employee removeEmployee(Employee employee) {
+		getEmployees().remove(employee);
+		employee.setEmployee(null);
+
+		return employee;
+	}
 
 	public List<Skill> getSkills() {
 		return this.skills;
