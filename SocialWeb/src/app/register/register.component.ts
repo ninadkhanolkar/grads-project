@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { RegistrationService } from '../registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,56 +13,56 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   //skills:any=[];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
       empId: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: [''],
-      bioPic:[''],
-      gender:['Male'],
-      password:['',Validators.required],
-      confirmPassword:['',Validators.required],
-      maritalStatus:['Unmarried'],
+      bioPic: [''],
+      gender: ['Male'],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      maritalStatus: ['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
       dateOfBirth: ['', Validators.required],
       contactNumberPersonal: [''],
-      contactNumberWork: ['',Validators.required],
+      contactNumberWork: ['', Validators.required],
       managerId: [''],
-      currentPosition: ['',Validators.required],
+      currentPosition: ['', Validators.required],
       address: this.fb.group({
         street: [''],
-        city: ['',Validators.required],
+        city: ['', Validators.required],
         state: [''],
         country: [''],
-        zipcode: ['',Validators.required],
+        zipcode: ['', Validators.required],
       }),
-      qualificationDegree: ['',Validators.required],
-      instituteName: ['',Validators.required],
+      qualificationDegree: ['', Validators.required],
+      instituteName: ['', Validators.required],
       bio: [''],
       skills: this.fb.array([this.createSkill()]),
       certifications: this.fb.array([this.createCertificate()]),
       resume: ['']
-    },{validator: this.checkIfMatchingPasswords('password', 'confirmPassword')});
+    }, { validator: this.checkIfMatchingPasswords('password', 'confirmPassword') });
   }
 
-  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string){
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
       let passwordInput = group.controls[passwordKey],
-          passwordConfirmationInput = group.controls[passwordConfirmationKey];
+        passwordConfirmationInput = group.controls[passwordConfirmationKey];
       if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({notEquivalent: true})
+        return passwordConfirmationInput.setErrors({ notEquivalent: true })
       }
       else {
-          return passwordConfirmationInput.setErrors(null);
+        return passwordConfirmationInput.setErrors(null);
       }
     }
   }
 
-  createSkill(){
+  createSkill() {
     return this.fb.group({
-      allSkillId:''
+      allSkillId: ''
     });
   }
 
@@ -89,6 +91,14 @@ export class RegisterComponent implements OnInit {
 
   register(e) {
     e.preventDefault();
-    console.log(JSON.stringify(this.registerForm.value))
+    // if (this.registerForm.valid) {
+    if (true) {
+      console.log(JSON.stringify(this.registerForm.value));
+      this.registrationService.register(this.registerForm.value).subscribe(e => {
+        console.log(e);
+      });
+    }
+    this.router.navigateByUrl("/");
+
   }
 }
