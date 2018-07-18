@@ -9,9 +9,8 @@ import { Router } from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
-  @Input() employees: any;
+  
   employeeCredentials: any = [];
-  router: Router;
 
   constructor(private employeeService: EmployeeService) {}
 
