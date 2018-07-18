@@ -21,7 +21,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {TableComponent} from './table/table.component'
 import {HttpClientModule} from '@angular/common/http';
-
+import {FileUploadModule} from 'primeng/fileupload';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -70,7 +70,8 @@ const routes: Routes = [
     MatRadioModule,
     MatDatepickerModule,
     HttpClientModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    FileUploadModule
     
   ],
   providers: [

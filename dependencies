@@ -1,2 +1,4 @@
  npm i moment --save
  npm install @angular/material-moment-adapter
+npm install primeng --save
+npm install primeicons --save
