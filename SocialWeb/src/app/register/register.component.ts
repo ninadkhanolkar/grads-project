@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
 import { Router } from '@angular/router';
+import { AllSkillsService } from '../all-skills.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,12 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  //skills:any=[];
+  skills:any=[];
 
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) { }
+  constructor(private fb: FormBuilder
+              , private registrationService: RegistrationService
+              , private router: Router
+              ,private allSkills:AllSkillsService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -22,13 +26,13 @@ export class RegisterComponent implements OnInit {
       lastName: [''],
       bioPic: [''],
       gender: ['Male'],
-      password: ['', Validators.required],
+      password: ['', [Validators.required,Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
       maritalStatus: ['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
       dateOfBirth: ['', Validators.required],
-      contactNumberPersonal: [''],
-      contactNumberWork: ['', Validators.required],
+      contactNumberPersonal: ['',Validators.min(1000000000)],
+      contactNumberWork: ['', [Validators.required,Validators.min(1000000000)]],
       managerId: [''],
       currentPosition: ['', Validators.required],
       address: this.fb.group({
@@ -45,7 +49,13 @@ export class RegisterComponent implements OnInit {
       certifications: this.fb.array([this.createCertificate()]),
       resume: ['']
     }, { validator: this.checkIfMatchingPasswords('password', 'confirmPassword') });
+
+    this.allSkills.getSkills().subscribe(skills=>{
+        this.skills=skills;
+        console.log(this.skills);
+    })
   }
+
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
@@ -91,14 +101,14 @@ export class RegisterComponent implements OnInit {
 
   register(e) {
     e.preventDefault();
-    // if (this.registerForm.valid) {
-    if (true) {
+    if (this.registerForm.valid) {
       console.log(JSON.stringify(this.registerForm.value));
       this.registrationService.register(this.registerForm.value).subscribe(e => {
         console.log(e);
       });
+      this.router.navigateByUrl("/");
     }
-    this.router.navigateByUrl("/");
+    
 
   }
 }
