@@ -27,4 +27,14 @@ export class EmployeeService {
     return this.http.get(url);
   }
 
+  acceptEmployeeByAdmin(url) {
+    let final = "http://localhost:8080" + url + "/accept";
+    return this.http.put(final, null);
+  }
+
+  rejectEmployeeByAdmin(url) {
+    let final = "http://localhost:8080" + url + "/reject";
+    return this.http.delete(final, null);
+  }
+
 }

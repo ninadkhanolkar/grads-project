@@ -18,10 +18,10 @@
 				<button type="button" class="btn btn-primary btn-sm" (click)="viewProfile(employee.url)">Profile</button>
 			</td>
 			<td>
-				<button type="button" class="btn btn-primary btn-sm">Accept</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="acceptEmployee(employee.url)">Accept</button>
 			</td>
 			<td>
-				<button type="button" class="btn btn-primary btn-sm">Reject</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="rejectEmployee(employee.url)">Reject</button>
 			</td>
 		</tr>
 	</tbody>
