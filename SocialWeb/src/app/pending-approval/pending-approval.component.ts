@@ -1,5 +1,5 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { EmployeeService } from '../employee.service';
+import {Component, OnInit} from '@angular/core';
+import {EmployeeService} from '../employee.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,14 +9,11 @@ import { Router } from '@angular/router';
 })
 export class PendingApprovalComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, private router: Router) { }
+  constructor(private employeeService: EmployeeService,
+    private router: Router) {}
   pendingEmployeeDetails: any = [];
-
   ngOnInit() {
     this.getPendingEmployeeDetails();
-  }
-
-  ngDoCheck() {
   }
 
   getPendingEmployeeDetails() {
@@ -29,17 +26,17 @@ export class PendingApprovalComponent implements OnInit {
   acceptEmployee(id) {
     this.employeeService.acceptEmployeeByAdmin(id)
       .subscribe((credentials) => {
-        console.log(credentials)
         this.ngOnInit();
       });
   }
 
-  rejectEmployee(id) {
-    this.employeeService.rejectEmployeeByAdmin(id)
+  rejectEmployee(url) {
+    this.employeeService.rejectEmployeeByAdmin(url)
       .subscribe((credentials) => {
         this.ngOnInit();
       });
   }
+
 
   viewProfile(url) {
     this.employeeService.fetchDetails(url)
