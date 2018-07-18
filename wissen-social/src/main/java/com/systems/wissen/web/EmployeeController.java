@@ -1,7 +1,9 @@
 package com.systems.wissen.web;
 
 import java.util.List;
+import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,19 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.repo.EmployeeRepository;
+import com.systems.wissen.service.EmployeeRegistrationService;
 
 @RestController
-public class RegisterService {
+public class EmployeeController {
 	
 	@Autowired 
 	private EmployeeRepository employeeRepository;
 	
-	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.POST)
-	public Employee post(@RequestBody Employee employee)
-	{
-		Employee addedEmployee = employeeRepository.addEmpoloyee(employee);
-		return addedEmployee;
-	}
+	@Autowired
+	private EmployeeRegistrationService registrationService;
 	
 	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.GET)
 	public List<Employee> get()
@@ -44,5 +43,13 @@ public class RegisterService {
 	{
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
 		return allEmployeeViewResponse;
+	}
+	
+	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.POST)
+	public Map post(@RequestBody Map jo)
+	{	
+		JSONObject resultObject = new JSONObject(jo);
+		registrationService.registerEmployee(resultObject);
+		return jo;
 	}
 }
