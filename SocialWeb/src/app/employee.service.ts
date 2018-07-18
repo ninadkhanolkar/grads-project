@@ -27,14 +27,14 @@ export class EmployeeService {
     return this.http.get(url);
   }
 
-  acceptEmployeeByAdmin(url) {
-    let final = "http://localhost:8080" + url + "/accept";
-    return this.http.put(final, null);
+  acceptEmployeeByAdmin(id) {
+    let final = `http://localhost:8080/api/wiseconnect/v1/employee/${id}/accept`;
+    return this.http.put(final, id);
   }
 
-  rejectEmployeeByAdmin(url) {
-    let final = "http://localhost:8080" + url + "/reject";
-    return this.http.delete(final, null);
+  rejectEmployeeByAdmin(id) {
+    let final = `http://localhost:8080/api/wiseconnect/v1/employee/${id}/reject`;
+    return this.http.delete(final);
   }
 
 }
