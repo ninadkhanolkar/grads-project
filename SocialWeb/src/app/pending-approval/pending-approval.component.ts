@@ -15,7 +15,7 @@ export class PendingApprovalComponent implements OnInit {
   }
 
   getPendingEmployeeDetails() {
-    this.employeeService.loadEmployee()
+    this.employeeService.loadPendingListEmployees()
       .subscribe((credentials) => {
 
         this.PendingEmployeeDetails = credentials;

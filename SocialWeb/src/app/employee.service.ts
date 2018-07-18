@@ -13,6 +13,7 @@ export class EmployeeService {
     return this.http.get(url);
   }
 
+
   fetchDetails(url) {
     console.log("i am here");
     console.log(url);
@@ -20,4 +21,10 @@ export class EmployeeService {
     console.log(final);
     return this.http.get(final);
   }
+
+  loadPendingListEmployees() {
+    let url = "http://localhost:8080/api/wiseconnect/v1/pendingEmployees";
+    return this.http.get(url);
+  }
+
 }
