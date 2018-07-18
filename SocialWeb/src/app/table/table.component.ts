@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {EmployeeService} from '../employee.service';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
-  
+
   employeeCredentials: any = [];
 
   constructor(private employeeService: EmployeeService,
-  private router:Router) {}
+    private router: Router) {}
 
   ngOnInit() {
     this.getCredentials();
@@ -25,15 +25,6 @@ export class TableComponent implements OnInit {
         this.employeeCredentials = credentials;
       });
 
-  }
-
-  viewProfile(url) {
-    console.log(url);
-    this.employeeService.fetchDetails(url)
-    .subscribe((employee)=>{
-      this.router.navigate(['ProfileInfoComponent', {p1:employee}]);
-      //this.router.navigate()
-    });
   }
 
 }

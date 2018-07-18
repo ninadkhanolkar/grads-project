@@ -9,11 +9,23 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService,  private route: ActivatedRoute) {}
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) {}
   employeeInfo: any;
+  id:any;
+  name:any;
+
   ngOnInit() {
-//    this.employeeInfo = btoa(this.route.snapshot.params['p1']);
-//    console.log(this.employeeInfo);
-   
+    const url = this.route.snapshot.paramMap.get('p1');
+    console.log(url);
+    this.getEmp(url);
+  }
+  
+  getEmp(url){
+    this.employeeService.fetchDetails(url)
+      .subscribe((employee) => {
+        this.employeeInfo = employee;
+        console.log(employee);
+        this.id=this.employeeInfo.empId;
+      });
   }
 }
