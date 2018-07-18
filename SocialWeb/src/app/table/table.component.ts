@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
-  @Input() employees: any;
+  
   employeeCredentials: any = [];
 
   constructor(private employeeService: EmployeeService,

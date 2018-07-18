@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from '../employee.service';
-import {Router} from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pending-approval',
@@ -10,11 +9,9 @@ import {Router} from '@angular/router';
 })
 export class PendingApprovalComponent implements OnInit {
 
-
-
   constructor(private employeeService: EmployeeService,
     private router: Router) {}
-  PendingEmployeeDetails: any = [];
+  pendingEmployeeDetails: any = [];
   ngOnInit() {
     this.getPendingEmployeeDetails();
   }
@@ -22,34 +19,29 @@ export class PendingApprovalComponent implements OnInit {
   getPendingEmployeeDetails() {
     this.employeeService.loadPendingListEmployees()
       .subscribe((credentials) => {
-
-        this.PendingEmployeeDetails = credentials;
+        this.pendingEmployeeDetails = credentials;
       });
   }
 
-  acceptEmployee(url) {
-    this.employeeService.acceptEmployeeByAdmin(url)
+  acceptEmployee(id) {
+    this.employeeService.acceptEmployeeByAdmin(id)
       .subscribe((credentials) => {
-
-        //        this.PendingEmployeeDetails = credentials;
         this.ngOnInit();
-        this.router.navigateByUrl('/profile/pending-approval');
-
       });
   }
 
   rejectEmployee(url) {
     this.employeeService.rejectEmployeeByAdmin(url)
       .subscribe((credentials) => {
-
-        //        this.PendingEmployeeDetails = credentials;
+        this.ngOnInit();
       });
   }
+
+
   viewProfile(url) {
     this.employeeService.fetchDetails(url)
       .subscribe((employee) => {
         console.log(employee);
       });
   }
-
 }

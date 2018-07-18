@@ -24,6 +24,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ProfileInfoComponent} from './profile-info/profile-info.component';
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -35,7 +36,7 @@ const routes: Routes = [
     children: [
 
       {
-        path: 'pending-approval',
+        path: 'pendingApproval',
         component: PendingApprovalComponent,
 
       },
@@ -75,8 +76,8 @@ const routes: Routes = [
     MatDatepickerModule,
     HttpClientModule,
     MatMomentDateModule,
-    FileUploadModule
-
+    FileUploadModule,
+    MatAutocompleteModule
   ],
   providers: [
     EmployeeService
