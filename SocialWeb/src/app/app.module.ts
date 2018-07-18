@@ -33,7 +33,7 @@ const routes: Routes = [
     children: [
      
       {
-        path: 'pending-approval',
+        path: 'pendingApproval',
         component: PendingApprovalComponent,
 
       },

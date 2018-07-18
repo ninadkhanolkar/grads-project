@@ -9,7 +9,7 @@
 			<th>Reject</th>
 		</tr>
 	</thead>
-	<tbody *ngFor="let employee of PendingEmployeeDetails">
+	<tbody *ngFor="let employee of pendingEmployeeDetails">
 		<tr>
 			<td>{{employee.id}}</td>
 			<td>{{employee.firstName}}</td>
@@ -18,10 +18,10 @@
 				<button type="button" class="btn btn-primary btn-sm" (click)="viewProfile(employee.url)">Profile</button>
 			</td>
 			<td>
-				<button type="button" class="btn btn-primary btn-sm" (click)="acceptEmployee(employee.url)">Accept</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="acceptEmployee(employee.id)">Accept</button>
 			</td>
 			<td>
-				<button type="button" class="btn btn-primary btn-sm" (click)="rejectEmployee(employee.url)">Reject</button>
+				<button type="button" class="btn btn-primary btn-sm" (click)="rejectEmployee(employee.id)">Reject</button>
 			</td>
 		</tr>
 	</tbody>
