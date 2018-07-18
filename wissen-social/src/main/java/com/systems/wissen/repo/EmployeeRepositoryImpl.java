@@ -36,6 +36,10 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
 		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
 		Stream<Employee> stream = resultList.stream();
+		return getListOfEmployeeViewResponse(stream);
+	}
+
+	private List<EmployeeViewResponse> getListOfEmployeeViewResponse(Stream<Employee> stream) {
 		return stream.map((e)->{
 			EmployeeViewResponse employeeViewResponse = new EmployeeViewResponse();
 			employeeViewResponse.setFirstName(e.getFirstName());
@@ -51,4 +55,10 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		return manager.find(Employee.class, id);
 	}
 
+	@Override
+	public List<EmployeeViewResponse> getAllPendingEmployeeViewResponse() {
+		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus=0").getResultList();
+		Stream<Employee> stream = resultList.stream();
+		return getListOfEmployeeViewResponse(stream);
+	}
 }

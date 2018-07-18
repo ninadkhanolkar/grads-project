@@ -11,4 +11,5 @@ public interface EmployeeRepository {
 	List<Employee> getAllEmployees();
 	Employee getEmployeeById(String id);
 	List<EmployeeViewResponse> getAllEmployeeViewResponse();
+	List<EmployeeViewResponse> getAllPendingEmployeeViewResponse();
 }
