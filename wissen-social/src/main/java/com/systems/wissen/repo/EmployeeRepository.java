@@ -14,4 +14,6 @@ public interface EmployeeRepository {
 	Employee getEmployeeById(String id);
 	List<EmployeeViewResponse> getAllEmployeeViewResponse();
 	List<EmployeeViewResponse> getAllPendingEmployeeViewResponse();
+	String changeEmployeeApplicationStatus(String id);
+	void removeEmployee(String employeeId);
 }

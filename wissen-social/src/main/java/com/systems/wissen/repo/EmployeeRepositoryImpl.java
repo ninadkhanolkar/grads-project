@@ -71,4 +71,26 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
 	}
+
+	@Override
+	public String changeEmployeeApplicationStatus(String id) {
+		Employee emp = manager.find(Employee.class, id);
+		if (emp != null && emp.getApplicationStatus() == 0) {
+			emp.setApplicationStatus(1);
+			manager.merge(emp);
+			return "Status changed Successfully";
+		}
+		else if(emp.getApplicationStatus() == 1)
+			return "Employee already approved";
+		else 
+			return "No employee found for EmployeeId: " + id;
+		
+	}
+
+	@Override
+	public void removeEmployee(String employeeId) {
+		Employee find = manager.find(Employee.class, employeeId);
+		if(find != null)
+		manager.remove(find);
+	}
 }

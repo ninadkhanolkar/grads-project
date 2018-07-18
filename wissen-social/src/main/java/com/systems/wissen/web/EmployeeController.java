@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,18 +19,17 @@ import com.systems.wissen.repo.EmployeeRepository;
 import com.systems.wissen.service.EmployeeRegistrationService;
 
 @RestController
-@CrossOrigin(origins= {"*"})
+@CrossOrigin(origins = { "*" })
 public class EmployeeController {
-	
-	@Autowired 
+
+	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+
 	@Autowired
 	private EmployeeRegistrationService registrationService;
-	
-	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.GET)
-	public List<Employee> get()
-	{
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.GET)
+	public List<Employee> get() {
 		List<Employee> allEmployees = employeeRepository.getAllEmployees();
 		return allEmployees;
 	}
@@ -44,18 +45,28 @@ public class EmployeeController {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
 		return allEmployeeViewResponse;
 	}
-	
+
 	@RequestMapping(value = "/api/wiseconnect/v1/pendingEmployees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getPendingEmployee() {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllPendingEmployeeViewResponse();
 		return allEmployeeViewResponse;
 	}
-	
-	@RequestMapping(value="/api/wiseconnect/v1/employee", method=RequestMethod.POST)
-	public Map post(@RequestBody Map jo)
-	{	
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.POST)
+	public Map post(@RequestBody Map jo) {
 		JSONObject resultObject = new JSONObject(jo);
 		registrationService.registerEmployee(resultObject);
 		return jo;
+	}
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/accept", method = RequestMethod.PUT)
+	public ResponseEntity<String> put(@PathVariable String employeeId) {
+		String changeEmployeeApplicationStatus = employeeRepository.changeEmployeeApplicationStatus(employeeId);
+		return new ResponseEntity<String>(changeEmployeeApplicationStatus, null, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/reject", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String employeeId) {
+		employeeRepository.removeEmployee(employeeId);
 	}
 }

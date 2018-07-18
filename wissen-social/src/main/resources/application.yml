@@ -8,3 +8,6 @@ spring:
     url: jdbc:mysql://localhost:3306/wiseconnect
     username: root 
     password: admin
+ 
+  jpa:
+    show-sql: true
