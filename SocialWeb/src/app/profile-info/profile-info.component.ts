@@ -43,21 +43,21 @@ export class ProfileInfoComponent implements OnInit {
         console.log(employee);
         this.id = this.employeeInfo.empId;
         this.bio = this.employeeInfo.bio;
-        this.city = employee.addresses[0].city;
+        this.city = this.employeeInfo.addresses[0].city;
         this.firstName = this.employeeInfo.firstName;
         this.lastName = this.employeeInfo.lastName;
         this.degree = this.employeeInfo.qualificationDegree;
         this.institute = this.employeeInfo.instituteName;
         this.employeeName = this.firstName + " " + this.lastName;
-        this.currentPosition = employee.currentPosition;
+       this.currentPosition = this.employeeInfo.currentPosition;
         this.emailId = this.employeeInfo.emailId;
         this.contact = this.employeeInfo.contactNumberPersonal;
         this.phone = this.employeeInfo.contactNumberWork;
-        employee.certifications.forEach((c)=>{
+        this.employeeInfo.certifications.forEach((c)=>{
           console.log(c)
         this.certifications.push(c);
         });
-         employee.skills.forEach((s)=>{
+         this.employeeInfo.skills.forEach((s)=>{
         this.skillsStack.push(s.allSkill);
            console.log(s.allSkill);
         });
