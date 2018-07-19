@@ -4,6 +4,7 @@ import { RegistrationService } from '../registration.service';
 import { Router } from '@angular/router';
 import { AllSkillsService } from '../all-skills.service';
 import { Observable } from 'rxjs';
+import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder
               , private registrationService: RegistrationService
               , private router: Router
-              ,private allSkills:AllSkillsService) { }
+              ,private allSkills:AllSkillsService
+              ,private fileUpload:FileUploadService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -27,6 +29,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: [''],
       bioPic: [''],
+      bioPicFile: [''],
       gender: ['Male'],
       password: ['', [Validators.required,Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
@@ -58,6 +61,12 @@ export class RegisterComponent implements OnInit {
     })
 
   }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    this.fileUpload.uploadFile(fileList);
+    
+}
 
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
@@ -108,9 +117,10 @@ export class RegisterComponent implements OnInit {
 
   register(e) {
     e.preventDefault();
-    if (this.registerForm.valid) {
-      //  if(true){
+    // if (this.registerForm.valid) {
+       if(true){
       console.log(JSON.stringify(this.registerForm.value));
+      console.log(this.registerForm.value)
       this.registrationService.register(this.registerForm.value).subscribe(e => {
         console.log(e);
       });
