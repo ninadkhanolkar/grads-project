@@ -89,6 +89,8 @@ export class RegisterComponent implements OnInit {
     this.employeeService.fetchDetails(url)
       .subscribe((employee) => {
         this.employeeInfo = employee;
+        delete this.employeeInfo['bioPic'];
+        delete this.employeeInfo['resume'];
         console.log(this.employeeInfo);
         this.registerForm.patchValue(this.employeeInfo);
         this.registerForm.controls['address'].patchValue({
@@ -97,6 +99,14 @@ export class RegisterComponent implements OnInit {
           state: this.employeeInfo.addresses[0].state,
           country: this.employeeInfo.addresses[0].country,
           zipcode: this.employeeInfo.addresses[0].zipcode
+        });
+        this.removeSkill(0);
+        this.employeeInfo.skills.forEach(element => {
+          this.addSkill(element.allSkill);
+        });
+        this.removeCertificate(0);
+        this.employeeInfo.certifications.forEach(element => {
+          this.addCertificate(element.completionYear ,element.certificationName);
         });
       });
   }
@@ -116,29 +126,34 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  createSkill() {
+  createSkill(num?) {
+    if(num){
+      return this.fb.group({
+        allSkillId: num
+      });
+    }
     return this.fb.group({
       allSkillId: ''
     });
   }
 
-  addSkill() {
-    (<FormArray>this.registerForm.get('skills')).push(this.createSkill());
+  addSkill(num?) {
+    (<FormArray>this.registerForm.get('skills')).push(this.createSkill(num));
   }
 
   removeSkill(i: number) {
     (<FormArray>this.registerForm.get('skills')).removeAt(i);
   }
 
-  createCertificate() {
+  createCertificate(year?,name?) {
     return this.fb.group({
-      completionYear: '',
-      certificationName: ''
+      completionYear: year,
+      certificationName: name
     });
   }
 
-  addCertificate() {
-    (<FormArray>this.registerForm.get('certifications')).push(this.createCertificate());
+  addCertificate(year?,name?) {
+    (<FormArray>this.registerForm.get('certifications')).push(this.createCertificate(year,name));
   }
 
   removeCertificate(i: number) {
