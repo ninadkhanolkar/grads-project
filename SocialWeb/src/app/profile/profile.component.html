@@ -37,7 +37,16 @@
 			<br/>
 			<router-outlet></router-outlet>
 		</div>
-		
+          
+          <div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
+			<br /> <br />
+			<button type="button" class="btn btn-success" routerLink="/profile/pendingApproval">Pending Approvals</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-info"  routerLink="/profile/table">View Employees</button>
+			<br/>
+			<br/>
+			<router-outlet></router-outlet>
+		</div>		
 
 		<div id="push"></div>
 	</div>
