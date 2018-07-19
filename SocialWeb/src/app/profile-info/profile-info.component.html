@@ -38,7 +38,8 @@
 	<div class="row">
 
 		<div class="col-md-8 col-sm-6 mb-4">
-			<button type="button" class="btn btn-primary">Edit Profile</button>
+
+			<button type="button" class="btn btn-primary" [routerLink]="['/register',{url:url}]">Edit Profile</button>
 		</div>
 
 
@@ -59,6 +60,7 @@
 					respect each person’s space & values.I am open to new challenges
 					and willing to work hard
 				</p>
+
 				
 
 			</div>
@@ -72,12 +74,12 @@
 					respect each person’s space & values.I am open to new challenges
 					and willing to work hard
 				</p>
+
 				
 
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Intermediate</h5>
-				<p class="card-text"></p>
 				
 				<p class="card-text">
 				I am a determined individual who always
@@ -95,11 +97,13 @@
 	<div class="col-12 col-sm-12 col-md-12">
 
 		<div class="card">
+
 			<div class="card-header bg-primary">
 				<h5 class="card-title">Skills</h5>
 			</div>
 			<div class="card-body" *ngFor="let s of skillsStack">
 				<h5 class="card-title">{{s.name}}</h5>
+
 				
 				<hr>
 			</div>

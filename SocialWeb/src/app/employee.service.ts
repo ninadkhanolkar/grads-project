@@ -15,8 +15,6 @@ export class EmployeeService {
 
 
   fetchDetails(url) {
-    console.log("i am here");
-    console.log(url);
     let final = "http://localhost:8080" + url;
     console.log(final);
     return this.http.get(final);

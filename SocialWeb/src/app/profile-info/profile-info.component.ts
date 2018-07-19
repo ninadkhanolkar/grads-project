@@ -9,13 +9,11 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) {
-    const url = this.route.snapshot.paramMap.get('p1');
-    this.getEmp(url);
-  }
 
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) {}
   employeeInfo: any;
-  id: any;
+  id:any;
+  url:any;
   bio: any;
   addresses: any;
   name: any;
@@ -33,9 +31,9 @@ export class ProfileInfoComponent implements OnInit {
   skillsStack:any=[];
   
   ngOnInit() {
-    const url = this.route.snapshot.paramMap.get('p1');
-    console.log(url);
-
+    this.url = this.route.snapshot.paramMap.get('p1');
+    console.log(this.url);
+    this.getEmp(this.url);
   }
 
   getEmp(url) {
@@ -67,52 +65,3 @@ export class ProfileInfoComponent implements OnInit {
       });
   }
 }
-
-
-//{
-//  "addresses": [
-//    {
-//      "addressId": 0,
-//      "city": "string",
-//      "country": "string",
-//      "state": "string",
-//      "street": "string",
-//      "zipcode": 0
-//    }
-//  ],
-//  "applicationStatus": 0,
-//  "bio": "string",
-//  "bioPic": "string",
-//  "certifications": [
-//    {
-//      "certificationId": 0,
-//      "certificationName": "string",
-//      "completionYear": 0
-//    }
-//  ],
-//  "contactNumberPersonal": 0,
-//  "contactNumberWork": 0,
-//  "currentPosition": "string",
-//  "dateOfBirth": "2018-07-19T04:32:18.494Z",
-//  "emailId": "string",
-//  "empId": "string",
-//  "employees": [
-//    {}
-//  ],
-//  "firstName": "string",
-//  "gender": "string",
-//  "instituteName": "string",
-//  "lastName": "string",
-//  "maritalStatus": "string",
-//  "qualificationDegree": "string",
-//  "resume": "string",
-//  "skills": [
-//    {
-//      "allSkill": {
-//        "allSkillId": 0,
-//        "name": "string"
-//      },
-//      "skillId": 0
-//    }
-//  ]
-//}

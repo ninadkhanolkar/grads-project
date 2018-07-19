@@ -1,20 +1,26 @@
 <div class="container center_div">
-	<div class="jumbotron" >
-		<form class="example-form" [formGroup]="credentialForm">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Username" formControlName="username">
-  </mat-form-field>
-  <br/>
+  <div class="jumbotron">
+    <form class="example-form" [formGroup]="credentialForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" formControlName="username">
+      </mat-form-field>
+      <br/>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Password" type="password" formControlName="password">
-  </mat-form-field>
-  <br/>
-  <br/>
-  &nbsp;&nbsp;
-  <button class="btn btn-primary" mat-raised-button routerLink="profile">Login</button>
-  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-   <button class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" mat-raised-button>Register</button>
-</form>
-	</div>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+      <br/>
+      <br/>
+      <mat-radio-group class="example-radio-group" formControlName="role" >
+        <mat-radio-button class="example-radio-button"  value="Employee">Employee </mat-radio-button>
+        <mat-radio-button class="example-radio-button"  value="Admin">Admin</mat-radio-button>
+      </mat-radio-group>
+      <br/>
+      <br/>
+      &nbsp;&nbsp;
+      <button class="btn btn-primary" mat-raised-button [routerLink]="['/profile',{role:userrole}]">Login</button>
+      &nbsp;&nbsp;
+      <button class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" mat-raised-button>Register</button>
+    </form>
+  </div>
 </div>
