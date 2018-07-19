@@ -21,10 +21,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {TableComponent} from './table/table.component'
 import {HttpClientModule} from '@angular/common/http';
-import {FileUploadModule} from 'primeng/fileupload';
 import {ProfileInfoComponent} from './profile-info/profile-info.component';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -61,7 +61,8 @@ const routes: Routes = [
     ProfileComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -76,8 +77,8 @@ const routes: Routes = [
     MatDatepickerModule,
     HttpClientModule,
     MatMomentDateModule,
-    FileUploadModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+   
   ],
   providers: [
     EmployeeService
