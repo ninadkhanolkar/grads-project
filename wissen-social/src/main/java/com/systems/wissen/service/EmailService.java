@@ -5,6 +5,7 @@ import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -32,9 +33,9 @@ public class EmailService {
 		Employee employeeById = employeeRepository.getEmployeeById(employeeId);
 		Authenticator authenticator = new Authenticator()
 	    {
-	    protected javax.mail.PasswordAuthentication getPasswordAuthentication() 
+	    protected PasswordAuthentication getPasswordAuthentication() 
 	        {
-	        return new javax.mail.PasswordAuthentication("noreply.wiseconnect@gmail.com", "qwerty@123");
+	        return new PasswordAuthentication("noreply.wiseconnect@gmail.com", "qwerty@123");
 	    }
 	};
 	Session defaultInstance = Session.getInstance(properties,authenticator);
