@@ -2,8 +2,6 @@ package com.systems.wissen.repo;
 
 import java.util.List;
 
-import org.json.simple.JSONObject;
-
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.web.EmployeeViewResponse;
 import com.systems.wissen.web.ResponseObject;

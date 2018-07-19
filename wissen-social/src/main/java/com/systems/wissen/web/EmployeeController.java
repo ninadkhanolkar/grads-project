@@ -51,7 +51,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.POST)
-	public Map post(@RequestBody Map jo) {
+	public Map<?, ?> post(@RequestBody Map<?, ?> jo) {
 		JSONObject resultObject = new JSONObject(jo);
 		registrationService.registerEmployee(resultObject);
 		return jo;

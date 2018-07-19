@@ -3,12 +3,10 @@ package com.systems.wissen.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +42,6 @@ public class EmployeeRegistrationService {
 		try {
 			employee.setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse((String) jo.get("dateOfBirth")));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(!jo.get("contactNumberPersonal").toString().equals("")) {
@@ -60,7 +57,7 @@ public class EmployeeRegistrationService {
 		employee.setEmployee(managerEmployee);
 		employee.setCurrentPosition((String) jo.get("currentPosition"));
 
-		LinkedHashMap map = (LinkedHashMap) jo.get("address");
+		LinkedHashMap<?, ?> map = (LinkedHashMap<?, ?>) jo.get("address");
 		Address address = new Address();
 		address.setStreet((String) map.get("street"));
 		address.setCity((String) map.get("city"));
@@ -77,12 +74,12 @@ public class EmployeeRegistrationService {
 		employee.setBio((String) jo.get("bio"));
 
 		List<Certification> certifications = new ArrayList<>();
-		ArrayList data = (ArrayList) jo.get("certifications");
+		ArrayList<?> data = (ArrayList<?>) jo.get("certifications");
 
-		Iterator i = data.iterator();
+		Iterator<?> i = data.iterator();
 		while (i.hasNext()) {
 			Certification certification = new Certification();
-			LinkedHashMap map2 = (LinkedHashMap) i.next();
+			LinkedHashMap<?, ?> map2 = (LinkedHashMap<?, ?>) i.next();
 			certification.setCertificationName((String) map2.get("certificationName"));
 			String completionYear = (String) map2.get("completionYear");
 			certification.setCompletionYear(Integer.parseInt(completionYear));
@@ -92,15 +89,15 @@ public class EmployeeRegistrationService {
 		employee.setCertifications(certifications);
 
 		employee.setResume((String) jo.get("resume"));
-		employee.setApplicationStatus(0);
+		employee.setApplicationStatus(0);// default : not approved
 
 		List<Skill> skills = new ArrayList<>();
-		ArrayList data2 = (ArrayList) jo.get("skills");
-		Iterator i2 = data2.iterator();
+		ArrayList<?> data2 = (ArrayList<?>) jo.get("skills");
+		Iterator<?> i2 = data2.iterator();
 		while (i2.hasNext()) {
 			Skill skill = new Skill();
-			LinkedHashMap map2 = (LinkedHashMap) i2.next();
-			LinkedHashMap map22 = (LinkedHashMap) map2.get("allSkillId"); 
+			LinkedHashMap<?, ?> map2 = (LinkedHashMap<?, ?>) i2.next();
+			LinkedHashMap<?, ?> map22 = (LinkedHashMap<?, ?>) map2.get("allSkillId"); 
 
 			AllSkill allSkill = new AllSkill();
 			allSkill.setAllSkillId((int) map22.get("allSkillId"));
