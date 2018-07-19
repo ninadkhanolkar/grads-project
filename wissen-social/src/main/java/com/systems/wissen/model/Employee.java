@@ -3,7 +3,9 @@ package com.systems.wissen.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
 import java.util.List;
@@ -76,11 +78,23 @@ public class Employee implements Serializable {
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
 	@JoinColumn(name="manager_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Employee employee;
 	
+	@Transient
+	private String managerId;
+	
+	public String getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId() {
+		this.managerId = this.employee.empId;
+	}
+
 	//bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy="employee")
+	@JsonIgnore
 	private List<Employee> employees;
 
 	//bi-directional many-to-one association to Skill

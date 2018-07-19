@@ -45,6 +45,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
 		Employee employee = employeeRepository.getEmployeeById(employeeId);
+		employee.setManagerId();
 		return employee;
 	}
 
