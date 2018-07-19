@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.userrole = this.credentialForm.value['role'];
-    //this.userrole = 'Admin';
+    this.userrole = 'Admin';
     console.log(this.userrole);
   }
 }
