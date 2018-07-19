@@ -32,11 +32,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public List<Employee> getAllEmployees() {
 		return manager.createQuery("from Employee").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> getAllApprovedEmployees() {
+		return manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
+	}
 
 	@Override
 	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
 		@SuppressWarnings("unchecked")
-		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
+		List<Employee> resultList = manager.createQuery("from Employee where e.applicationStatus = 1").getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
 	}

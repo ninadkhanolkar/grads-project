@@ -35,6 +35,12 @@ public class EmployeeController {
 		List<Employee> allEmployees = employeeRepository.getAllEmployees();
 		return allEmployees;
 	}
+	
+	@RequestMapping(value = "/api/wiseconnect/v1/approvedEmployees", method = RequestMethod.GET)
+	public List<Employee> getApprovedEmployees() {
+		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
+		return allEmployees;
+	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
