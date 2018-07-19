@@ -14,27 +14,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.repo.EmployeeRepository;
+import com.systems.wissen.service.EmailService;
 import com.systems.wissen.service.EmployeeRegistrationService;
 
 @RestController
 @CrossOrigin(origins = { "*" })
 public class EmployeeController {
-
+	
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
 	@Autowired
 	private EmployeeRegistrationService registrationService;
+	
+	@Autowired 
+	private EmailService emailService;
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.GET)
 	public List<Employee> get() {
 		List<Employee> allEmployees = employeeRepository.getAllEmployees();
 		return allEmployees;
 	}
+	
+	@RequestMapping(value = "/api/wiseconnect/v1/approvedEmployees", method = RequestMethod.GET)
+	public List<Employee> getApprovedEmployees() {
+		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
+		return allEmployees;
+	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
 		Employee employee = employeeRepository.getEmployeeById(employeeId);
+		employee.setManagerId();
 		return employee;
 	}
 
@@ -51,7 +62,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.POST)
-	public Map post(@RequestBody Map jo) {
+	public Map<?, ?> post(@RequestBody Map<?, ?> jo) {
 		JSONObject resultObject = new JSONObject(jo);
 		registrationService.registerEmployee(resultObject);
 		return jo;
@@ -60,12 +71,13 @@ public class EmployeeController {
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/accept", method = RequestMethod.PUT)
 	public ResponseObject put(@PathVariable String employeeId) {
 		ResponseObject responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
-		//return changeEmployeeApplicationStatus;
 		return responseObject;
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/reject", method = RequestMethod.DELETE)
 	public void delete(@PathVariable String employeeId) {
+		emailService.sendEmail(employeeId);
 		employeeRepository.removeEmployee(employeeId);
 	}
+	
 }

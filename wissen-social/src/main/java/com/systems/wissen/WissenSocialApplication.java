@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 public class WissenSocialApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(WissenSocialApplication.class, args);
 	}

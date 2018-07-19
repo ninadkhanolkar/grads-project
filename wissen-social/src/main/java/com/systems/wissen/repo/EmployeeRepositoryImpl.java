@@ -1,9 +1,5 @@
 package com.systems.wissen.repo;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,15 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
-import com.systems.wissen.model.Address;
-import com.systems.wissen.model.Certification;
 import com.systems.wissen.model.Employee;
-import com.systems.wissen.model.Skill;
-import com.systems.wissen.model.UserCredential;
 import com.systems.wissen.web.EmployeeViewResponse;
 import com.systems.wissen.web.ResponseObject;
 
@@ -42,10 +32,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	public List<Employee> getAllEmployees() {
 		return manager.createQuery("from Employee").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> getAllApprovedEmployees() {
+		return manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
+	}
 
 	@Override
 	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
-		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
+		@SuppressWarnings("unchecked")
+		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
 	}
@@ -68,6 +65,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	@Override
 	public List<EmployeeViewResponse> getAllPendingEmployeeViewResponse() {
+		@SuppressWarnings("unchecked")
 		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus=0").getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
@@ -85,8 +83,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		} else if (emp != null && emp.getApplicationStatus() == 1) {
 			responseObject.setMessage("Status changed Successfully");
 			return responseObject;
-		} else
-		{	responseObject.setMessage("No employee found for EmployeeId: " + id);
+		} else {
+			responseObject.setMessage("No employee found for EmployeeId: " + id);
 			return responseObject;
 		}
 	}

@@ -18,6 +18,7 @@ public class AllSkillsRepositoryImpl implements AllSkillsRepository {
 	@PersistenceContext
 	EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AllSkill> getSkills() {
 		// TODO Auto-generated method stub
