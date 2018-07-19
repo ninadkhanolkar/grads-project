@@ -7,15 +7,11 @@ import {EmployeeService} from '../employee.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  employeeUrl = "/api/wiseconnect/v1/employee/WT299";
   employeeCredentials: any = [];
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
-
   }
-
- 
-
 
 }
