@@ -1,121 +1,115 @@
-
 <br />
 <br />
 <div class="container">
-                        
-	
+
+
 	<div class="row">
 		<div class="col-md-3 col-sm-6 col-md-6">
 			<img class="img-fluid" src={{image}} alt="">
-		 </div>
+		</div>
 
 		<div class="col-md-3 col-sm-6 col-md-6">
 			<h3>{{employeeName}}</h3>
-			
+
 			<h5>{{currentPosition}}</h5>
 			<br/>
 			<i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{emailId}}
 			<br/>
 			<i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;{{contact}}
-				<br/>
+			<br/>
 			<i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;{{phone}}
 			<br/>
 			<br />
 			<h4>Summary</h4>
 		</div>
-			<p>{{bio}}</p>
-		</div>
+		<p>{{bio}}</p>
 	</div>
-	<br/>
+</div>
+<br/>
 
-	<div class="row">
+<div class="row">
 
-		<div class="col-md-8 col-sm-6 mb-4">
+	<div class="col-md-8 col-sm-6 mb-4">
 
-			<button type="button" class="btn btn-primary" [routerLink]="['/register',{url:url}]">Edit Profile</button>
-		</div>
-
-
+		<button type="button" class="btn btn-primary" [routerLink]="['/register',{url:url}]">Edit Profile</button>
 	</div>
 
-	<div class="col-12 col-sm-12 col-md-12">
 
-		<div class="card">
-			<div class="card-header bg-primary">
-				<h5 class="card-title">Education</h5>
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">{{degree}}</h5>
-				<p>{{institute}}<br/>2014-2018</p>
-				<p class="card-text">
-				I am a determined individual who always
-					looks to broaden his career paths.I am a progressive thinker &
-					respect each person�s space & values.I am open to new challenges
-					and willing to work hard
-				</p>
+</div>
 
-				
+<div class="col-12 col-sm-12 col-md-12">
 
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">Matriculation</h5>
-				<h5 class="card-title">Graduation</h5>
-				<p>{{institute}}<br/>2014-2018</p>
-				<p class="card-text">
-				I am a determined individual who always
-					looks to broaden his career paths.I am a progressive thinker &
-					respect each person�s space & values.I am open to new challenges
-					and willing to work hard
-				</p>
-
-				
-
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">Intermediate</h5>
-				
-				<p class="card-text">
-				I am a determined individual who always
-					looks to broaden his career paths.I am a progressive thinker &
-					respect each person�s space & values.I am open to new challenges
-					and willing to work hard
-				</p>
-				
-
-			</div>
+	<div class="card">
+		<div class="card-header bg-primary">
+			<h5 class="card-title">Education</h5>
 		</div>
+		<div class="card-body">
+			<h5 class="card-title">{{degree}}</h5>
+			<p>{{institute}}
+				<br/>2014-2018</p>
+			<p class="card-text">
+				I am a determined individual who always looks to broaden his career paths.I am a progressive thinker & respect each person�s
+				space & values.I am open to new challenges and willing to work hard
+			</p>
 
+
+
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Matriculation</h5>
+			<h5 class="card-title">Graduation</h5>
+			<p>{{institute}}
+				<br/>2014-2018</p>
+			<p class="card-text">
+				I am a determined individual who always looks to broaden his career paths.I am a progressive thinker & respect each person�s
+				space & values.I am open to new challenges and willing to work hard
+			</p>
+
+
+
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Intermediate</h5>
+
+			<p class="card-text">
+				I am a determined individual who always looks to broaden his career paths.I am a progressive thinker & respect each person�s
+				space & values.I am open to new challenges and willing to work hard
+			</p>
+
+
+		</div>
 	</div>
-	<br />
-	<div class="col-12 col-sm-12 col-md-12">
 
-		<div class="card">
+</div>
+<br />
+<div class="col-12 col-sm-12 col-md-12">
 
-			<div class="card-header bg-primary">
-				<h5 class="card-title">Skills</h5>
-			</div>
-			<div class="card-body" *ngFor="let s of skillsStack">
-				<h5 class="card-title">{{s.name}}</h5>
-				<hr>
-			</div>
+	<div class="card">
 
+		<div class="card-header bg-primary">
+			<h5 class="card-title">Skills</h5>
+		</div>
+		<div class="card-body" *ngFor="let s of skillsStack">
+			<h5 class="card-title">{{s.name}}</h5>
+			<hr>
 		</div>
 
 	</div>
-	<br/>
-	<div class="col-12 col-sm-12 col-md-12">
 
-		<div class="card">
-			<div class="card-header bg-primary">
-				<h5 class="card-title">Certifications</h5>
-			</div>
-			<div class="card-body" *ngFor="let c of certifications">
-				<h5 class="card-title">{{c.certificationName}}</h5>
-				<h5 class="card-title">{{c.completionYear}}</h5>
-				<hr>
-			</div>
+</div>
+<br/>
+<div class="col-12 col-sm-12 col-md-12">
 
+	<div class="card">
+		<div class="card-header bg-primary">
+			<h5 class="card-title">Certifications</h5>
+		</div>
+		<div class="card-body" *ngFor="let c of certifications">
+			<h5 class="card-title">{{c.certificationName}}</h5>
+			<h5 class="card-title">{{c.completionYear}}</h5>
+			<hr>
 		</div>
 
 	</div>
+
 </div>
