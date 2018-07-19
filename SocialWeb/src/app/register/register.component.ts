@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AllSkillsService } from '../all-skills.service';
 import { Observable } from 'rxjs';
 import { FileUploadRetreiveService } from '../file-upload-retreive.service';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-register',
@@ -12,20 +13,32 @@ import { FileUploadRetreiveService } from '../file-upload-retreive.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  employeeUrl = "/";
   registerForm: FormGroup;
   skills: any = [];
   resume: File;
   bioPic:File;
+  employeeInfo: any;
+
   //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
     , private registrationService: RegistrationService
     , private router: Router
     , private allSkills: AllSkillsService
-    , private fileUpload: FileUploadRetreiveService) { }
+    , private fileUpload: FileUploadRetreiveService
+    , private route: ActivatedRoute
+    , private employeeService: EmployeeService) { }
 
   ngOnInit() {
+
+    this.route.params.subscribe(params => console.log(params));
+    this.employeeUrl = this.route.snapshot.paramMap.get('url');
+    console.log(this.employeeUrl);
+    if (this.employeeUrl !== "") {
+      this.getEmp(this.employeeUrl);
+    }
+
     this.registerForm = this.fb.group({
       empId: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -71,6 +84,23 @@ export class RegisterComponent implements OnInit {
   bioPicFileChange(event) {
     this.bioPic = event.target.files.item(0);
   }
+
+  getEmp(url) {
+    this.employeeService.fetchDetails(url)
+      .subscribe((employee) => {
+        this.employeeInfo = employee;
+        console.log(this.employeeInfo);
+        this.registerForm.patchValue(this.employeeInfo);
+        this.registerForm.controls['address'].patchValue({
+          street: this.employeeInfo.addresses[0].street,
+          city: this.employeeInfo.addresses[0].city,
+          state: this.employeeInfo.addresses[0].state,
+          country: this.employeeInfo.addresses[0].country,
+          zipcode: this.employeeInfo.addresses[0].zipcode
+        });
+      });
+  }
+
 
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
@@ -121,9 +151,8 @@ export class RegisterComponent implements OnInit {
 
   register(e) {
     e.preventDefault();
-    // if (this.registerForm.valid) {
-
-    if (true) {
+    if (this.registerForm.valid) {
+    //if (true) {
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value,"resume").subscribe(e => {
           console.log(e);
@@ -132,16 +161,10 @@ export class RegisterComponent implements OnInit {
       this.fileUpload.uploadFile(this.bioPic, this.registerForm.get('empId').value,"bioPic").subscribe(e => {
         console.log(e);
       });
-
-      //this.registerForm.get('resume').setValue('userFiles/'+this.registerForm.get('empId')+'resume')
       console.log(JSON.stringify(this.registerForm.value));
       console.log(this.registerForm.value)
       this.registrationService.register(this.registerForm.value).subscribe(e => {
-        //console.log(e);
       });
-
-
-
       this.router.navigateByUrl("/");
     }
 

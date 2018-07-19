@@ -7,9 +7,9 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   credentialForm: FormGroup;
-  
+  nullurl : String = "";
+  userrole: String;
   private credential = {'username': '', 'password': ''};
 
   constructor(private fb: FormBuilder) {}
@@ -18,11 +18,15 @@ export class LoginComponent implements OnInit {
 
     this.credentialForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-
+      password: ['', [Validators.required]],
+      role : ['Employee']
     });
-
+    this.onSubmit();
   }
 
-  
+  onSubmit(){
+    this.userrole = this.credentialForm.value['role'];
+    this.userrole = 'Admin';
+    console.log(this.userrole);
+  }
 }

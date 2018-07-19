@@ -15,12 +15,28 @@ export class ProfileInfoComponent implements OnInit {
   id: any;
   name: any;
   image: any;
-  url = 'http://localhost:8080/api/wiseconnect/v1/file/';
+  url1 = 'http://localhost:8080/api/wiseconnect/v1/file/';
+  url:any;
+  bio: any;
+  addresses: any;
+  city: any;
+  employeeName: any;
+  degree: any;
+  institute: any;
+  currentPosition: any;
+  certifications: any=[];
+  emailId: any;
+  firstName:any;
+  lastName:any; 
+  contact:any;
+  phone:any;
+  skillsStack:any=[];
+  
 
   ngOnInit() {
-    const url = this.route.snapshot.paramMap.get('p1');
-    console.log(url);
-    this.getEmp(url);
+    this.url = this.route.snapshot.paramMap.get('p1');
+    console.log(this.url);
+    this.getEmp(this.url);
   }
 
   getEmp(url) {
@@ -34,7 +50,29 @@ export class ProfileInfoComponent implements OnInit {
         }, error => {  
           console.log(error);
         })
-        this.url = this.url + this.id + "/" + "bioPic";
+        this.url1 = this.url1 + this.id + "/" + "bioPic";
+
+        this.bio = this.employeeInfo.bio;
+        if(this.employeeInfo.addresses[0])
+        this.city = this.employeeInfo.addresses[0].city;
+        this.firstName = this.employeeInfo.firstName;
+        this.lastName = this.employeeInfo.lastName;
+        this.degree = this.employeeInfo.qualificationDegree;
+        this.institute = this.employeeInfo.instituteName;
+        this.employeeName = this.firstName + " " + this.lastName;
+       this.currentPosition = this.employeeInfo.currentPosition;
+        this.emailId = this.employeeInfo.emailId;
+        this.contact = this.employeeInfo.contactNumberPersonal;
+        this.phone = this.employeeInfo.contactNumberWork;
+        this.employeeInfo.certifications.forEach((c)=>{
+          console.log(c)
+        this.certifications.push(c);
+        });
+         this.employeeInfo.skills.forEach((s)=>{
+        this.skillsStack.push(s.allSkill);
+           console.log(s.allSkill);
+        });
+        console.log(this.certifications);
       });
   }
   createImageFromBlob(image: Blob) {

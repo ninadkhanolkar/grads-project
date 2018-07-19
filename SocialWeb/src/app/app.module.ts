@@ -26,11 +26,13 @@ import {ProfileInfoComponent} from './profile-info/profile-info.component';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'profile-info', component: ProfileInfoComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'editprofile', component: EditprofileComponent},
   {
     path: 'profile',
     component: ProfileComponent,
@@ -63,7 +65,8 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     ProfileInfoComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,

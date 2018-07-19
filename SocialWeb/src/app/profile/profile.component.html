@@ -28,7 +28,7 @@
 
 		</div>
 		
-		<div class="col-sm-9" contenteditable="false" >
+		<div *ngIf='!isEmployee()' class="col-sm-9" contenteditable="false" >
 			<br /> <br />
 			<button type="button" class="btn btn-success" routerLink="/profile/pendingApproval">Pending Approvals</button>
 			&nbsp;&nbsp;
@@ -37,6 +37,19 @@
 			<br/>
 			<router-outlet></router-outlet>
 		</div>
+		
+		<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
+			<br /> <br />
+			<button type="button" class="btn btn-success" [routerLink]="['/profile-info',{p1:employeeUrl}]">View Profile</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-info"  routerLink="">Edit Profile</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-info"  routerLink="">List of Reportee</button>
+			<br/>
+			<br/>
+			<router-outlet></router-outlet>
+		</div>
+		
 
 
 		<div id="push"></div>
