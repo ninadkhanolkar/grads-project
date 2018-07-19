@@ -89,7 +89,10 @@ public class Employee implements Serializable {
 	}
 
 	public void setManagerId() {
+		if(employee.emailId != null)
 		this.managerId = this.employee.empId;
+		else 
+			this.managerId="";
 	}
 
 	//bi-directional many-to-one association to Employee
