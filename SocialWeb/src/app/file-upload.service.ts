@@ -14,7 +14,6 @@ export class FileUploadService {
     console.log('In File upload service')
     let formData = new FormData();
     formData.append('upload', file);
-
     let params = new HttpParams();
 
     const options = {
