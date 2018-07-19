@@ -81,7 +81,7 @@ public class EmployeeRegistrationService {
 			Certification certification = new Certification();
 			LinkedHashMap<?, ?> map2 = (LinkedHashMap<?, ?>) i.next();
 			certification.setCertificationName((String) map2.get("certificationName"));
-			String completionYear = (String) map2.get("completionYear");
+			String completionYear = map2.get("completionYear").toString();
 			certification.setCompletionYear(Integer.parseInt(completionYear));
 			certification.setEmployee(employee);
 			certifications.add(certification);
