@@ -43,6 +43,7 @@ export class ProfileInfoComponent implements OnInit {
         console.log(employee);
         this.id = this.employeeInfo.empId;
         this.bio = this.employeeInfo.bio;
+        if(this.employeeInfo.addresses[0])
         this.city = this.employeeInfo.addresses[0].city;
         this.firstName = this.employeeInfo.firstName;
         this.lastName = this.employeeInfo.lastName;
