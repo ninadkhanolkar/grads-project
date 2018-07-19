@@ -89,7 +89,7 @@ public class Employee implements Serializable {
 	}
 
 	public void setManagerId() {
-		if(employee.empId != null)
+		if(employee != null)
 		this.managerId = this.employee.empId;
 		else 
 			this.managerId="";
