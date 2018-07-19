@@ -12,3 +12,12 @@
     margin: 200px auto;
     width:30% 
 }
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.example-radio-button {
+  margin: 5px;
+}

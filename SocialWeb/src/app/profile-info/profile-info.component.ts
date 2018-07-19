@@ -13,11 +13,12 @@ export class ProfileInfoComponent implements OnInit {
   employeeInfo: any;
   id:any;
   name:any;
+  url:any;
 
   ngOnInit() {
-    const url = this.route.snapshot.paramMap.get('p1');
-    console.log(url);
-    this.getEmp(url);
+    this.url = this.route.snapshot.paramMap.get('p1');
+    console.log(this.url);
+    this.getEmp(this.url);
   }
   
   getEmp(url){
