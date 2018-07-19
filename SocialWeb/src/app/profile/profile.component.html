@@ -37,7 +37,7 @@
 			<br/>
 			<router-outlet></router-outlet>
 		</div>
-<<<<<<< HEAD
+		
 		<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
 			<br /> <br />
 			<button type="button" class="btn btn-success" [routerLink]="['/profile-info',{p1:employeeUrl}]">View Profile</button>
@@ -50,18 +50,7 @@
 			<router-outlet></router-outlet>
 		</div>
 		
-=======
-          
-          <div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
-			<br /> <br />
-			<button type="button" class="btn btn-success" routerLink="/profile/pendingApproval">Pending Approvals</button>
-			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info"  routerLink="/profile/table">View Employees</button>
-			<br/>
-			<br/>
-			<router-outlet></router-outlet>
-		</div>		
->>>>>>> 3974d6d04255aab9a5de1782a158747d8a78ec2f
+
 
 		<div id="push"></div>
 	</div>
