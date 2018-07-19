@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FileUploadService } from '../file-upload.service';
+import { FileUploadRetreiveService } from '../file-upload-retreive.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -9,14 +9,14 @@ import { FileUploadService } from '../file-upload.service';
 })
 export class FileUploadComponent implements OnInit {
 
-  constructor(private fileUpload:FileUploadService) { }
+  constructor(private fileUpload:FileUploadRetreiveService) { }
 
   ngOnInit() {
   }
 
   fileChange(event) {
-    let fileList: FileList = event.target.files;
-    this.fileUpload.uploadFile(fileList);
+    let fileList: File = event.target.files.item(0);
+    this.fileUpload.uploadFile(fileList,"asd","xyz");
     
 }
 
