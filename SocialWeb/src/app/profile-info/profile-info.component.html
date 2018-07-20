@@ -19,10 +19,13 @@
 			<br/>
 			<i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;{{phone}}
 			<br/>
-			<br />
+			<i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{city}},{{country}}
+			<br/>
+			<br/>
 			<h4>Summary</h4>
+			<p>{{bio}}</p>
 		</div>
-		<p>{{bio}}</p>
+		
 	</div>
 </div>
 <br/>
@@ -31,7 +34,7 @@
 
 	<div class="col-md-8 col-sm-6 mb-4">
 
-		<button type="button" class="btn btn-primary" (click)="toggleIsEdittingProfile()" [routerLink]="['register',{empId:empId}]">Edit Profile</button>
+		<button type="button" class="btn btn-primary align1" (click)="toggleIsEdittingProfile()" [routerLink]="['register',{empId:empId}]">Edit Profile</button>
 	</div>
 
 
