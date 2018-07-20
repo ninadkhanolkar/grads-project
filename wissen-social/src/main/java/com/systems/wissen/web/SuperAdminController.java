@@ -11,31 +11,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.systems.wissen.model.Admin;
 import com.systems.wissen.repo.SuperAdminRepository;
 
 @CrossOrigin(origins="*")
 @RestController()
-@RequestMapping("/api/Admins")
+@RequestMapping("/api/wiseconnect/v1/admins")
 public class SuperAdminController {
     
 	@Autowired
 	private SuperAdminRepository superAdminRepository;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Admin> getAllAdmins(){
-		List<Admin> admins=this.superAdminRepository.getAllAdmins();
+	public List<AdminDTO> getAllAdmins(){
+		List<AdminDTO> admins=this.superAdminRepository.getAdminDTO();
 		return admins;
 	}
 
 	@PostMapping(consumes = { "application/json" }, produces = { "application/json" })
 	public Admin post(@RequestBody Admin admin) {
-
 		return superAdminRepository.addAdmin(admin);
 	}
 	
 	@RequestMapping(value ="/{admin_id}",method = RequestMethod.DELETE)
-	public void removeAdmin(@PathVariable String admin_id){
+	public void removeAdmin(@PathVariable int admin_id){
+		
 		this.superAdminRepository.removeAdmin(admin_id);
 	}
 

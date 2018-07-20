@@ -54,7 +54,15 @@ public class EmployeeController {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
 		return allEmployeeViewResponse;
 	}
-
+    
+	
+	@RequestMapping(value="/api/wiseconnect/v1/{empId}/reportees",method=RequestMethod.GET)
+	public List<EmployeeViewResponse> getReportees(@PathVariable String empId){
+		List<EmployeeViewResponse> allReporteeViewResponse=employeeRepository.getReporteeOfEmployee(empId);
+		return allReporteeViewResponse;
+	}
+	
+	
 	@RequestMapping(value = "/api/wiseconnect/v1/pendingEmployees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getPendingEmployee() {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllPendingEmployeeViewResponse();

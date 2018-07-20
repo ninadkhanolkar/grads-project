@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -69,6 +70,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus=0").getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
+	}
+	@Override
+	public List<EmployeeViewResponse> getReporteeOfEmployee(String empId){
+		String jpql="from Employee e where e.employee.empId=?";
+		Query query=manager.createQuery(jpql);
+		query.setParameter(0, empId);
+		List<Employee> employees =  query.getResultList();
+		Stream<Employee> stream = employees.stream();
+		return getListOfEmployeeViewResponse(stream);
+		
 	}
 
 	@Override
