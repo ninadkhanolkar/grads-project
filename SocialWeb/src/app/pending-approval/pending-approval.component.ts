@@ -38,10 +38,12 @@ export class PendingApprovalComponent implements OnInit {
   }
 
 
-  viewProfile(url) {
-    this.employeeService.fetchDetails(url)
+  viewProfile(empId) {
+    this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
         console.log(employee);
       });
+      this.router.navigate(['/profile-info',{p1:empId}])
+      
   }
 }

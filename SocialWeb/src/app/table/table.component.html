@@ -13,8 +13,10 @@
 			<td>{{employee.firstName}}</td>
 			<td>{{employee.lastName}}</td>
 			<td>
-				<button type="button" class="btn btn-primary btn-sm" [routerLink]="['/profile-info',{p1:employee.url}]" >ViewProfile</button>
+				<button type="button" class="btn btn-primary btn-sm" [routerLink]="['/profile/table/profile-info',{p1:employee.id}]" >ViewProfile</button>
 			</td>
 		</tr>
 	</tbody>
+	
 </table>
+<router-outlet></router-outlet>

@@ -12,11 +12,11 @@ export class ProfileInfoComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private fileService: FileUploadRetreiveService) { }
   employeeInfo: any;
+  empId:any;
   id: any;
   name: any;
   image: any;
   url1 = 'http://localhost:8080/api/wiseconnect/v1/file/';
-  url:any;
   bio: any;
   addresses: any;
   city: any;
@@ -31,16 +31,17 @@ export class ProfileInfoComponent implements OnInit {
   contact:any;
   phone:any;
   skillsStack:any=[];
+  isEditingProfile=false;
   
 
   ngOnInit() {
-    this.url = this.route.snapshot.paramMap.get('p1');
-    console.log(this.url);
-    this.getEmp(this.url);
+    this.empId = this.route.snapshot.paramMap.get('p1');
+    console.log(this.empId);
+    this.getEmp(this.empId);
   }
 
-  getEmp(url) {
-    this.employeeService.fetchDetails(url)
+  getEmp(empId) {
+    this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
         this.employeeInfo = employee;
         console.log(employee);
@@ -84,6 +85,10 @@ export class ProfileInfoComponent implements OnInit {
     if (image) {
       reader.readAsDataURL(image);
     }
+  }
+
+  toggleIsEdittingProfile(){
+    this.isEditingProfile=!this.isEditingProfile;
   }
 
 }

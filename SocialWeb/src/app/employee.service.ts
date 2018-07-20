@@ -14,10 +14,10 @@ export class EmployeeService {
   }
 
 
-  fetchDetails(url) {
-    let final = "http://localhost:8080" + url;
+  fetchDetails(empId) {
+    const final = "http://localhost:8080/api/wiseconnect/v1/employee/";
     console.log(final);
-    return this.http.get(final);
+    return this.http.get(final+empId);
   }
 
   loadPendingListEmployees() {

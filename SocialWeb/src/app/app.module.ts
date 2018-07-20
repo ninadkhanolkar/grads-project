@@ -33,21 +33,43 @@ const routes: Routes = [
   {path: 'profile-info', component: ProfileInfoComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'editprofile', component: EditprofileComponent},
-  {
-    path: 'profile',
-    component: ProfileComponent,
+  { path: 'profile',
+    
     children: [
+      {
+        path:'',
+        component: ProfileComponent,
+      },
 
       {
         path: 'pendingApproval',
         component: PendingApprovalComponent,
-
       },
       {
         path: 'table',
-        component: TableComponent,
-
-      }
+        
+        children:[
+          {
+            path:'',
+            component: TableComponent,
+          },
+          {
+            path: 'profile-info',
+            
+            children:[
+              {
+                path:'',
+                component: ProfileInfoComponent,
+              },
+              {
+                path: 'register', component: RegisterComponent
+              }
+            ]
+            
+          },
+        ]
+      },
+      
     ]
   },
 ];

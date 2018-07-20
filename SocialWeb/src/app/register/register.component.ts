@@ -13,7 +13,7 @@ import { EmployeeService } from '../employee.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  employeeUrl = "/";
+  employeeId = "";
   registerForm: FormGroup;
   skills: any = [];
   resume: File;
@@ -33,10 +33,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params => console.log(params));
-    this.employeeUrl = this.route.snapshot.paramMap.get('url');
-    console.log(this.employeeUrl);
-    if (this.employeeUrl !== "") {
-      this.getEmp(this.employeeUrl);
+    this.employeeId = this.route.snapshot.paramMap.get('empId');
+    console.log(this.employeeId);
+    if (this.employeeId !== "") {
+      this.getEmp(this.employeeId);
     }
 
     this.registerForm = this.fb.group({
@@ -85,8 +85,8 @@ export class RegisterComponent implements OnInit {
     this.bioPic = event.target.files.item(0);
   }
 
-  getEmp(url) {
-    this.employeeService.fetchDetails(url)
+  getEmp(empId) {
+    this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
         this.employeeInfo = employee;
         delete this.employeeInfo['bioPic'];

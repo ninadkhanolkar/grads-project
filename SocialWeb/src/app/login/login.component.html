@@ -1,6 +1,6 @@
 <div class="container center_div">
   <div class="jumbotron">
-    <form class="example-form" [formGroup]="credentialForm">
+    <form class="example-form" [formGroup]="credentialForm" (submit)="onSubmit()">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Username" formControlName="username">
       </mat-form-field>
@@ -18,9 +18,9 @@
       <br/>
       <br/>
       &nbsp;&nbsp;
-      <button class="btn btn-primary" mat-raised-button [routerLink]="['/profile',{role:userrole}]">Login</button>
+      <button class="btn btn-primary" mat-raised-button >Login</button>
       &nbsp;&nbsp;
-      <button class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" mat-raised-button>Register</button>
+      <button type='button' class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" mat-raised-button>Register</button>
     </form>
   </div>
 </div>

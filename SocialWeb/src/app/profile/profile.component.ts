@@ -8,23 +8,38 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   employeeUrl = "/api/wiseconnect/v1/employee/WT299";
-  employeeCredentials: any = [];
   role: String;
+  empId:String;
   constructor(private employeeService: EmployeeService,
     private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => console.log(params));
-    this.role = this.route.snapshot.paramMap.get('role');
+    if(this.route.snapshot.paramMap.get('role')){
+      this.role = this.route.snapshot.paramMap.get('role');
+    }
+    if(this.route.snapshot.paramMap.get('username')){
+      this.empId=this.route.snapshot.paramMap.get('username');
+    }
+    
     console.log(this.role);
   }
 
   isEmployee(){
+    console.log(this.role)
     if(this.role === "Employee"){
       return true;
     }
-    else
+    else 
     return false;
+  }
+  isAdmin(){
+    console.log(this.role)
+    if(this.role==="Admin"){
+      return true;
+    }
+    else 
+      return false;
   }
 
 }

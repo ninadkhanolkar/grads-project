@@ -1,5 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,9 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   credentialForm: FormGroup;
   nullurl : String = "";
-  userrole: String;
-  private credential = {'username': '', 'password': ''};
+  private credential = {username :'', password: ''};
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private router:Router) {}
 
   ngOnInit() {
 
@@ -21,12 +21,15 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       role : ['Employee']
     });
-    this.onSubmit();
   }
 
   onSubmit(){
-    this.userrole = this.credentialForm.value['role'];
-    this.userrole = 'Admin';
-    console.log(this.userrole);
+    let username=this.credentialForm.value['username'];
+    let password=this.credentialForm.value['password'];
+    this.credential={username,password};
+    let userRole = this.credentialForm.get('role').value
+    this.router.navigate(['/profile',{'role':userRole,'username':username}]);
+    // this.userrole = 'Admin';
+    console.log();
   }
 }
