@@ -30,6 +30,7 @@ export class ProfileInfoComponent implements OnInit {
   lastName:any; 
   contact:any;
   phone:any;
+  country:any;
   skillsStack:any=[];
   isEditingProfile=false;
   
@@ -56,6 +57,7 @@ export class ProfileInfoComponent implements OnInit {
         this.bio = this.employeeInfo.bio;
         if(this.employeeInfo.addresses[0])
         this.city = this.employeeInfo.addresses[0].city;
+         this.country = this.employeeInfo.addresses[0].country;
         this.firstName = this.employeeInfo.firstName;
         this.lastName = this.employeeInfo.lastName;
         this.degree = this.employeeInfo.qualificationDegree;

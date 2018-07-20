@@ -7,3 +7,8 @@ display: block;
 line-height: 1.428571429;
 color: #999;
 }
+
+.align1{
+	position:relative;
+	left:100px;
+}
