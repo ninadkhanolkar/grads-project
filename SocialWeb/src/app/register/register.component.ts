@@ -92,14 +92,6 @@ export class RegisterComponent implements OnInit {
         delete this.employeeInfo['bioPic'];
         delete this.employeeInfo['resume'];
         console.log(this.employeeInfo);
-        this.registerForm.patchValue(this.employeeInfo);
-        this.registerForm.controls['address'].patchValue({
-          street: this.employeeInfo.addresses[0].street,
-          city: this.employeeInfo.addresses[0].city,
-          state: this.employeeInfo.addresses[0].state,
-          country: this.employeeInfo.addresses[0].country,
-          zipcode: this.employeeInfo.addresses[0].zipcode
-        });
         this.removeSkill(0);
         this.employeeInfo.skills.forEach(element => {
           this.addSkill(element.allSkill);
@@ -107,6 +99,14 @@ export class RegisterComponent implements OnInit {
         this.removeCertificate(0);
         this.employeeInfo.certifications.forEach(element => {
           this.addCertificate(element.completionYear ,element.certificationName);
+        });
+        this.registerForm.patchValue(this.employeeInfo);
+        this.registerForm.controls['address'].patchValue({
+          street: this.employeeInfo.addresses[0].street,
+          city: this.employeeInfo.addresses[0].city,
+          state: this.employeeInfo.addresses[0].state,
+          country: this.employeeInfo.addresses[0].country,
+          zipcode: this.employeeInfo.addresses[0].zipcode
         });
       });
   }
