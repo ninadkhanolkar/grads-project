@@ -35,4 +35,9 @@ export class EmployeeService {
     return this.http.delete(final);
   }
 
+  loadReportees(id){
+    let url = `http://localhost:8080/api/wiseconnect/v1/${id}/reportees`;
+    return this.http.get(url);
+  }
+
 }

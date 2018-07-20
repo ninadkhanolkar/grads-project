@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   // {path: 'profile-info', component: ProfileInfoComponent},
   {path: 'register', component: RegisterComponent},
-  { path: 'profile',
+  { path: 'admin/profile',
     
     children: [
       {
@@ -49,17 +49,7 @@ const routes: Routes = [
           },
           {
             path: 'profile-info',
-            
-            children:[
-              {
-                path:'',
-                component: ProfileInfoComponent,
-              },
-              {
-                path: 'register', component: RegisterComponent
-              }
-            ]
-            
+            component: ProfileInfoComponent,
           },
         ]
         
@@ -74,23 +64,53 @@ const routes: Routes = [
           },
           {
             path: 'profile-info',
-            
-            children:[
-              {
-                path:'',
-                component: ProfileInfoComponent,
-              },
-              {
-                path: 'register', component: RegisterComponent
-              }
-            ]
-            
+            component: ProfileInfoComponent,
           },
         ]
       },
       
     ]
   },
+  { path: 'employee/profile',
+    
+    children: [
+      {
+        path:'',
+        component: ProfileComponent,
+      },
+      {
+        path: 'profile-info',
+        
+        children:[
+          {
+            path:'',
+            component: ProfileInfoComponent,
+          },
+          {
+            path: 'register', component: RegisterComponent
+          }
+        ]
+        
+      },
+      {
+        path: 'register', component: RegisterComponent
+      },
+      {
+        path: 'reportees',
+        children:[
+          {
+            path:'',
+            component: TableComponent,
+          },
+          {
+            path: 'profile-info',
+            component: ProfileInfoComponent
+          },
+        ]
+      },
+      
+    ]
+  }
 ];
 
 @NgModule({

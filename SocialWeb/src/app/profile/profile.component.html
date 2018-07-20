@@ -30,9 +30,9 @@
 		
 		<div *ngIf='isAdmin()' class="col-sm-9" contenteditable="false" >
 			<br /> <br />
-			<button type="button" class="btn btn-success" routerLink="/profile/pendingApproval">Pending Approvals</button>
+			<button type="button" class="btn btn-success" routerLink="pendingApproval">Pending Approvals</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info"  routerLink="/profile/table">View Employees</button>
+			<button type="button" class="btn btn-info"  [routerLink]="['table',{type:'employees'}]">View Employees</button>
 			<br/>
 			<br/>
 			<router-outlet></router-outlet>
@@ -40,11 +40,11 @@
 		
 		<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
 			<br /> <br/>
-			<button type="button" class="btn btn-success" [routerLink]="['/profile-info',{p1:empId}]">View Profile</button>
+			<button type="button" class="btn btn-success" [routerLink]="['profile-info',{p1:empId}]">View Profile</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info"  routerLink="">Edit Profile</button>
+			<button type="button" class="btn btn-info"  [routerLink]="['register',{empId:empId}]">Edit Profile</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info"  routerLink="">List of Reportee</button>
+			<button type="button" class="btn btn-info"  [routerLink]="['reportees',{type:'reportees',id:empId}]">List of Reportee</button>
 			<br/>
 			<br/>
 			<router-outlet></router-outlet>
