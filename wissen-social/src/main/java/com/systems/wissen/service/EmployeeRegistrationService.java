@@ -97,13 +97,16 @@ public class EmployeeRegistrationService {
 		while (i2.hasNext()) {
 			Skill skill = new Skill();
 			LinkedHashMap<?, ?> map2 = (LinkedHashMap<?, ?>) i2.next();
+			try {
 			LinkedHashMap<?, ?> map22 = (LinkedHashMap<?, ?>) map2.get("allSkillId"); 
 
 			AllSkill allSkill = new AllSkill();
 			allSkill.setAllSkillId((int) map22.get("allSkillId"));
 			skill.setAllSkill(allSkill);
 			skill.setEmployee(employee);
-			skills.add(skill);
+			skills.add(skill);}
+			catch(Exception e) {
+				System.out.println(e);			}
 		}
 		employee.setSkills(skills);
 
