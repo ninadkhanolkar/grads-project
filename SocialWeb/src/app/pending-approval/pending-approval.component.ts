@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from '../employee.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pending-approval',
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class PendingApprovalComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService,
-    private router: Router) {}
+    private router: Router,
+    private route:ActivatedRoute) {} //This parameter is used to enable router.navigate for relative routes
   pendingEmployeeDetails: any = [];
   ngOnInit() {
     this.getPendingEmployeeDetails();
@@ -43,7 +44,7 @@ export class PendingApprovalComponent implements OnInit {
       .subscribe((employee) => {
         console.log(employee);
       });
-      this.router.navigate(['/profile-info',{p1:empId}])
+      this.router.navigate(['profile-info',{p1:empId}],{ relativeTo: this.route })
       
   }
 }

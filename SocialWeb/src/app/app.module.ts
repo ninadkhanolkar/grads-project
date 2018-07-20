@@ -30,9 +30,8 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'profile-info', component: ProfileInfoComponent},
+  // {path: 'profile-info', component: ProfileInfoComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'editprofile', component: EditprofileComponent},
   { path: 'profile',
     
     children: [
@@ -43,7 +42,27 @@ const routes: Routes = [
 
       {
         path: 'pendingApproval',
-        component: PendingApprovalComponent,
+        children:[
+          {
+            path:'',
+            component: PendingApprovalComponent,
+          },
+          {
+            path: 'profile-info',
+            
+            children:[
+              {
+                path:'',
+                component: ProfileInfoComponent,
+              },
+              {
+                path: 'register', component: RegisterComponent
+              }
+            ]
+            
+          },
+        ]
+        
       },
       {
         path: 'table',
