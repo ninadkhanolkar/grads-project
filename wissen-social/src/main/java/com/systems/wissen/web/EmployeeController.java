@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.repo.EmployeeRepository;
+import com.systems.wissen.repo.UserCredentialRepository;
 import com.systems.wissen.service.EmailService;
 import com.systems.wissen.service.EmployeeRegistrationService;
 
@@ -23,6 +24,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private UserCredentialRepository userCredentialRepository;
 
 	@Autowired
 	private EmployeeRegistrationService registrationService;
@@ -77,6 +81,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/reject", method = RequestMethod.DELETE)
 	public void delete(@PathVariable String employeeId) {
 		emailService.sendEmail(employeeId);
+		userCredentialRepository.removeUserCredential(employeeId);
 		employeeRepository.removeEmployee(employeeId);
 	}
 	
