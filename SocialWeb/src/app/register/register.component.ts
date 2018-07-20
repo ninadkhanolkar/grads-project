@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     this.route.params.subscribe(params => console.log(params));
     this.employeeId = this.route.snapshot.paramMap.get('empId');
     console.log(this.employeeId);
-    if (this.employeeId !== "") {
+    if (this.employeeId) {
       this.getEmp(this.employeeId);
     }
 
