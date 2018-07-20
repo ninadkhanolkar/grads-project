@@ -130,3 +130,5 @@ insert into admin(id,password,role_id) values( 'AD02' , 'admin', 2);
 insert into admin(id,password,role_id) values( 'AD03' , 'admin', 2);
 insert into admin(id,password,role_id) values( 'AD04' , 'admin', 2);
 insert into admin(id,password,role_id) values( 'AD05' , 'admin', 2);
+
+update employee set application_status = 1 where emp_id in('WT301','WT300');

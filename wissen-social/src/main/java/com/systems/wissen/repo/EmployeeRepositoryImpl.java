@@ -31,19 +31,30 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployees() {
-		return manager.createQuery("from Employee").getResultList();
+		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
+		setManagerId(resultList);
+		return resultList;
 	}
-	
+
+	private void setManagerId(List<Employee> resultList) {
+		resultList.forEach((employee) -> {
+			employee.setManagerId();
+		});
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllApprovedEmployees() {
-		return manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
+		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
+		setManagerId(resultList);
+		return resultList;
 	}
 
 	@Override
 	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
 		@SuppressWarnings("unchecked")
-		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
+		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1")
+				.getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
 	}
@@ -71,15 +82,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
 	}
+
 	@Override
-	public List<EmployeeViewResponse> getReporteeOfEmployee(String empId){
-		String jpql="from Employee e where e.employee.empId=?";
-		Query query=manager.createQuery(jpql);
+	public List<EmployeeViewResponse> getReporteeOfEmployee(String empId) {
+		String jpql = "from Employee e where e.employee.empId=?";
+		Query query = manager.createQuery(jpql);
 		query.setParameter(0, empId);
-		List<Employee> employees =  query.getResultList();
+		List<Employee> employees = query.getResultList();
 		Stream<Employee> stream = employees.stream();
 		return getListOfEmployeeViewResponse(stream);
-		
+
 	}
 
 	@Override
