@@ -16,4 +16,7 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-
+#  queries:
+#    users-query : select email, password, active from user where email=?
+#    roles-query : select u.email, r.role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.email=?
+# https://medium.com/@gustavo.ponce.ch/spring-boot-spring-mvc-spring-security-mysql-a5d8545d837d

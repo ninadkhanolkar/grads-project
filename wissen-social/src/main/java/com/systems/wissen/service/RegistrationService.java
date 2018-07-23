@@ -20,9 +20,18 @@ import com.systems.wissen.model.Employee;
 import com.systems.wissen.model.Skill;
 import com.systems.wissen.model.UserCredential;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Service
 public class RegistrationService {
+<<<<<<< HEAD
 	private static final Logger logger = Logger.getLogger(RegistrationService.class);
+=======
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+>>>>>>> 7112dcd4ff81f01928aaaf0a5c8639b2ea2977f3
 
 	public Map<String, Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);
@@ -57,7 +66,7 @@ public class RegistrationService {
 
 	private UserCredential setUserCredentials(JSONObject registrationObject, Employee employee) {
 		UserCredential userCredential = new UserCredential();
-		userCredential.setPassword((String) registrationObject.get("password"));
+		userCredential.setPassword(bCryptPasswordEncoder.encode((String) registrationObject.get("password")));
 		userCredential.setRoleId(3);
 		userCredential.setEmployee(employee);
 		return userCredential;
