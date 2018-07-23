@@ -20,7 +20,7 @@ import com.systems.wissen.model.Skill;
 import com.systems.wissen.model.UserCredential;
 
 @Service
-public class ResgistrationService {
+public class RegistrationService {
 
 	public Map<String,Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);

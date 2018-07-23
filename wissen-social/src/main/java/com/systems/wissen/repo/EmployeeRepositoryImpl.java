@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.model.UserCredential;
 import com.systems.wissen.service.EmailService;
-import com.systems.wissen.service.ResgistrationService;
+import com.systems.wissen.service.RegistrationService;
 import com.systems.wissen.web.EmployeeViewResponse;
 import com.systems.wissen.web.ResponseMessage;
 
@@ -32,7 +32,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	private EmailService emailService;
 	
 	@Autowired
-	private ResgistrationService registrationService;
+	private RegistrationService registrationService;
 	
 	@Autowired
 	private UserCredentialRepository userCredentialRepository;
