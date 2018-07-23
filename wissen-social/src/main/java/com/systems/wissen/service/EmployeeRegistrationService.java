@@ -29,35 +29,35 @@ public class EmployeeRegistrationService {
 	@Autowired
 	UserCredentialRepository userCredentialRepository;
 	
-	public void registerEmployee(JSONObject jo) {
+	public void registerEmployee(JSONObject registrationObject) {
 
 		Employee employee = new Employee();
-		employee.setEmpId((String) jo.get("empId"));
-		employee.setFirstName((String) jo.get("firstName"));
-		employee.setLastName((String) jo.get("lastName"));
-		employee.setBioPic((String) jo.get("bioPic"));
-		employee.setGender((String) jo.get("gender"));
-		employee.setMaritalStatus((String) jo.get("maritalStatus"));
-		employee.setEmailId((String) jo.get("emailId"));
+		employee.setEmpId((String) registrationObject.get("empId"));
+		employee.setFirstName((String) registrationObject.get("firstName"));
+		employee.setLastName((String) registrationObject.get("lastName"));
+		employee.setBioPic((String) registrationObject.get("bioPic"));
+		employee.setGender((String) registrationObject.get("gender"));
+		employee.setMaritalStatus((String) registrationObject.get("maritalStatus"));
+		employee.setEmailId((String) registrationObject.get("emailId"));
 		try {
-			employee.setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse((String) jo.get("dateOfBirth")));
+			employee.setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse((String) registrationObject.get("dateOfBirth")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if(!jo.get("contactNumberPersonal").toString().equals("")) {
-			employee.setContactNumberPersonal(Long.parseLong(jo.get("contactNumberPersonal").toString()));
+		if(!registrationObject.get("contactNumberPersonal").toString().equals("")) {
+			employee.setContactNumberPersonal(Long.parseLong(registrationObject.get("contactNumberPersonal").toString()));
 		}
 		
-		employee.setContactNumberWork(Long.parseLong(jo.get("contactNumberWork").toString()));
+		employee.setContactNumberWork(Long.parseLong(registrationObject.get("contactNumberWork").toString()));
 		Employee managerEmployee=null;
-		if(!(((String)jo.get("managerId")).equals("")||(String)jo.get("managerId")==null)) {
+		if(!(((String)registrationObject.get("managerId")).equals("")||(String)registrationObject.get("managerId")==null)) {
 			managerEmployee = new Employee();
-			managerEmployee.setEmpId((String) jo.get("managerId"));
+			managerEmployee.setEmpId((String) registrationObject.get("managerId"));
 		}
 		employee.setEmployee(managerEmployee);
-		employee.setCurrentPosition((String) jo.get("currentPosition"));
+		employee.setCurrentPosition((String) registrationObject.get("currentPosition"));
 
-		LinkedHashMap<?, ?> map = (LinkedHashMap<?, ?>) jo.get("address");
+		LinkedHashMap<?, ?> map = (LinkedHashMap<?, ?>) registrationObject.get("address");
 		Address address = new Address();
 		address.setStreet((String) map.get("street"));
 		address.setCity((String) map.get("city"));
@@ -69,12 +69,12 @@ public class EmployeeRegistrationService {
 		addresses.add(address);
 		employee.setAddresses(addresses);
 
-		employee.setQualificationDegree((String) jo.get("qualificationDegree"));
-		employee.setInstituteName((String) jo.get("instituteName"));
-		employee.setBio((String) jo.get("bio"));
+		employee.setQualificationDegree((String) registrationObject.get("qualificationDegree"));
+		employee.setInstituteName((String) registrationObject.get("instituteName"));
+		employee.setBio((String) registrationObject.get("bio"));
 
 		List<Certification> certifications = new ArrayList<>();
-		ArrayList<?> data = (ArrayList<?>) jo.get("certifications");
+		ArrayList<?> data = (ArrayList<?>) registrationObject.get("certifications");
 
 		Iterator<?> i = data.iterator();
 		while (i.hasNext()) {
@@ -88,11 +88,11 @@ public class EmployeeRegistrationService {
 		}
 		employee.setCertifications(certifications);
 
-		employee.setResume((String) jo.get("resume"));
+		employee.setResume((String) registrationObject.get("resume"));
 		employee.setApplicationStatus(0);// default : not approved
 
 		List<Skill> skills = new ArrayList<>();
-		ArrayList<?> data2 = (ArrayList<?>) jo.get("skills");
+		ArrayList<?> data2 = (ArrayList<?>) registrationObject.get("skills");
 		Iterator<?> i2 = data2.iterator();
 		while (i2.hasNext()) {
 			Skill skill = new Skill();
@@ -111,7 +111,7 @@ public class EmployeeRegistrationService {
 		employee.setSkills(skills);
 
 		UserCredential userCredential = new UserCredential();
-		userCredential.setPassword((String) jo.get("password"));
+		userCredential.setPassword((String) registrationObject.get("password"));
 		userCredential.setRoleId(3);
 		userCredential.setEmployee(employee);
 
