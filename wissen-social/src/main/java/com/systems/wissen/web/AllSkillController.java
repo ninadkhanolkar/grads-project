@@ -12,14 +12,15 @@ import com.systems.wissen.model.AllSkill;
 import com.systems.wissen.repo.AllSkillsRepository;
 
 @RestController
-@CrossOrigin(origins= {"*"})
-@RequestMapping(value="/api/wiseconnect/v1/allskills")
+@CrossOrigin(origins = { "*" })
+@RequestMapping(value = "/api/wiseconnect/v1/allskills")
 public class AllSkillController {
-	
+
 	@Autowired
-	AllSkillsRepository allSkillRepository;
+	AllSkillsRepository allSkillsRepository;
+
 	@GetMapping
 	public List<AllSkill> find() {
-		return allSkillRepository.getSkills();
+		return allSkillsRepository.getSkills();
 	}
 }

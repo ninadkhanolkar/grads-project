@@ -2,9 +2,11 @@ package com.systems.wissen.repo;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.web.EmployeeViewResponse;
-import com.systems.wissen.web.ResponseObject;
+import com.systems.wissen.web.ResponseMessage;
 
 public interface EmployeeRepository {
 
@@ -13,9 +15,10 @@ public interface EmployeeRepository {
 	Employee getEmployeeById(String id);
 	List<EmployeeViewResponse> getAllEmployeeViewResponse();
 	List<EmployeeViewResponse> getAllPendingEmployeeViewResponse();
-	ResponseObject changeEmployeeApplicationStatus(String id);
+	ResponseMessage changeEmployeeApplicationStatus(String id);
 	void removeEmployee(String employeeId);
 	List<Employee> getAllApprovedEmployees();
-	public List<EmployeeViewResponse> getReporteeOfEmployee(String empId);
+	List<EmployeeViewResponse> getReporteeOfEmployee(String empId);
+	void registerEmployee(JSONObject registrationObject);
 }
 	

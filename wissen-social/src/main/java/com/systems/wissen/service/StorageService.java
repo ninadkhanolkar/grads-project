@@ -18,13 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 public class StorageService {
-	// Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	private final Path rootLocation = Paths.get("upload-dir");
-	Path folderPath;
+	private Path folderPath;
 
 	public void store(MultipartFile file,String name) {
 		try {
-//			Files.copy(file.getInputStream(), this.folderPath.resolve(file.getOriginalFilename()));
 			Files.copy(file.getInputStream(), this.folderPath.resolve(name+"."+file.getContentType().substring(file.getContentType().lastIndexOf('/')+1)));
 		} catch (Exception e) {
 			System.out.println(e);

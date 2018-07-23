@@ -15,38 +15,30 @@ import org.springframework.web.bind.annotation.RestController;
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.repo.EmployeeRepository;
 import com.systems.wissen.repo.UserCredentialRepository;
-import com.systems.wissen.service.EmailService;
-import com.systems.wissen.service.EmployeeRegistrationService;
 
 @RestController
 @CrossOrigin(origins = { "*" })
 public class EmployeeController {
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+
 	@Autowired
 	private UserCredentialRepository userCredentialRepository;
 
-	@Autowired
-	private EmployeeRegistrationService registrationService;
-	
-	@Autowired 
-	private EmailService emailService;
-
-	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/wiseconnect/v1/employees", method = RequestMethod.GET)
 	public List<Employee> get() {
 		List<Employee> allEmployees = employeeRepository.getAllEmployees();
 		return allEmployees;
 	}
-	
+
 	@RequestMapping(value = "/api/wiseconnect/v1/approvedEmployees", method = RequestMethod.GET)
 	public List<Employee> getApprovedEmployees() {
 		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
 		return allEmployees;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
 		Employee employee = employeeRepository.getEmployeeById(employeeId);
 		employee.setManagerId();
@@ -58,15 +50,13 @@ public class EmployeeController {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
 		return allEmployeeViewResponse;
 	}
-    
-	
-	@RequestMapping(value="/api/wiseconnect/v1/{empId}/reportees",method=RequestMethod.GET)
-	public List<EmployeeViewResponse> getReportees(@PathVariable String empId){
-		List<EmployeeViewResponse> allReporteeViewResponse=employeeRepository.getReporteeOfEmployee(empId);
+
+	@RequestMapping(value = "/api/wiseconnect/v1/{empId}/reportees", method = RequestMethod.GET)
+	public List<EmployeeViewResponse> getReportees(@PathVariable String empId) {
+		List<EmployeeViewResponse> allReporteeViewResponse = employeeRepository.getReporteeOfEmployee(empId);
 		return allReporteeViewResponse;
 	}
-	
-	
+
 	@RequestMapping(value = "/api/wiseconnect/v1/pendingEmployees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getPendingEmployee() {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllPendingEmployeeViewResponse();
@@ -76,21 +66,19 @@ public class EmployeeController {
 	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.POST)
 	public Map<?, ?> post(@RequestBody Map<?, ?> registrationObject) {
 		JSONObject resultObject = new JSONObject(registrationObject);
-		registrationService.registerEmployee(resultObject);
+		employeeRepository.registerEmployee(resultObject);
 		return registrationObject;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/accept", method = RequestMethod.PUT)
-	public ResponseObject put(@PathVariable String employeeId) {
-		ResponseObject responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
+	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.PUT)
+	public ResponseMessage put(@PathVariable String employeeId) {
+		ResponseMessage responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
 		return responseObject;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employee/{employeeId}/reject", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable String employeeId) {
-		emailService.sendEmail(employeeId);
 		userCredentialRepository.removeUserCredential(employeeId);
 		employeeRepository.removeEmployee(employeeId);
 	}
-	
 }

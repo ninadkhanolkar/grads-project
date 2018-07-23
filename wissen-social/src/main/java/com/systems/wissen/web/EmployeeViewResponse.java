@@ -5,7 +5,6 @@ public class EmployeeViewResponse {
 	private String firstName;
 	private String lastName;
 	private String id;
-	private String url;
 
 	public String getFirstName() {
 		return firstName;
@@ -30,14 +29,4 @@ public class EmployeeViewResponse {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl() {
-		String initUrl = "/api/wiseconnect/v1/employee/" + this.id;
-		this.url = initUrl;
-	}
-
 }

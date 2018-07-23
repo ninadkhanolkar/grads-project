@@ -1,19 +1,10 @@
-package com.systems.wissen.web;
+package com.systems.wissen.repo;
 
-import com.systems.wissen.model.Role;
-
-public class AdminDTO {
+public class AdminDao {
 
 	private String id;
 
 	private int role;
-
-	public AdminDTO() {
-
-	}
-
-	
-
 	
 	public String getId() {
 		return id;

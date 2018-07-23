@@ -1,6 +1,6 @@
 package com.systems.wissen.web;
 
-public class ResponseObject {
+public class ResponseMessage {
 	private String message;
 
 	public String getMessage() {

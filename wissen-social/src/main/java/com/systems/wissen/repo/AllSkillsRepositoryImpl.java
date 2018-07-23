@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -18,13 +18,10 @@ public class AllSkillsRepositoryImpl implements AllSkillsRepository {
 	@PersistenceContext
 	EntityManager em;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<AllSkill> getSkills() {
-		// TODO Auto-generated method stub
 		String jpql="from AllSkill";
-		Query query=em.createQuery(jpql);
+		TypedQuery<AllSkill> query=em.createQuery(jpql,AllSkill.class);
 		return query.getResultList();
 	}
-
 }

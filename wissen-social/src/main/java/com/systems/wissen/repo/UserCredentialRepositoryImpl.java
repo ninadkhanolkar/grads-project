@@ -18,7 +18,6 @@ public class UserCredentialRepositoryImpl implements UserCredentialRepository {
 
 	@Override
 	public UserCredential addUserCredential(UserCredential user) {
-
 		return manager.merge(user);
 	}
 
@@ -32,5 +31,4 @@ public class UserCredentialRepositoryImpl implements UserCredentialRepository {
 			manager.remove(userCredential);
 		}
 	}
-
 }

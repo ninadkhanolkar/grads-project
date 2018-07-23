@@ -1,19 +1,25 @@
 package com.systems.wissen.repo;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.systems.wissen.model.Employee;
+import com.systems.wissen.model.UserCredential;
+import com.systems.wissen.service.EmailService;
+import com.systems.wissen.service.ResgistrationService;
 import com.systems.wissen.web.EmployeeViewResponse;
-import com.systems.wissen.web.ResponseObject;
+import com.systems.wissen.web.ResponseMessage;
 
 @Repository
 @Transactional
@@ -22,16 +28,25 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	@PersistenceContext
 	private EntityManager manager;
 
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	private ResgistrationService registrationService;
+	
+	@Autowired
+	private UserCredentialRepository userCredentialRepository;
+
 	@Override
 	public Employee addEmpoloyee(Employee employee) {
 		manager.merge(employee);
 		return employee;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployees() {
-		List<Employee> resultList = manager.createQuery("from Employee").getResultList();
+		TypedQuery<Employee> query = manager.createQuery("from Employee", Employee.class);
+		List<Employee> resultList = query.getResultList();
 		setManagerId(resultList);
 		return resultList;
 	}
@@ -42,18 +57,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		});
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllApprovedEmployees() {
-		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1").getResultList();
+		TypedQuery<Employee> query = manager.createQuery("from Employee e where e.applicationStatus = 1",
+				Employee.class);
+		List<Employee> resultList = query.getResultList();
 		setManagerId(resultList);
 		return resultList;
 	}
 
 	@Override
 	public List<EmployeeViewResponse> getAllEmployeeViewResponse() {
-		@SuppressWarnings("unchecked")
-		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1")
+		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus = 1", Employee.class)
 				.getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
@@ -65,7 +80,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 			employeeViewResponse.setFirstName(e.getFirstName());
 			employeeViewResponse.setLastName(e.getLastName());
 			employeeViewResponse.setId(e.getEmpId());
-			employeeViewResponse.setUrl();
 			return employeeViewResponse;
 		}).collect(Collectors.toList());
 	}
@@ -77,8 +91,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	@Override
 	public List<EmployeeViewResponse> getAllPendingEmployeeViewResponse() {
-		@SuppressWarnings("unchecked")
-		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus=0").getResultList();
+		List<Employee> resultList = manager.createQuery("from Employee e where e.applicationStatus=0", Employee.class)
+				.getResultList();
 		Stream<Employee> stream = resultList.stream();
 		return getListOfEmployeeViewResponse(stream);
 	}
@@ -86,7 +100,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	@Override
 	public List<EmployeeViewResponse> getReporteeOfEmployee(String empId) {
 		String jpql = "from Employee e where e.employee.empId=?";
-		Query query = manager.createQuery(jpql);
+		TypedQuery<Employee> query = manager.createQuery(jpql, Employee.class);
 		query.setParameter(0, empId);
 		List<Employee> employees = query.getResultList();
 		Stream<Employee> stream = employees.stream();
@@ -95,9 +109,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 
 	@Override
-	public ResponseObject changeEmployeeApplicationStatus(String id) {
+	public ResponseMessage changeEmployeeApplicationStatus(String id) {
 		Employee emp = manager.find(Employee.class, id);
-		ResponseObject responseObject = new ResponseObject();
+		ResponseMessage responseObject = new ResponseMessage();
 		if (emp != null && emp.getApplicationStatus() == 0) {
 			emp.setApplicationStatus(1);
 			manager.merge(emp);
@@ -115,7 +129,17 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	@Override
 	public void removeEmployee(String employeeId) {
 		Employee find = manager.find(Employee.class, employeeId);
-		if (find != null)
+		if (find != null) {
 			manager.remove(find);
+			emailService.sendEmail(find);
+		}
+	}
+
+	@Override
+	public void registerEmployee(JSONObject registrationObject) {
+		Map<String, Object> registerEmployee = registrationService.registerEmployee(registrationObject);
+		addEmpoloyee((Employee) registerEmployee.get("employeeRepository"));
+		UserCredential credential = (UserCredential) registerEmployee.get("userCredentialRepository");
+		userCredentialRepository.addUserCredential(credential);
 	}
 }

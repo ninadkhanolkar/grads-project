@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.systems.wissen.model.Admin;
+import com.systems.wissen.repo.AdminDao;
 import com.systems.wissen.repo.SuperAdminRepository;
 
 @CrossOrigin(origins="*")
@@ -24,8 +25,8 @@ public class SuperAdminController {
 	private SuperAdminRepository superAdminRepository;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<AdminDTO> getAllAdmins(){
-		List<AdminDTO> admins=this.superAdminRepository.getAdminDTO();
+	public List<AdminDao> getAllAdmins(){
+		List<AdminDao> admins=this.superAdminRepository.getAdminDao();
 		return admins;
 	}
 
@@ -34,10 +35,10 @@ public class SuperAdminController {
 		return superAdminRepository.addAdmin(admin);
 	}
 	
-	@RequestMapping(value ="/{admin_id}",method = RequestMethod.DELETE)
-	public void removeAdmin(@PathVariable int admin_id){
+	@RequestMapping(value ="/{id}",method = RequestMethod.DELETE)
+	public void removeAdmin(@PathVariable int id){
 		
-		this.superAdminRepository.removeAdmin(admin_id);
+		this.superAdminRepository.removeAdmin(id);
 	}
 
 	
