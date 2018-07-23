@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -21,21 +22,24 @@ import com.systems.wissen.model.UserCredential;
 
 @Service
 public class RegistrationService {
+	private static final Logger logger = Logger.getLogger(RegistrationService.class);
 
-	public Map<String,Object> registerEmployee(JSONObject registrationObject) {
+	public Map<String, Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);
 		try {
-			employee.setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse((String) registrationObject.get("dateOfBirth")));
+			employee.setDateOfBirth(
+					new SimpleDateFormat("yyyy-MM-dd").parse((String) registrationObject.get("dateOfBirth")));
 		} catch (ParseException e) {
-			e.printStackTrace();
+			logger.error("Exception is : ", e);
 		}
-		if(!registrationObject.get("contactNumberPersonal").toString().equals("")) {
-			employee.setContactNumberPersonal(Long.parseLong(registrationObject.get("contactNumberPersonal").toString()));
+		if (!registrationObject.get("contactNumberPersonal").toString().equals("")) {
+			employee.setContactNumberPersonal(
+					Long.parseLong(registrationObject.get("contactNumberPersonal").toString()));
 		}
 		employee.setContactNumberWork(Long.parseLong(registrationObject.get("contactNumberWork").toString()));
-		Employee managerEmployee=null;
-		String managerId = (String)registrationObject.get("managerId");
-		if (!(managerId.equals("") || managerId==null)) {
+		Employee managerEmployee = null;
+		String managerId = (String) registrationObject.get("managerId");
+		if (!(managerId.equals("") || managerId == null)) {
 			managerEmployee = new Employee();
 			managerEmployee.setEmpId((String) registrationObject.get("managerId"));
 		}
@@ -45,7 +49,7 @@ public class RegistrationService {
 		setCertifications(registrationObject, employee);
 		setSkills(registrationObject, employee);
 		UserCredential userCredential = setUserCredentials(registrationObject, employee);
-		Map<String,Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("employeeRepository", employee);
 		map.put("userCredentialRepository", userCredential);
 		return map;
@@ -67,14 +71,15 @@ public class RegistrationService {
 			Skill skill = new Skill();
 			LinkedHashMap<?, ?> map2 = (LinkedHashMap<?, ?>) i2.next();
 			try {
-			LinkedHashMap<?, ?> map22 = (LinkedHashMap<?, ?>) map2.get("allSkillId"); 
-			AllSkill allSkill = new AllSkill();
-			allSkill.setAllSkillId((int) map22.get("allSkillId"));
-			skill.setAllSkill(allSkill);
-			skill.setEmployee(employee);
-			skills.add(skill);}
-			catch(Exception e) {
-				System.out.println(e);			}
+				LinkedHashMap<?, ?> map22 = (LinkedHashMap<?, ?>) map2.get("allSkillId");
+				AllSkill allSkill = new AllSkill();
+				allSkill.setAllSkillId((int) map22.get("allSkillId"));
+				skill.setAllSkill(allSkill);
+				skill.setEmployee(employee);
+				skills.add(skill);
+			} catch (Exception e) {
+				logger.error("Exception is : ", e);
+			}
 		}
 		employee.setSkills(skills);
 	}

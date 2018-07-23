@@ -3,6 +3,7 @@ package com.systems.wissen.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +30,7 @@ public class UploadController {
 	StorageService storageService;
 
 	private List<String> files = new ArrayList<String>();
-
+	private static final Logger logger = Logger.getLogger(UploadController.class);
 	@PostMapping(value = "{type}")
 	public ResponseEntity<String> handleUpload(@RequestParam("file") MultipartFile file,
 			@RequestParam("empId") String empId, @PathVariable String type) {
@@ -47,7 +48,7 @@ public class UploadController {
 			message = "You successfully uploaded " + file.getOriginalFilename() + "!";
 			return ResponseEntity.status(HttpStatus.OK).body(message);
 		} catch (Exception e) {
-			System.out.println(e);
+			logger.error("Exception is : ", e);
 			message = "FAIL to upload " + file.getOriginalFilename() + "!";
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}

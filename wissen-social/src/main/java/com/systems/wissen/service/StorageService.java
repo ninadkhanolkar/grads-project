@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -20,19 +21,21 @@ import org.springframework.web.multipart.MultipartFile;
 public class StorageService {
 	private final Path rootLocation = Paths.get("upload-dir");
 	private Path folderPath;
+	private static final Logger logger = Logger.getLogger(StorageService.class);
 
-	public void store(MultipartFile file,String name) {
+	public void store(MultipartFile file, String name) {
 		try {
-			Files.copy(file.getInputStream(), this.folderPath.resolve(name+"."+file.getContentType().substring(file.getContentType().lastIndexOf('/')+1)));
+			Files.copy(file.getInputStream(), this.folderPath
+					.resolve(name + "." + file.getContentType().substring(file.getContentType().lastIndexOf('/') + 1)));
 		} catch (Exception e) {
-			System.out.println(e);
-			throw new RuntimeException("FAIL!");
+			logger.error("Exception is : ", e);
+			throw new RuntimeException("FAIL !");
 		}
 	}
 
-	public Resource loadFile(String filename,String folder) {
+	public Resource loadFile(String filename, String folder) {
 		try {
-			Path file = rootLocation.resolve(folder+"/"+filename);
+			Path file = rootLocation.resolve(folder + "/" + filename);
 			Resource resource = new UrlResource(file.toUri());
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
@@ -58,7 +61,7 @@ public class StorageService {
 
 	public void createFolder(String folder) {
 		try {
-			folderPath=Paths.get(rootLocation.toString(), folder);
+			folderPath = Paths.get(rootLocation.toString(), folder);
 			Files.createDirectory(folderPath);
 		} catch (FileAlreadyExistsException e) {
 		} catch (IOException e) {

@@ -12,6 +12,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.systems.wissen.model.Employee;
@@ -19,7 +20,7 @@ import com.systems.wissen.model.Employee;
 @Service
 public class EmailService {
 	private final static String HOST = "smtp.gmail.com";
-	
+	private static final Logger logger = Logger.getLogger(EmailService.class);
 	public void sendEmail(Employee find) {
 		Properties properties = setProperties();
 		Employee employeeById = find;
@@ -34,9 +35,9 @@ public class EmailService {
 		try {
 			MimeMessage message = createMessage(employeeById, defaultInstance);
 			Transport.send(message);
-			System.out.println("message sent successfully....");
+			logger.info("message sent successfully....");
 		} catch (MessagingException mex) {
-			mex.printStackTrace();
+			logger.error("Exception is : ", mex);
 		}
 	}
 

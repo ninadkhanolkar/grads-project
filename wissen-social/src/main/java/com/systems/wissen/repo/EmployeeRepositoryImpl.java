@@ -24,7 +24,7 @@ import com.systems.wissen.web.ResponseMessage;
 @Repository
 @Transactional
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-
+	
 	@PersistenceContext
 	private EntityManager manager;
 
@@ -36,7 +36,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	
 	@Autowired
 	private UserCredentialRepository userCredentialRepository;
-
+	
 	@Override
 	public Employee addEmpoloyee(Employee employee) {
 		manager.merge(employee);
