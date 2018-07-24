@@ -1,5 +1,6 @@
-<div class="container center_div" background="images/pic.jpg" >
-  <div class="jumbotron">
+<!-- <div class="bg" >
+<div class="container  " >
+  <div class="card">
     <form class="example-form" [formGroup]="credentialForm" (submit)="onSubmit()">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Username" formControlName="username">
@@ -11,10 +12,7 @@
       </mat-form-field>
       <br/>
       <br/>
-      <mat-radio-group class="example-radio-group" formControlName="role" >
-        <mat-radio-button class="example-radio-button"  value="Employee">Employee </mat-radio-button>
-        <mat-radio-button class="example-radio-button"  value="Admin">Admin</mat-radio-button>
-      </mat-radio-group>
+      
       <br/>
       <br/>
       &nbsp;&nbsp;
@@ -23,4 +21,31 @@
       <button type='button' class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" mat-raised-button>Register</button>
     </form>
   </div>
+</div>
+</div> -->
+
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+  <div>Wise
+    <span>Connect</span>
+  </div>
+</div>
+<br>
+
+<div class="login">
+  <form class="example-form" [formGroup]="credentialForm" (submit)="onSubmit()">
+    <input type="text" placeholder="Username" formControlName="username">
+    <br>
+    <input type="password" placeholder="Password" formControlName="password">
+    <br>
+    <mat-radio-group class="example-radio-group" formControlName="role">
+      <mat-radio-button class="example-radio-button" value="Employee">Employee </mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="Admin">Admin</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <input type="submit" value="Login">
+    <br>
+    <input type='button' class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" value="Register">
+  </form>
 </div>
