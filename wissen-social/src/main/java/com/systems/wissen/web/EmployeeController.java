@@ -32,11 +32,11 @@ public class EmployeeController {
 		return allEmployees;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/admins/approvedEmployees", method = RequestMethod.GET)
-	public List<Employee> getApprovedEmployees() {
-		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
-		return allEmployees;
-	}
+//	@RequestMapping(value = "/api/wiseconnect/v1/admins/approvedEmployees", method = RequestMethod.GET)
+//	public List<Employee> getApprovedEmployees() {
+//		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
+//		return allEmployees;
+//	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
@@ -45,7 +45,7 @@ public class EmployeeController {
 		return employee;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employeeResponse", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/wiseconnect/v1/admin/approved-employees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getAll() {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
 		return allEmployeeViewResponse;
@@ -57,7 +57,7 @@ public class EmployeeController {
 		return allReporteeViewResponse;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/pendingEmployees", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/wiseconnect/v1/admins/pendingEmployees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getPendingEmployee() {
 		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllPendingEmployeeViewResponse();
 		return allEmployeeViewResponse;
@@ -70,13 +70,13 @@ public class EmployeeController {
 		return registrationObject;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/wiseconnect/v1/admins/employees/{employeeId}", method = RequestMethod.PUT)
 	public ResponseMessage put(@PathVariable String employeeId) {
 		ResponseMessage responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
 		return responseObject;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/wiseconnect/v1/admins/employees/{employeeId}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable String employeeId) {
 		userCredentialRepository.removeUserCredential(employeeId);
 		employeeRepository.removeEmployee(employeeId);
