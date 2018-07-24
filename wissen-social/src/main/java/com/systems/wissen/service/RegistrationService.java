@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +19,15 @@ import com.systems.wissen.model.Employee;
 import com.systems.wissen.model.Skill;
 import com.systems.wissen.model.UserCredential;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 @Service
 public class RegistrationService {
-	private static final Logger logger = Logger.getLogger(RegistrationService.class);
-	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 	public Map<String, Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);
-		try {
+		try { 
 			employee.setDateOfBirth(
 					new SimpleDateFormat("yyyy-MM-dd").parse((String) registrationObject.get("dateOfBirth")));
 		} catch (ParseException e) {
-			logger.error("Exception is : ", e);
+			e.printStackTrace();
 		}
 		if (!registrationObject.get("contactNumberPersonal").toString().equals("")) {
 			employee.setContactNumberPersonal(
@@ -63,7 +54,7 @@ public class RegistrationService {
 
 	private UserCredential setUserCredentials(JSONObject registrationObject, Employee employee) {
 		UserCredential userCredential = new UserCredential();
-		userCredential.setPassword((String)registrationObject.get("password"));
+		userCredential.setPassword((String) registrationObject.get("password"));
 		userCredential.setRoleId(3);
 		userCredential.setEmployee(employee);
 		return userCredential;
@@ -84,7 +75,7 @@ public class RegistrationService {
 				skill.setEmployee(employee);
 				skills.add(skill);
 			} catch (Exception e) {
-				logger.error("Exception is : ", e);
+				System.out.println(e);
 			}
 		}
 		employee.setSkills(skills);

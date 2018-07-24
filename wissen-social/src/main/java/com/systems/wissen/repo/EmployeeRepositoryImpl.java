@@ -24,19 +24,19 @@ import com.systems.wissen.web.ResponseMessage;
 @Repository
 @Transactional
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-	
+
 	@PersistenceContext
 	private EntityManager manager;
 
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private RegistrationService registrationService;
-	
+
 	@Autowired
 	private UserCredentialRepository userCredentialRepository;
-	
+
 	@Override
 	public Employee addEmpoloyee(Employee employee) {
 		manager.merge(employee);
@@ -137,6 +137,9 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	@Override
 	public void registerEmployee(JSONObject registrationObject) {
+		String empId = (String) registrationObject.get("empId");
+		removeEmployee(empId);
+		userCredentialRepository.removeUserCredential(empId);
 		Map<String, Object> registerEmployee = registrationService.registerEmployee(registrationObject);
 		addEmpoloyee((Employee) registerEmployee.get("employeeRepository"));
 		UserCredential credential = (UserCredential) registerEmployee.get("userCredentialRepository");
