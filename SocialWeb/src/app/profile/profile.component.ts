@@ -22,11 +22,10 @@ export class ProfileComponent implements OnInit {
       this.empId=this.route.snapshot.paramMap.get('username');
     }
     
-    console.log(this.role);
+   
   }
 
   isEmployee(){
-    console.log(this.role)
     if(this.role === "Employee"){
       return true;
     }
@@ -34,7 +33,6 @@ export class ProfileComponent implements OnInit {
     return false;
   }
   isAdmin(){
-    console.log(this.role)
     if(this.role==="Admin"){
       return true;
     }
