@@ -12,9 +12,12 @@
                             <input matInput placeholder="Employee ID" formControlName='empId'>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="First Name" formControlName='firstName'>
+                            <input matInput placeholder="First Name" formControlName='firstName' class="form-control" />
+                             
                         </mat-form-field>
-
+                        <div class="alert alert-danger" *ngIf="firstNameError && submitted" role="alert">
+                            {{firstNameErrorMessage}} 
+                          </div>
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Last Name" formControlName='lastName'>
                         </mat-form-field>
@@ -26,6 +29,11 @@
                         <mat-form-field class="example-full-width">
                             <input type="password" matInput placeholder="Confirm Password" formControlName='confirmPassword'>
                         </mat-form-field>
+                        
+                        <div class="alert alert-danger" *ngIf="passwordError && submitted" role="alert">
+                            {{passwordErrorMessage}} 
+                          </div>
+
                         <br/>
                         <br/>
 
@@ -49,6 +57,10 @@
                             <input type="file" (change)="bioPicFileChange($event)" accept=".jpg,.png," formControlName="bioPic">
                         </label>
                         <div></div>
+
+                        <div class="alert alert-danger" *ngIf="bioPicError && submitted" role="alert">
+                            {{bioPicErrorMessage}} 
+                          </div>
 
                         <mat-form-field>
                             <input matInput [matDatepicker]="picker" placeholder="DOB" formControlName='dateOfBirth'>
@@ -133,7 +145,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class='btn btn-sm' (click)="addSkill()"><i class='fa fa-plus'></i></button>
+                            <button type="button" class='btn btn-sm' (click)="addSkill()">
+                                <i class='fa fa-plus'></i>
+                            </button>
                         </div>
 
                         &nbsp;&nbsp;
@@ -157,7 +171,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class='btn btn-sm' (click)="addCertificate()"><i class='fa fa-plus'></i></button>
+                            <button type="button" class='btn btn-sm' (click)="addCertificate()">
+                                <i class='fa fa-plus'></i>
+                            </button>
                         </div>
                         <!-- <mat-form-field class="example-full-width">
                     <input matInput placeholder="Resume" formControlName='resume'>
@@ -169,9 +185,9 @@
                             <input type="file" (change)="resumeFileChange($event)" accept=".pdf,.doc,.docx" formControlName="resume">
                         </label>
                         <div>
-                                &nbsp;&nbsp;
+                            &nbsp;&nbsp;
                         </div>
-                        
+
                         <button class='btn btn-primary'>Submit</button>
 
                     </form>

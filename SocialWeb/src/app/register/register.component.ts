@@ -19,7 +19,15 @@ export class RegisterComponent implements OnInit {
   resume: File;
   bioPic:File;
   employeeInfo: any;
-
+  submitted=false;
+  firstNameError=false;
+  contactError=false;
+  firstNameErrorMessage:string='';
+  errorMessage: string = '';
+  passwordError=false;
+  bioPicError=false;
+  passwordErrorMessage:string='';
+  bioPicErrorMessage:string='';
   //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
@@ -41,9 +49,9 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm = this.fb.group({
       empId: ['', Validators.required],
-      firstName: ['', Validators.required],
+      firstName: ['', [Validators.required,Validators.minLength(4)]],
       lastName: [''],
-      bioPic: ['',Validators.required],
+      bioPic: [''],
       gender: ['Male'],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
@@ -51,7 +59,7 @@ export class RegisterComponent implements OnInit {
       emailId: ['', [Validators.required, Validators.email]],
       dateOfBirth: ['', Validators.required],
       contactNumberPersonal: ['', Validators.min(1000000000)],
-      contactNumberWork: ['', [Validators.required, Validators.min(1000000000)]],
+      contactNumberWork: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       managerId: [''],
       currentPosition: ['', Validators.required],
       address: this.fb.group({
@@ -73,8 +81,38 @@ export class RegisterComponent implements OnInit {
       this.skills = skills;
       console.log(this.skills);
     })
-
+    
+    this.registerForm.get('firstName').valueChanges
+    .subscribe(e => {
+     
+      if (e.length > 4) { this.firstNameErrorMessage = "";
+      this.firstNameError=false; return };
+      this.firstNameError=true;
+      this.firstNameErrorMessage = "FirstName must be 4 character long"
+    })
+     
+    this.registerForm.get('contactNumberWork').valueChanges
+    .subscribe(e => {
+      if (e.length === 10) { this.errorMessage = "";
+      this.contactError=false; return };
+      if (e.length > 10) { this.errorMessage = "Contact Number can't be greater than 10 length";
+    this.contactError=true;};
+    this.contactError=true;
+      this.errorMessage = "Contact Number can't be smaller than 10 length"
+    })
+    
+    this.registerForm.get('bioPic').valueChanges
+    .subscribe(e => {
+     
+      if (e !== '') { this.bioPicErrorMessage = ""; 
+      this.bioPicError=false;return };
+      this.bioPicError=true;
+      this.bioPicErrorMessage = "Bio Pic can't be empty"
+    })
+    
   }
+  
+  
 
   resumeFileChange(event) {
     this.resume = event.target.files.item(0);
@@ -82,6 +120,7 @@ export class RegisterComponent implements OnInit {
 
   bioPicFileChange(event) {
     this.bioPic = event.target.files.item(0);
+   
   }
 
   getEmp(empId) {
@@ -117,6 +156,8 @@ export class RegisterComponent implements OnInit {
       let passwordInput = group.controls[passwordKey],
         passwordConfirmationInput = group.controls[passwordConfirmationKey];
       if (passwordInput.value !== passwordConfirmationInput.value) {
+        this.passwordError=true;
+        this.passwordErrorMessage="Password and Confirm Password don't match";
         return passwordConfirmationInput.setErrors({ notEquivalent: true })
       }
       else {
@@ -165,6 +206,7 @@ export class RegisterComponent implements OnInit {
 
   register(e) {
     e.preventDefault();
+    this.submitted=true;
     if (this.registerForm.valid) {
     //if (true) {
       if (this.resume) {
@@ -181,7 +223,9 @@ export class RegisterComponent implements OnInit {
       });
       this.router.navigateByUrl("/");
     }
-
-
+    if (this.registerForm.invalid) {
+      return;
+  }
+ 
   }
 }
