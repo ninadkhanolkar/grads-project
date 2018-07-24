@@ -15,7 +15,7 @@ export class EmployeeService {
 
 
   fetchDetails(empId) {
-    const final = "http://localhost:8080/api/wiseconnect/v1/employee/";
+    const final = "http://localhost:8080/api/wiseconnect/v1/employees/";
     console.log(final);
     return this.http.get(final+empId);
   }
@@ -26,12 +26,12 @@ export class EmployeeService {
   }
 
   acceptEmployeeByAdmin(id) {
-    let final = `http://localhost:8080/api/wiseconnect/v1/employee/${id}/accept`;
+    let final = `http://localhost:8080/api/wiseconnect/v1/employees/${id}`;
     return this.http.put(final, id);
   }
 
   rejectEmployeeByAdmin(id) {
-    let final = `http://localhost:8080/api/wiseconnect/v1/employee/${id}/reject`;
+    let final = `http://localhost:8080/api/wiseconnect/v1/employees/${id}`;
     return this.http.delete(final);
   }
 
