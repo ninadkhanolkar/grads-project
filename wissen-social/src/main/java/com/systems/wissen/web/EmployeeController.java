@@ -26,13 +26,13 @@ public class EmployeeController {
 	@Autowired
 	private UserCredentialRepository userCredentialRepository;
 
-	@RequestMapping(value = "/api/wiseconnect/v1/employees", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/wiseconnect/v1/admins/employees", method = RequestMethod.GET)
 	public List<Employee> get() {
 		List<Employee> allEmployees = employeeRepository.getAllEmployees();
 		return allEmployees;
 	}
 
-	@RequestMapping(value = "/api/wiseconnect/v1/approvedEmployees", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/wiseconnect/v1/admins/approvedEmployees", method = RequestMethod.GET)
 	public List<Employee> getApprovedEmployees() {
 		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
 		return allEmployees;

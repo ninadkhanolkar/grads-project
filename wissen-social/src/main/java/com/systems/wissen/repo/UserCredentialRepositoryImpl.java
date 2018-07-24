@@ -3,6 +3,7 @@ package com.systems.wissen.repo;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -30,5 +31,19 @@ public class UserCredentialRepositoryImpl implements UserCredentialRepository {
 		if (userCredential != null) {
 			manager.remove(userCredential);
 		}
+	}
+
+	@Override
+	public UserCredential getUserByEmpId(String empId) {
+		TypedQuery<UserCredential> createQuery = manager.createQuery("from UserCredential u where u.employee.empId = ?", UserCredential.class);
+		createQuery.setParameter(0, empId);
+		UserCredential singleResult=null;
+		try {
+			singleResult = createQuery.getSingleResult();	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return singleResult;
 	}
 }

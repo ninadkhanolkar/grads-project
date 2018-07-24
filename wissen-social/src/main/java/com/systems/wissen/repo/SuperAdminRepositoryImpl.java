@@ -6,6 +6,8 @@ import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -44,5 +46,12 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 			adminDTO.setRole(a.getRole().getRoleId());
 			return adminDTO;
 		}).collect(Collectors.toList());
+	}
+	
+	public Admin getAdmin(String id){
+		String jpql="from Admin a where a.id=?";
+		TypedQuery<Admin> query=entityManager.createQuery(jpql, Admin.class);
+		query.setParameter(0, id);
+		return query.getSingleResult();
 	}
 }

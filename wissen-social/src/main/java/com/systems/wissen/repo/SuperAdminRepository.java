@@ -10,5 +10,7 @@ public interface SuperAdminRepository {
 	void removeAdmin(int adminId);
 	
 	public List<AdminDao> getAdminDao();
+	
+	public Admin getAdmin(String id);
 
 }
