@@ -1,43 +1,83 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private loginService:LoginService) {}
+
+ 
 
   loadEmployee() {
-    let url = "http://localhost:8080/api/wiseconnect/v1/employeeResponse";
-    return this.http.get(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  this.loginService.token
+      })
+    };
+    console.log(this.loginService.token);
+    let url = "http://localhost:8080/api/wiseconnect/v1/admin/approved-employees/";
+    return this.http.get(url,httpOptions);
   }
 
 
   fetchDetails(empId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  this.loginService.token
+      })
+    };
     const final = "http://localhost:8080/api/wiseconnect/v1/employees/";
     console.log(final);
-    return this.http.get(final+empId);
+    return this.http.get(final+empId,httpOptions);
   }
 
   loadPendingListEmployees() {
-    let url = "http://localhost:8080/api/wiseconnect/v1/pendingEmployees";
-    return this.http.get(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  this.loginService.token
+      })
+    };
+    let url = "http://localhost:8080/api/wiseconnect/v1/admins/pendingEmployees";
+    return this.http.get(url,httpOptions);
   }
 
   acceptEmployeeByAdmin(id) {
-    let final = `http://localhost:8080/api/wiseconnect/v1/employees/${id}`;
-    return this.http.put(final, id);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  this.loginService.token
+      })
+    };
+    let final = `http://localhost:8080/api/wiseconnect/v1/admins/employees/${id}`;
+    return this.http.put(final, id,httpOptions);
   }
 
   rejectEmployeeByAdmin(id) {
-    let final = `http://localhost:8080/api/wiseconnect/v1/employees/${id}`;
-    return this.http.delete(final);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  this.loginService.token
+      })
+    };
+    let final = `http://localhost:8080/api/wiseconnect/v1/admins/employees/${id}`;
+    return this.http.delete(final,httpOptions);
   }
 
   loadReportees(id){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  this.loginService.token
+      })
+    };
     let url = `http://localhost:8080/api/wiseconnect/v1/${id}/reportees`;
-    return this.http.get(url);
+    return this.http.get(url,httpOptions);
   }
 
 }

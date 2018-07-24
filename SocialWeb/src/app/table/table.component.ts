@@ -21,6 +21,7 @@ export class TableComponent implements OnInit {
     this.type=this.route.snapshot.paramMap.get('type');
     console.log(this.type)
     if(this.type ==='employees'){
+      console.log("Asdasd")
       this.getCredentials();
     }
     else if(this.type==='reportees'){
