@@ -26,7 +26,7 @@ public class UserCredentialRepositoryImpl implements UserCredentialRepository {
 		String jpql="from UserCredential u where u.employee.empId = :empId";
 		Query query=manager.createQuery(jpql);
 		query.setParameter("empId", employeeId);
-		UserCredential userCredential =(UserCredential) query.getResultList().get(0);
+		UserCredential userCredential =(UserCredential) query.getSingleResult();
 		if (userCredential != null) {
 			manager.remove(userCredential);
 		}
