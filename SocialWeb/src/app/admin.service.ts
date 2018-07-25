@@ -9,8 +9,8 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   getAdmins(){
-    let url="";
-
+   //url="";
+    
 
   }
 }
