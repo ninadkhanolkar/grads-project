@@ -22,8 +22,6 @@ public class JwtTokenUtil implements Serializable {
     static final String CLAIM_KEY_AUDIENCE = "audience";
     static final String CLAIM_KEY_CREATED = "created";
 
-    private static final String AUDIENCE_UNKNOWN = "unknown";
-    private static final String AUDIENCE_WEB = "web";
     private static final String AUDIENCE_MOBILE = "mobile";
     private static final String AUDIENCE_TABLET = "tablet";
 
@@ -158,7 +156,7 @@ public class JwtTokenUtil implements Serializable {
     public Boolean validateToken(String token, UserDetails userDetails) {
         JwtUser user = (JwtUser) userDetails;
         final String username = getUsernameFromToken(token);
-        final Date created = getCreatedDateFromToken(token);
+      //  final Date created = getCreatedDateFromToken(token);
         //final Date expiration = getExpirationDateFromToken(token);
         return (
                 username.equals(user.getUsername())

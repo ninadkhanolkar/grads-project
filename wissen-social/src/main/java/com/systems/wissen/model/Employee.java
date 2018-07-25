@@ -103,9 +103,6 @@ public class Employee implements Serializable {
 	@OneToMany(mappedBy="employee",cascade= CascadeType.ALL)
 	private List<Skill> skills;
 
-	public Employee() {
-	}
-
 	public String getEmpId() {
 		return this.empId;
 	}
@@ -253,7 +250,6 @@ public class Employee implements Serializable {
 	public Address removeAddress(Address address) {
 		getAddresses().remove(address);
 		address.setEmployee(null);
-
 		return address;
 	}
 

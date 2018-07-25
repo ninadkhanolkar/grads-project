@@ -36,9 +36,6 @@ public class Address implements Serializable {
 	@JsonIgnore
 	private Employee employee;
 
-	public Address() {
-	}
-
 	public int getAddressId() {
 		return this.addressId;
 	}
