@@ -1,0 +1,14 @@
+
+.body{
+	position: absolute;
+	top: 38px;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	width: auto;
+	height: auto;
+	background-image: url(image2.jpg);
+	background-size: cover;
+	-webkit-filter: blur(3px);
+	z-index: 0;
+}

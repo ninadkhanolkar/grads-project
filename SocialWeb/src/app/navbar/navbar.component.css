@@ -2,16 +2,14 @@
 	flex:1 1 auto;
 }
 
-
-.bg {
-	/* The image used */
-	background-image: url("download.jpg");
-  
-	/* Full height */
-	height: 100%; 
-  
-	/* Center and scale the image nicely */
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-  }
+.topright {
+    position: absolute;
+    top: 0px;
+    right: 16px;
+		font-size: 10px;
+		font-weight: 600;
+		margin-bottom: 40px;
+}
+h2{
+	color:#ffffff;
+}
