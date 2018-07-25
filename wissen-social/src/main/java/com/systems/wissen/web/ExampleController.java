@@ -55,13 +55,10 @@ public class ExampleController {
 		System.out.println(authenticationRequest.getPassword());
 		// Perform the security
 		Authentication authentication=null;
-		try {
 		authentication = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
 						authenticationRequest.getPassword()));
-		}catch(Exception e) {
-			
-		}
+		
 		System.out.println("dasdasd");
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		// Reload password post-security so we can generate token
