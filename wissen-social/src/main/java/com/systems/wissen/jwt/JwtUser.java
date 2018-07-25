@@ -1,9 +1,10 @@
 package com.systems.wissen.jwt;
 
 import java.util.Collection;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,7 +23,7 @@ public class JwtUser implements UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
 
-    public JwtUser(
+    public JwtUser (
           String username,
           String password,
           Collection<? extends GrantedAuthority> authorities,
