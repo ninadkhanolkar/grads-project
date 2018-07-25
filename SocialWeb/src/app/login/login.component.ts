@@ -29,17 +29,8 @@ export class LoginComponent implements OnInit {
     let password = this.credentialForm.value['password'];
     this.credential = { username, password };
     let userRole = this.credentialForm.get('role').value
-    this.loginService.getToken(this.credential);
-    if (this.loginService.isAuthenticated) {
-      if (userRole === 'Admin') {
-        this.router.navigate(['admin/profile', { 'role': userRole, 'username': username }]);
-      }
-      if (userRole === 'Employee') {
-        this.router.navigate(['employee/profile', { 'role': userRole, 'username': username }]);
-      }
-    }
+    this.loginService.tryLogin(this.credential,userRole);
 
     // this.userrole = 'Admin';
-    console.log();
   }
 }
