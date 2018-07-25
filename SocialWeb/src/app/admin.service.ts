@@ -9,7 +9,7 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   getAdmins(){
-    url="";
+   //url="";
     
 
   }
