@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.systems.wissen.model.Address;
@@ -21,6 +23,9 @@ import com.systems.wissen.model.UserCredential;
 
 @Service
 public class RegistrationService {
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	public Map<String, Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);
 		try { 
@@ -54,7 +59,7 @@ public class RegistrationService {
 
 	private UserCredential setUserCredentials(JSONObject registrationObject, Employee employee) {
 		UserCredential userCredential = new UserCredential();
-		userCredential.setPassword((String) registrationObject.get("password"));
+		userCredential.setPassword(passwordEncoder.encode((String) registrationObject.get("password")));
 		userCredential.setRoleId(3);
 		userCredential.setEmployee(employee);
 		return userCredential;
