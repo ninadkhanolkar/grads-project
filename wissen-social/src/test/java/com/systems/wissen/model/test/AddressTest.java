@@ -18,16 +18,13 @@ public class AddressTest {
 
 	@Test
 	public void testGetSetAddressId() {
-		
+		int addressId = 10;
+		address.setAddressId(addressId);
+		assertEquals(addressId, address.getAddressId());
 	}
 
 	@Test
-	public void testGetCity() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetCity() {
+	public void testGetSetCity() {
 		fail("Not yet implemented");
 	}
 

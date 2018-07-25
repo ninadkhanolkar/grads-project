@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -128,11 +129,20 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
 	@Override
 	public void removeEmployee(String employeeId) {
+		updateManagerIdOfReportees(employeeId);
 		Employee find = manager.find(Employee.class, employeeId);
 		if (find != null) {
 			manager.remove(find);
 			emailService.sendEmail(find);
 		}
+	}
+
+	private void updateManagerIdOfReportees(String employeeId) {
+		Query createQuery = manager.createQuery("update Employee set employee.empId=? where employee.empId=?");
+		createQuery.setParameter(0, "WT001");
+		createQuery.setParameter(1, employeeId);
+		int executeUpdate = createQuery.executeUpdate();
+		System.out.println(executeUpdate);
 	}
 
 	@Override
