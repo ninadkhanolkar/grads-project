@@ -14,3 +14,16 @@ color: #999;
 }
 
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.centertext {
+    display: block;
+    margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
