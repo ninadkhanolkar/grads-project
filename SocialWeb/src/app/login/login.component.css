@@ -68,8 +68,8 @@ body{
 
 .header{
 	position: absolute;
-	top: calc(35% - 100px);
-	left: calc(42% - 255px);
+	top: calc(32% - 100px);
+	left: calc(40% - 255px);
 	z-index: 2;
 }
 
@@ -85,6 +85,12 @@ body{
 	color: #30458b !important;
 }
 
+.header p{
+	font-family: 'Exo', sans-serif;
+	color: #30458b ;
+	font-size: 25px;
+	font-weight: 700;
+}
 .login{
 	position: absolute;
 	top: calc(50% - 75px);

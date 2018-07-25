@@ -199,11 +199,11 @@ export class RegisterComponent implements OnInit {
   }
 
   addSkill(num?) {
-    this.registerForm.get('skills').value.forEach((e)=>{
-      console.log(e.allSkillId.allSkillId);
-      this.skills.splice(e.allSkillId.allSkillId-1,1);
+    // this.registerForm.get('skills').value.forEach((e)=>{
+    //   console.log(e.allSkillId.allSkillId);
+    //   this.skills.splice(e.allSkillId.allSkillId-1,1);
       
-    });
+    // });
     (<FormArray>this.registerForm.get('skills')).push(this.createSkill(num));
     console.log(this.skills);
    
@@ -260,14 +260,14 @@ export class RegisterComponent implements OnInit {
  
   }
 
-  isVisible(skill){
-    this.registerForm.get('skills').value.forEach((e)=>{
-      // console.log(e.allSkillId.allSkillId);
-      // this.skills.splice(e.allSkillId.allSkillId-1,1);
-      if(e===skill){
-        return false;
-      }
-    });
-    return true;
-  }
+  // isVisible(skill){
+  //   this.registerForm.get('skills').value.forEach((e)=>{
+  //     // console.log(e.allSkillId.allSkillId);
+  //     // this.skills.splice(e.allSkillId.allSkillId-1,1);
+  //     if(e===skill){
+  //       return false;
+  //     }
+  //   });
+  //   return true;
+  // }
 }
