@@ -17,9 +17,9 @@
 				<li class="list-group-item text-right" contenteditable="false"><span class="pull-left"><strong
 					class="">Profile</strong></span></li>
 				<li class="list-group-item text-right"><span class="pull-left"><strong
-						class="">Real name</strong></span> Joseph Doe</li>
+						class="">Username</strong></span>{{empId}}</li>
 				<li class="list-group-item text-right"><span class="pull-left"><strong
-						class="">Role: </strong></span> Pet Sitter</li>
+						class="">Role: </strong></span>{{role}}</li>
 			</ul>
 
 
@@ -30,6 +30,8 @@
 			<button type="button" class="btn btn-success" routerLink="pendingApproval">Pending Approvals</button>
 			&nbsp;&nbsp;
 			<button type="button" class="btn btn-info"  [routerLink]="['table',{type:'employees'}]">View Employees</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-info" *ngIf="isSuperAdmin()"  [routerLink]="['table',{type:'employees'}]">View Admins</button>
 			<br/>
 			<br/>
 			<router-outlet></router-outlet>
