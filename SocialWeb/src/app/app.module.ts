@@ -20,7 +20,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {TableComponent} from './table/table.component'
 import {HttpClientModule} from '@angular/common/http';
-
+import {MatSelectModule} from '@angular/material/select';
 
 import {ProfileInfoComponent} from './profile-info/profile-info.component';
 
@@ -143,7 +143,7 @@ const routes: Routes = [
     HttpClientModule,
     MatMomentDateModule,
     MatAutocompleteModule,
-   
+    MatSelectModule
   ],
   providers: [
     EmployeeService

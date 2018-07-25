@@ -6,6 +6,7 @@ import { AllSkillsService } from '../all-skills.service';
 import { Observable } from 'rxjs';
 import { FileUploadRetreiveService } from '../file-upload-retreive.service';
 import { EmployeeService } from '../employee.service';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-register',
@@ -22,12 +23,16 @@ export class RegisterComponent implements OnInit {
   submitted=false;
   firstNameError=false;
   contactError=false;
+  allSkillError=false;
+  allSkillErrorMessage:string='';
+  contactErrorMessage:string='';
   firstNameErrorMessage:string='';
   errorMessage: string = '';
   passwordError=false;
   bioPicError=false;
   passwordErrorMessage:string='';
   bioPicErrorMessage:string='';
+  
   //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
@@ -79,13 +84,14 @@ export class RegisterComponent implements OnInit {
 
     this.allSkills.getSkills().subscribe(skills => {
       this.skills = skills;
+     
       console.log(this.skills);
     })
-    
+   
     this.registerForm.get('firstName').valueChanges
     .subscribe(e => {
      
-      if (e.length > 4) { this.firstNameErrorMessage = "";
+      if (e.length >= 4) { this.firstNameErrorMessage = "";
       this.firstNameError=false; return };
       this.firstNameError=true;
       this.firstNameErrorMessage = "FirstName must be 4 character long"
@@ -93,15 +99,29 @@ export class RegisterComponent implements OnInit {
      
     this.registerForm.get('contactNumberWork').valueChanges
     .subscribe(e => {
-      if (e.length === 10) { this.errorMessage = "";
-      this.contactError=false; return };
-      if (e.length > 10) { this.errorMessage = "Contact Number can't be greater than 10 length";
-    this.contactError=true;};
+      if (e < 1000000000) { this.contactErrorMessage = "Contact Number can't be smaller than 10 length";
+      this.contactError=true;
+        return };
+  
+      if (e >= 10000000000) { this.contactErrorMessage = "Contact Number can't be greater than 10 length";
     this.contactError=true;
-      this.errorMessage = "Contact Number can't be smaller than 10 length"
+      return };
+
+      this.contactError=false;
+      this.contactErrorMessage='';
+     
     })
     
     this.registerForm.get('bioPic').valueChanges
+    .subscribe(e => {
+     
+      if (e !== '') { this.bioPicErrorMessage = ""; 
+      this.bioPicError=false;return };
+      this.bioPicError=true;
+      this.bioPicErrorMessage = "Bio Pic can't be empty"
+    })
+    
+    this.registerForm.get('emailId').valueChanges
     .subscribe(e => {
      
       if (e !== '') { this.bioPicErrorMessage = ""; 
@@ -133,6 +153,7 @@ export class RegisterComponent implements OnInit {
         this.removeSkill(0);
         this.employeeInfo.skills.forEach(element => {
           this.addSkill(element.allSkill);
+
         });
         this.removeCertificate(0);
         this.employeeInfo.certifications.forEach(element => {
@@ -178,7 +199,15 @@ export class RegisterComponent implements OnInit {
   }
 
   addSkill(num?) {
+    this.registerForm.get('skills').value.forEach((e)=>{
+      console.log(e.allSkillId.allSkillId);
+      this.skills.splice(e.allSkillId.allSkillId-1,1);
+      
+    });
     (<FormArray>this.registerForm.get('skills')).push(this.createSkill(num));
+    console.log(this.skills);
+   
+    
   }
 
   removeSkill(i: number) {
@@ -207,8 +236,8 @@ export class RegisterComponent implements OnInit {
   register(e) {
     e.preventDefault();
     this.submitted=true;
-    if (this.registerForm.valid) {
-    //if (true) {
+    //if (this.registerForm.valid) {
+    if (true) {
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value,"resume").subscribe(e => {
           console.log(e);
@@ -218,7 +247,9 @@ export class RegisterComponent implements OnInit {
         console.log(e);
       });
       console.log(JSON.stringify(this.registerForm.value));
-      console.log(this.registerForm.value)
+     
+      console.log(this.registerForm.value);
+      
       this.registrationService.register(this.registerForm.value).subscribe(e => {
       });
       this.router.navigateByUrl("/");
@@ -227,5 +258,16 @@ export class RegisterComponent implements OnInit {
       return;
   }
  
+  }
+
+  isVisible(skill){
+    this.registerForm.get('skills').value.forEach((e)=>{
+      // console.log(e.allSkillId.allSkillId);
+      // this.skills.splice(e.allSkillId.allSkillId-1,1);
+      if(e===skill){
+        return false;
+      }
+    });
+    return true;
   }
 }
