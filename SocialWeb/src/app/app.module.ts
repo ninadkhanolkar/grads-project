@@ -89,26 +89,27 @@ const routes: Routes = [
           },
           {
             path: 'register', component: RegisterComponent
-          }
+          },
+          {
+            path: 'reportees',
+            children:[
+              {
+                path:'',
+                component: TableComponent,
+              },
+              {
+                path: 'profile-info',
+                component: ProfileInfoComponent
+              },
+            ]
+          },
         ]
         
       },
       {
         path: 'register', component: RegisterComponent
       },
-      {
-        path: 'reportees',
-        children:[
-          {
-            path:'',
-            component: TableComponent,
-          },
-          {
-            path: 'profile-info',
-            component: ProfileInfoComponent
-          },
-        ]
-      },
+      
       
     ]
   }
