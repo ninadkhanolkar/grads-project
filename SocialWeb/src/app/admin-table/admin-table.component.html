@@ -1,0 +1,16 @@
+<table class="table">
+	<thead>
+		<tr>
+      <th>Id</th>
+      <th>Remove</th>
+		</tr>
+	</thead>
+	<tbody *ngFor="let admin of admins">
+		<tr>
+			<td>{{admin.id}}</td>
+			<td>
+				<button type="button" class="btn btn-primary btn-sm" [routerLink]="['/profile-info',{p1:employee.url}]" >Remove</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

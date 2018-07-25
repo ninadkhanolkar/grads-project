@@ -27,6 +27,7 @@ import {ProfileInfoComponent} from './profile-info/profile-info.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
+import { AdminTableComponent } from './admin-table/admin-table.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -127,7 +128,8 @@ const routes: Routes = [
     LoginComponent,
     ProfileInfoComponent,
     FileUploadComponent,
-    EditprofileComponent
+    EditprofileComponent,
+    AdminTableComponent
   ],
   imports: [
     BrowserModule,
