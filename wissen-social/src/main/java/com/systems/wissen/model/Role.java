@@ -2,6 +2,9 @@ package com.systems.wissen.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -19,10 +22,12 @@ public class Role implements Serializable {
 	@Column(name="role_id")
 	private int roleId;
 
+	@JsonIgnore
 	private String role;
 
 	//bi-directional many-to-one association to Admin
 	@OneToMany(mappedBy="role")
+	@JsonIgnore
 	private List<Admin> admins;
 
 	public Role() {

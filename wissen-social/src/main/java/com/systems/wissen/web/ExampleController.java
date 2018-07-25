@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.systems.wissen.jwt.JwtAuthenticationRequest;
@@ -66,7 +68,8 @@ public class ExampleController {
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
 		// Return the token
-		return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+		return ResponseEntity.ok(new JwtAuthenticationResponse(token,userDetails.getAuthorities()));
+		
 	}
 
 	@RequestMapping("/user")

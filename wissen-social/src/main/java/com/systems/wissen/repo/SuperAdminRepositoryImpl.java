@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.systems.wissen.model.Admin;
@@ -19,9 +21,13 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Admin addAdmin(Admin admin) {
+		admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 		return entityManager.merge(admin);
 	}
 

@@ -3,6 +3,8 @@ package com.systems.wissen.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The persistent class for the admin database table.
  * 
@@ -15,6 +17,7 @@ public class Admin implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "admin_id")
+	@JsonIgnore
 	private int adminId;
 
 	private String id;
