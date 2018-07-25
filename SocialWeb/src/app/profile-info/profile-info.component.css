@@ -15,12 +15,18 @@ color: #999;
 
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
+
+div.container {
+    width: 96%;
+    max-width: 960px;
+    margin: 0 auto; /* to center the container */
+
+  }
+  img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
 .centertext {
     display: block;
     margin-left: auto;
