@@ -11,6 +11,7 @@ export class LoginService {
   token:any;
   roles:any=[]
   username:any;
+  requestedRole:any;
   constructor(private http:HttpClient,private router:Router) { }
    
   tryLogin(credential,userRole){
@@ -23,11 +24,12 @@ export class LoginService {
       this.roles=e["authorities"]
       this.username=credential.username;
       this.isAuthenticated=true;
+      this.requestedRole=userRole;
         if (userRole === 'Admin' && this.roles.indexOf('ROLE_ADMIN')>=0) {
-          this.router.navigate(['admin/profile', { 'role': userRole}]);
+          this.router.navigate(['admin/profile']);
         }
         else if (userRole === 'Employee' && this.roles.indexOf('ROLE_USER')>=0) {
-          this.router.navigate(['employee/profile', { 'role': userRole}]);
+          this.router.navigate(['employee/profile']);
         }
         else{
              this.clearValues();

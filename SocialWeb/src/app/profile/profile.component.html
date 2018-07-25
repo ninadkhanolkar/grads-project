@@ -31,7 +31,7 @@
 			&nbsp;&nbsp;
 			<button type="button" class="btn btn-info"  [routerLink]="['table',{type:'employees'}]">View Employees</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info" *ngIf="isSuperAdmin()"  [routerLink]="['table',{type:'employees'}]">View Admins</button>
+			<button type="button" class="btn btn-info" *ngIf="isSuperAdmin()"  [routerLink]="">View Admins</button>
 			<br/>
 			<br/>
 			<router-outlet></router-outlet>
@@ -39,11 +39,11 @@
 		
 		<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
 			<br /> <br/>
-			<button type="button" class="btn btn-success" [routerLink]="['profile-info',{p1:empId}]">View Profile</button>
+			<button type="button" class="btn btn-success" [routerLink]="['profile-info']">View Profile</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info"  [routerLink]="['register',{empId:empId}]">Edit Profile</button>
+			<button type="button" class="btn btn-info"  [routerLink]="['register']">Edit Profile</button>
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-info"  [routerLink]="['reportees',{type:'reportees',id:empId}]">List of Reportee</button>
+			<button type="button" class="btn btn-info"  [routerLink]="['reportees',{type:'reportees'}]">List of Reportee</button>
 			<br/>
 			<br/>
 			<router-outlet></router-outlet>

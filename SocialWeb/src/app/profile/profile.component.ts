@@ -16,20 +16,16 @@ export class ProfileComponent implements OnInit {
     private loginService:LoginService) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => console.log(params));
-    if(this.route.snapshot.paramMap.get('role')){
+    if(this.loginService.requestedRole){
       console.log(this.loginService.roles)
       if(this.loginService.roles.indexOf('ROLE_SUPERADMIN')>=0){
        this.role = "Super Admin"
       }
       else{
-        this.role = this.route.snapshot.paramMap.get('role');
+        this.role = this.loginService.requestedRole;
       }
       
     }
-    // if(this.route.snapshot.paramMap.get('username')){
-    //   this.empId=this.route.snapshot.paramMap.get('username');
-    // }
     this.empId=this.loginService.username;
     
    

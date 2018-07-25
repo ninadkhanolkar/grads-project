@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { FileUploadRetreiveService } from '../file-upload-retreive.service';
 import { EmployeeService } from '../employee.service';
 import { DISABLED } from '@angular/forms/src/model';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-register',
@@ -41,13 +42,12 @@ export class RegisterComponent implements OnInit {
     , private allSkills: AllSkillsService
     , private fileUpload: FileUploadRetreiveService
     , private route: ActivatedRoute
-    , private employeeService: EmployeeService) { }
+    , private employeeService: EmployeeService
+    , private loginservice:LoginService) { }
 
   ngOnInit() {
 
-    this.route.params.subscribe(params => console.log(params));
-    this.employeeId = this.route.snapshot.paramMap.get('empId');
-    console.log(this.employeeId);
+    this.employeeId = this.loginservice.username;
     if (this.employeeId) {
       this.getEmp(this.employeeId);
     }
@@ -146,6 +146,7 @@ export class RegisterComponent implements OnInit {
   getEmp(empId) {
     this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
+        console.log(employee)
         this.employeeInfo = employee;
         delete this.employeeInfo['bioPic'];
         delete this.employeeInfo['resume'];

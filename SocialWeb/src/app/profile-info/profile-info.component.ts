@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploadRetreiveService } from '../file-upload-retreive.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -10,7 +11,8 @@ import { FileUploadRetreiveService } from '../file-upload-retreive.service';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private fileService: FileUploadRetreiveService) { }
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private fileService: FileUploadRetreiveService,
+              private loginService:LoginService) { }
   employeeInfo: any;
   empId:any;
   id: any;
@@ -36,7 +38,7 @@ export class ProfileInfoComponent implements OnInit {
   
 
   ngOnInit() {
-    this.empId = this.route.snapshot.paramMap.get('p1');
+    this.empId = this.loginService.username;
     console.log(this.empId);
     this.getEmp(this.empId);
   }

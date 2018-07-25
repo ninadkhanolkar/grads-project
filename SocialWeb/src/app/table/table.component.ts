@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {EmployeeService} from '../employee.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-table',
@@ -15,17 +16,17 @@ export class TableComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService,
               private router: Router,
-              private route:ActivatedRoute) {}
+              private route:ActivatedRoute,
+              private loginService:LoginService) {}
 
   ngOnInit() {
     this.type=this.route.snapshot.paramMap.get('type');
-    console.log(this.type)
     if(this.type ==='employees'){
-      console.log("Asdasd")
       this.getCredentials();
     }
     else if(this.type==='reportees'){
-      this.id=this.route.snapshot.paramMap.get('id');
+      this.id=this.loginService.username;
+      console.log(this.id)
       this.getReportees(this.id);
     }
     
