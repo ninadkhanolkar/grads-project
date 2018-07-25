@@ -35,12 +35,13 @@ export class ProfileInfoComponent implements OnInit {
   country:any;
   skillsStack:any=[];
   isEditingProfile=false;
-  
+  role: String;
 
   ngOnInit() {
     this.empId = this.loginService.username;
     console.log(this.empId);
     this.getEmp(this.empId);
+    this.role = this.loginService.requestedRole;
   }
 
   getEmp(empId) {
@@ -95,4 +96,11 @@ export class ProfileInfoComponent implements OnInit {
     this.isEditingProfile=!this.isEditingProfile;
   }
 
+  isEmployee(){
+    if(this.role === "Employee"){
+      return true;
+    }
+    else 
+    return false;
+  }
 }

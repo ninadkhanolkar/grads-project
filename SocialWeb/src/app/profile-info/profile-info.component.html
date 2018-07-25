@@ -1,11 +1,20 @@
 <br />
 <br />
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+
 <div class="w3-light-grey">
 
 		<!-- Page Container -->
 		<div class="w3-content w3-margin-top" style="max-width:1400px;">
-		
+				<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
+						<br /> <br/>
+						<button type="button" class="btn btn-info"  [routerLink]="['register']">Edit Profile</button>
+						&nbsp;&nbsp;
+						<button type="button" class="btn btn-info"  [routerLink]="['reportees',{type:'reportees'}]">List of Reportee</button>
+						<br/>
+						<br/>
+						<router-outlet></router-outlet>
+					</div>
 		  <!-- The Grid -->
 		  <div class="w3-row-padding">
 		  

@@ -31,13 +31,7 @@ export class ProfileComponent implements OnInit {
    
   }
 
-  isEmployee(){
-    if(this.role === "Employee"){
-      return true;
-    }
-    else 
-    return false;
-  }
+  
   isAdmin(){
     if(this.role==="Admin"){
       return true;
