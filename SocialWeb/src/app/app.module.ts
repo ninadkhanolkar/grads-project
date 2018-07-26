@@ -29,6 +29,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { AdminTableComponent } from './admin-table/admin-table.component';
 import { AdminEmployeeAccessGuard } from './admin-employee-access.guard';
+import { AddAdminComponent } from './add-admin/add-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -73,6 +74,10 @@ const routes: Routes = [
           },
         ]
       },
+      {
+        path: 'view-admins',
+        component: AdminTableComponent
+      }
 
     ]
   },
@@ -149,7 +154,8 @@ const routes: Routes = [
     ProfileInfoComponent,
     FileUploadComponent,
     EditprofileComponent,
-    AdminTableComponent
+    AdminTableComponent,
+    AddAdminComponent
   ],
   imports: [
     BrowserModule,

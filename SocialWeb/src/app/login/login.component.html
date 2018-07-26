@@ -34,7 +34,7 @@
 <br>
 <div class="container alert alert-light" style='color:#30458b; text-align: center' *ngIf="isRegistered()">Thankyou for registering. You will be notified soon!</div>
 <div class="login">
-  <form class="example-form" [formGroup]="credentialForm" (submit)="onSubmit()">
+  <form class="example-form" [formGroup]="credentialForm" (submit)="onSubmit($event)">
     <input type="text" placeholder="Username" formControlName="username">
     <br>
     <input type="password" placeholder="Password" formControlName="password">

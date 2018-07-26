@@ -50,9 +50,7 @@ export class RegisterComponent implements OnInit {
     , private route: ActivatedRoute
     , private employeeService: EmployeeService) { }
 
-  ngOnInit() {
-
-    
+  ngOnInit() {    
     this.employeeId = sessionStorage.getItem('username');
     console.log(this.employeeId);
     if (this.employeeId) {

@@ -12,6 +12,7 @@ export class LoginService {
   roles: any = []
   username: any;
   requestedRole: any;
+  isInvalid:any
   constructor(private http: HttpClient, private router: Router) { }
 
   tryLogin(credential, userRole) {
@@ -26,6 +27,7 @@ export class LoginService {
         sessionStorage.setItem("roles", e["authorities"])
         sessionStorage.setItem("requestedRole", userRole)
         sessionStorage.setItem("isAuthenticated", "true")
+        this.isInvalid=false;
         if (sessionStorage.getItem("requestedRole") === 'Admin' && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN') >= 0) {
           this.router.navigate(['admin/profile']);
         }
@@ -37,19 +39,22 @@ export class LoginService {
           console.log("adsc")
           this.router.navigate([''])
           sessionStorage.setItem("invalidCredentials", "true")
+          this.isInvalid=true;
         }
 
       }
     },
-    (error)=>{
-      this.clearValues();
-      console.log("adsc")
-      this.router.navigate([''])
-      sessionStorage.setItem("invalidCredentials", "true")
-    }
-  )
+      (error) => {
+        this.clearValues();
+        console.log("adsc")
+        this.isInvalid=true;
+        this.router.navigate([''])
+        sessionStorage.setItem("invalidCredentials", "true")
+        
+      }
+    )
 
-    return true;
+    //return (sessionStorage.getItem("isAuthenticated")==="true");    
 
   }
 

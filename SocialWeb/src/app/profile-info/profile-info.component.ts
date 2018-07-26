@@ -68,6 +68,7 @@ export class ProfileInfoComponent implements OnInit {
           this.createImageFromBlob(e);
         }, error => {
           console.log(error);
+          this.image = 'https://ui-avatars.com/api/?length=1&size=254&rounded=true&name=' + this.employeeInfo.firstName;
         })
          this.url1=this.url1+this.id+'/resume';
         this.fileService.getFile(this.id, 'resume').subscribe((e) => {

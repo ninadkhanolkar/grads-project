@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService,private registrationService:RegistrationService) { }
 
   ngOnInit() {
-
+    this.registered=false;
     if(sessionStorage.getItem('username')){
       if (sessionStorage.getItem("requestedRole") === 'Admin' && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN')>=0) {
         this.router.navigate(['admin/profile']);
@@ -45,18 +45,19 @@ export class LoginComponent implements OnInit {
 
   ngDoCheck(){
     console.log("in do check")
-    this.invalid=sessionStorage.getItem('invalidCredentials')==="true"
+    this.invalid=this.loginService.isInvalid;//sessionStorage.getItem('invalidCredentials')==="true"
     this.registered=sessionStorage.getItem('registered')==="true"
+    sessionStorage.setItem('registered','false');
   }
 
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     let username = this.credentialForm.value['username'];
     let password = this.credentialForm.value['password'];
     this.credential = { username, password };
     let userRole = this.credentialForm.get('role').value
     this.loginService.tryLogin(this.credential,userRole);
-
     // this.userrole = 'Admin';
   }
 }
