@@ -32,11 +32,12 @@ public class EmployeeController {
 		return allEmployees;
 	}
 
-//	@RequestMapping(value = "/api/wiseconnect/v1/admins/approvedEmployees", method = RequestMethod.GET)
-//	public List<Employee> getApprovedEmployees() {
-//		List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
-//		return allEmployees;
-//	}
+	// @RequestMapping(value = "/api/wiseconnect/v1/admins/approvedEmployees",
+	// method = RequestMethod.GET)
+	// public List<Employee> getApprovedEmployees() {
+	// List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
+	// return allEmployees;
+	// }
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
@@ -81,4 +82,5 @@ public class EmployeeController {
 		userCredentialRepository.removeUserCredential(employeeId);
 		employeeRepository.removeEmployee(employeeId);
 	}
+
 }

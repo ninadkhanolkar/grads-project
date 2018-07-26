@@ -23,12 +23,13 @@ import com.systems.wissen.model.UserCredential;
 
 @Service
 public class RegistrationService {
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
+
 	public Map<String, Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);
-		try { 
+		try {
 			employee.setDateOfBirth(
 					new SimpleDateFormat("yyyy-MM-dd").parse((String) registrationObject.get("dateOfBirth")));
 		} catch (ParseException e) {
@@ -41,7 +42,7 @@ public class RegistrationService {
 		employee.setContactNumberWork(Long.parseLong(registrationObject.get("contactNumberWork").toString()));
 		Employee managerEmployee = null;
 		String managerId = (String) registrationObject.get("managerId");
-		if (!(managerId.equals("") || managerId == null)) {
+		if (!(managerId.equals(""))) {
 			managerEmployee = new Employee();
 			managerEmployee.setEmpId((String) registrationObject.get("managerId"));
 		}
