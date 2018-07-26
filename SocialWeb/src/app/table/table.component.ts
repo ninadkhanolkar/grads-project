@@ -42,7 +42,7 @@ export class TableComponent implements OnInit,OnDestroy {
       this.getCredentials();
     }
     else if (this.type === 'reportees') {
-      this.id = this.loginService.username;
+      this.id = sessionStorage.getItem("username");
       console.log(this.id)
       this.getReportees(this.id);
     }
