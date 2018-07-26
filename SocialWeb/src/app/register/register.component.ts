@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
   lastNameErrorMessage:string='';
   passwordErrorMessage:string='';
   bioPicErrorMessage:string='';
+  isDisabled:boolean=false;
   
   //filteredSkills: Observable<string[]>;
 
@@ -47,24 +48,25 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.params.subscribe(params => console.log(params));
-    this.employeeId = this.route.snapshot.paramMap.get('empId');
+    
+    this.employeeId = sessionStorage.getItem('username');
     console.log(this.employeeId);
     if (this.employeeId) {
       this.getEmp(this.employeeId);
+      this.isDisabled=true;
     }
 
     this.registerForm = this.fb.group({
-      empId: ['', Validators.required],
+      empId: [{value:'',disabled: this.isDisabled}, Validators.required],
       firstName: ['', [Validators.required,Validators.minLength(4)]],
       lastName: [''],
       bioPic: [''],
-      gender: ['Male'],
+      gender: [{value:'Male',disabled: this.isDisabled}],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
       maritalStatus: ['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
-      dateOfBirth: ['', Validators.required],
+      dateOfBirth: [{value:'',disabled: this.isDisabled}, Validators.required],
       contactNumberPersonal: ['', Validators.min(1000000000)],
       contactNumberWork: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       managerId: [''],
@@ -171,6 +173,7 @@ export class RegisterComponent implements OnInit {
           zipcode: this.employeeInfo.addresses[0].zipcode
         });
       });
+
   }
 
 
@@ -239,7 +242,7 @@ export class RegisterComponent implements OnInit {
   register(e) {
     e.preventDefault();
     this.submitted=true;
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid ) {
     // if (true) {
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value,"resume").subscribe(e => {
