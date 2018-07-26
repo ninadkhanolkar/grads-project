@@ -35,9 +35,9 @@ create table role(
 role_id integer primary key auto_increment,
 role_name varchar(255) );
 
-insert into role(role) values('superadmin');
-insert into role(role) values('admin');
-insert into role(role) values('employee');
+insert into role(role_name) values('superadmin');
+insert into role(role_name) values('admin');
+insert into role(role_name) values('employee');
 
 create table address(
 address_id integer primary key auto_increment,
