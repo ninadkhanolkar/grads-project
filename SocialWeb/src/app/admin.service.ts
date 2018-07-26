@@ -9,14 +9,14 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   getAdmins(){
-    let url="";
+    let url="http://localhost:8080/api/wiseconnect/v1/admins";
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization':  sessionStorage.getItem("token")
       })
     };
-    this.http.get(url)
+    this.http.get(url,httpOptions)
 
   }
 }
