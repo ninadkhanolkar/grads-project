@@ -26,10 +26,10 @@ export class LoginService {
       sessionStorage.setItem("roles",e["authorities"])
       sessionStorage.setItem("requestedRole",userRole)
       sessionStorage.setItem("isAuthenticated","true")
-        if (userRole === 'Admin' && this.roles.indexOf('ROLE_ADMIN')>=0) {
+        if (sessionStorage.getItem("requestedRole") === 'Admin' && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN')>=0) {
           this.router.navigate(['admin/profile']);
         }
-        else if (userRole === 'Employee' && this.roles.indexOf('ROLE_USER')>=0) {
+        else if (sessionStorage.getItem("requestedRole") === 'Employee' &&sessionStorage.getItem("roles").indexOf('ROLE_USER')>=0&&sessionStorage.getItem("roles").indexOf('ROLE_ADMIN')<0) {
           this.router.navigate(['employee/profile/profile-info']);
         }
         else{
@@ -52,6 +52,7 @@ export class LoginService {
     this.token="";
     this.isAuthenticated=false;
     this.roles="";
+    sessionStorage.clear();
   }
 
 }

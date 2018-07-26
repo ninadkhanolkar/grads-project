@@ -18,11 +18,11 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     if(sessionStorage.getItem("requestedRole")){
       console.log("session role "+sessionStorage.getItem("roles"))
-      if(this.loginService.roles.indexOf('ROLE_SUPERADMIN')>=0){
+      if(sessionStorage.getItem("roles").indexOf('ROLE_SUPERADMIN')>=0){
        this.role = "Super Admin"
       }
       else{
-        this.role = this.loginService.requestedRole;
+        this.role = sessionStorage.getItem("requestedRole");
       }
       
     }
@@ -31,6 +31,13 @@ export class ProfileComponent implements OnInit {
    
   }
 
+  isEmployee(){
+    if(this.role==="Employee"){
+      return true;
+    }
+    else 
+      return false;
+  }
   
   isAdmin(){
     if(this.role==="Admin"){

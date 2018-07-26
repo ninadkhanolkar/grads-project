@@ -17,6 +17,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    if(sessionStorage.getItem('username')){
+      if (sessionStorage.getItem("requestedRole") === 'Admin' && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN')>=0) {
+        this.router.navigate(['admin/profile']);
+      }
+      else if (sessionStorage.getItem("requestedRole") === 'Employee' &&sessionStorage.getItem("roles").indexOf('ROLE_USER')>=0) {
+        this.router.navigate(['employee/profile/profile-info']);
+      }
+    }
     this.credentialForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
