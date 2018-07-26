@@ -1,0 +1,152 @@
+{
+  "empId": "WT001",
+  "firstName": "Mohan",
+  "lastName": "Mummadi",
+  "bioPic": "Pic",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Married",
+  "emailId": "mohan.mummadi@wissen.com",
+  "dateOfBirth": "1968-07-23",
+  "contactNumberPersonal": 9972191192,
+  "contactNumberWork": 9972191192,
+  "managerId": "",
+  "currentPosition": "Vice President (ERP)",
+  "address": {
+    "street": "5th",
+    "city": "bangalore",
+    "state": "karnataka",
+    "country": "india",
+    "zipcode": 560054
+  },
+  "qualificationDegree": "EGMP",
+  "instituteName": "IIM Bangalore",
+  "bio": "Mohan has overall 27 years of experience including 20 years experience in the IT industry. Prior to joining Wissen, he worked as Director in Oracle. Mohan is a graduate of BITS Pilani and EGMP from IIM, Bangalore.",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2012",
+      "certificationName": "JAVA"
+    }
+  ],
+  "resume": ""
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+{
+  "empId": "WT299",
+  "firstName": "Ninad",
+  "lastName": "Prabhukhanolkar",
+  "bioPic": "C:\\fakepath\\bioPic.jpg",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "Ninad.Prabhukhanolkar@wissen.com",
+  "dateOfBirth": "1996-05-04T18:30:00.000Z",
+  "contactNumberPersonal": 9123219322,
+  "contactNumberWork": 9238123893,
+  "managerId": "WT301",
+  "currentPosition": "Traniee Analyst",
+  "address": {
+    "street": "8th main",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "zipcode": 560054
+  },
+  "qualificationDegree": "BE",
+  "instituteName": "PESIT",
+  "bio": "studied at pesit,bangalore",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 2,
+        "name": "JS"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2017",
+      "certificationName": "Machine Learning"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume.pdf"
+}
+-----------------------------------------------------------------------------------------------------------
+{
+  "empId": "WT300",
+  "firstName": "Darshan",
+  "lastName": "Dalsaniya",
+  "bioPic": "C:\\fakepath\\darshan.jpg",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "darshan.dalsaniya@wissen.com",
+  "dateOfBirth": "1996-06-08T18:30:00.000Z",
+  "contactNumberPersonal": 9972191192,
+  "contactNumberWork": 9972191192,
+  "managerId": "WT001",
+  "currentPosition": "Trainee Analyst",
+  "address": {
+    "street": "4th Cross",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "zipcode": 560066
+  },
+  "qualificationDegree": "BE",
+  "instituteName": "MSRIT",
+  "bio": "Having a strong engineering professional with a Bachelor’s Degree focused in Computer Science from M.S. Ramaiah Institute Of Technology.",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 2,
+        "name": "JS"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 4,
+        "name": "Python"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2018",
+      "certificationName": "Java"
+    },
+    {
+      "completionYear": "2018",
+      "certificationName": "Python"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume.pdf"
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+

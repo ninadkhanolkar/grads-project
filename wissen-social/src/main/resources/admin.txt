@@ -1,0 +1,41 @@
+{
+  "id": "AD10",
+  "password": "admin10",
+  "role": {
+    "roleId": 1
+  }
+}
+
+{
+  "id": "AD11",
+  "password": "admin11",
+  "role": {
+    "roleId": 2
+  }
+}
+
+
+{
+  "id": "AD12",
+  "password": "admin12",
+  "role": {
+    "roleId": 2
+  }
+}
+
+
+{
+  "id": "AD13",
+  "password": "admin13",
+  "role": {
+    "roleId": 2
+  }
+}
+
+{
+  "id": "AD14",
+  "password": "admin14",
+  "role": {
+    "roleId": 2
+  }
+}
