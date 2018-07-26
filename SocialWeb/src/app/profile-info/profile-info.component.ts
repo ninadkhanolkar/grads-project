@@ -12,9 +12,9 @@ import { LoginService } from '../login.service';
 export class ProfileInfoComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private fileService: FileUploadRetreiveService,
-              private loginService:LoginService) { }
+    private loginService: LoginService) { }
   employeeInfo: any;
-  empId:any;
+  empId: any;
   id: any;
   name: any;
   image: any;
@@ -26,21 +26,21 @@ export class ProfileInfoComponent implements OnInit {
   degree: any;
   institute: any;
   currentPosition: any;
-  certifications: any=[];
+  certifications: any = [];
   emailId: any;
-  firstName:any;
-  lastName:any; 
-  contact:any;
-  phone:any;
-  country:any;
-  skillsStack:any=[];
-  isEditingProfile=false;
+  firstName: any;
+  lastName: any;
+  contact: any;
+  phone: any;
+  country: any;
+  skillsStack: any = [];
+  isEditingProfile = false;
   role: String;
 
   ngOnInit() {
     this.empId = sessionStorage.getItem("username");
     this.getEmp(this.empId);
-    console.log("In profile-info"+window["sessionStorage"].getItem("username"))
+    console.log("In profile-info" + window["sessionStorage"].getItem("username"))
     this.role = sessionStorage.getItem("requestedRole");
   }
 
@@ -51,32 +51,32 @@ export class ProfileInfoComponent implements OnInit {
         console.log(employee);
         this.id = this.employeeInfo.empId;
         this.fileService.getFile(this.id, 'bioPic').subscribe((e) => {
-          this.createImageFromBlob(e); 
-        }, error => {  
+          this.createImageFromBlob(e);
+        }, error => {
           console.log(error);
         })
         this.url1 = this.url1 + this.id + "/" + "bioPic";
 
         this.bio = this.employeeInfo.bio;
-        if(this.employeeInfo.addresses[0])
-        this.city = this.employeeInfo.addresses[0].city;
-         this.country = this.employeeInfo.addresses[0].country;
+        if (this.employeeInfo.addresses[0])
+          this.city = this.employeeInfo.addresses[0].city;
+        this.country = this.employeeInfo.addresses[0].country;
         this.firstName = this.employeeInfo.firstName;
         this.lastName = this.employeeInfo.lastName;
         this.degree = this.employeeInfo.qualificationDegree;
         this.institute = this.employeeInfo.instituteName;
         this.employeeName = this.firstName + " " + this.lastName;
-       this.currentPosition = this.employeeInfo.currentPosition;
+        this.currentPosition = this.employeeInfo.currentPosition;
         this.emailId = this.employeeInfo.emailId;
         this.contact = this.employeeInfo.contactNumberPersonal;
         this.phone = this.employeeInfo.contactNumberWork;
-        this.employeeInfo.certifications.forEach((c)=>{
+        this.employeeInfo.certifications.forEach((c) => {
           console.log(c)
-        this.certifications.push(c);
+          this.certifications.push(c);
         });
-         this.employeeInfo.skills.forEach((s)=>{
-        this.skillsStack.push(s.allSkill);
-           console.log(s.allSkill);
+        this.employeeInfo.skills.forEach((s) => {
+          this.skillsStack.push(s.allSkill);
+          console.log(s.allSkill);
         });
         console.log(this.certifications);
       });
@@ -92,15 +92,15 @@ export class ProfileInfoComponent implements OnInit {
     }
   }
 
-  toggleIsEdittingProfile(){
-    this.isEditingProfile=!this.isEditingProfile;
+  toggleIsEdittingProfile() {
+    this.isEditingProfile = !this.isEditingProfile;
   }
 
-  isEmployee(){
-    if(this.role === "Employee"){
+  isEmployee() {
+    if (this.role === "Employee") {
       return true;
     }
-    else 
-    return false;
+    else
+      return false;
   }
 }
