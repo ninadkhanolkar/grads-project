@@ -34,15 +34,12 @@ export class RegisterComponent implements OnInit {
   lastNameErrorMessage:string='';
   passwordErrorMessage:string='';
   bioPicErrorMessage:string='';
-<<<<<<< HEAD
   contactPersonalErrorMessage:string='';
   contactPersonalError=false;
   resumeErrorMessage:string='';
   resumeError=false;
-=======
   isDisabled:boolean=false;
   
->>>>>>> 30821007578c332f9e770b9c33800038e4f269a4
   //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
@@ -73,13 +70,8 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       maritalStatus: ['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
-<<<<<<< HEAD
-      dateOfBirth: ['', Validators.required],
-      contactNumberPersonal: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
-=======
       dateOfBirth: [{value:'',disabled: this.isDisabled}, Validators.required],
-      contactNumberPersonal: ['', Validators.min(1000000000)],
->>>>>>> 30821007578c332f9e770b9c33800038e4f269a4
+      contactNumberPersonal: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       contactNumberWork: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       managerId: [''],
       currentPosition: ['', Validators.required],
