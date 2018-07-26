@@ -32,8 +32,13 @@ export class FileUploadRetreiveService {
   }
 
   getFile(empId,type:String){
+    if(type==='bioPic'){
     let url='http://localhost:8080/api/wiseconnect/v1/file/'+empId+'/'+type;
     return this.http.get(url,{responseType:'blob'});
+    }else if(type==='resume'){
+      let url='http://localhost:8080/api/wiseconnect/v1/file/'+empId+'/'+type;
+      return this.http.get(url,{responseType:'blob'});
+    }
   }
 }
 

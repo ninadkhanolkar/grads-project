@@ -7,11 +7,11 @@
 		<div class="w3-content" style="max-width:1400px;">
 				<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
 						<br /> <br/>
-						<button type="button" class="btn btn-info"  [routerLink]="['employees',{type:'employees'}]">View Employees</button>
+						<button type="button" class="btn btn-primary"  [routerLink]="['employees',{type:'employees'}]">View Employees</button>
 						&nbsp;&nbsp;
-						<button type="button" class="btn btn-info"  [routerLink]="['register']">Edit Profile</button>
+						<button type="button" class="btn btn-primary"  [routerLink]="['register']">Edit Profile</button>
 						&nbsp;&nbsp;
-						<button type="button" class="btn btn-info"  [routerLink]="['reportees',{type:'reportees'}]">List of Reportees</button>
+						<button type="button" class="btn btn-primary"  [routerLink]="['reportees',{type:'reportees'}]">List of Reportees</button>
 						<br/>
 						<br/>
 						<router-outlet></router-outlet>
@@ -27,7 +27,7 @@
 					
 				<div class="container">
 					<br>
-						<img src={{image}} width="960" height="640" />
+						<img src="{{image}}" width="960" height="640" />
 					</div>
 				  <div style="color:#30458b" class="w3-container centertext">
 						<h3>{{employeeName}}</h3>
@@ -35,6 +35,7 @@
 				  </div>
 				</div>
 				<div class="w3-container">
+					
 				  <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{currentPosition}}</p>
 				  <p><i class="fa fa-home fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{city}}, {{country}}</p>
 				  <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{emailId}}</p>
@@ -47,7 +48,10 @@
 						<br/>
 					</div>
 					<hr>
-		
+					<p class="w3-large"><b><i style="color:#30458b" class="fa fa-asterisk fa-fw w3-margin-right "></i>Resume</b></p>
+					<a href="{{url1}}"><button type="button" class="btn btn-primary">Resume</button></a>
+				
+		       <hr/>
 				  <p class="w3-large w3-text-theme"><b><i style="color:#30458b" class="fa fa-globe fa-fw w3-margin-right"></i>Languages</b></p>
 				  <p>English</p>
 				  <div class="w3-light-grey w3-round-xlarge">

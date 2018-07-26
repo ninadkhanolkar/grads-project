@@ -8,6 +8,10 @@ line-height: 1.428571429;
 color: #999;
 }
 
+.btn-primary {
+  background-color: #30458b;
+  border:1px solid #30458b;
+}
 .align1{
 	position:relative;
 	left:100px;
