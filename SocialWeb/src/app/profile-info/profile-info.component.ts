@@ -40,7 +40,13 @@ export class ProfileInfoComponent implements OnInit {
   role: String;
 
   ngOnInit() {
-    this.empId = sessionStorage.getItem("username");
+    if(this.route.snapshot.paramMap.get("p1")){
+      this.empId=this.route.snapshot.paramMap.get("p1");
+    }
+    else{
+      this.empId = sessionStorage.getItem("username");
+    }
+    
     console.log(this.empId);
     this.getEmp(this.empId);
     console.log("In profile-info" + window["sessionStorage"].getItem("username"))
