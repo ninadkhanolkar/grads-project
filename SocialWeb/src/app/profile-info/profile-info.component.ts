@@ -38,9 +38,9 @@ export class ProfileInfoComponent implements OnInit {
   
 
   ngOnInit() {
-    this.empId = this.loginService.username;
-    console.log(this.empId);
+    this.empId = sessionStorage.getItem("username");
     this.getEmp(this.empId);
+    console.log("In profile-info"+window["sessionStorage"].getItem("username"))
   }
 
   getEmp(empId) {

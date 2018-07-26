@@ -16,8 +16,8 @@ export class ProfileComponent implements OnInit {
     private loginService:LoginService) {}
 
   ngOnInit() {
-    if(this.loginService.requestedRole){
-      console.log(this.loginService.roles)
+    if(sessionStorage.getItem("requestedRole")){
+      console.log("session role "+sessionStorage.getItem("roles"))
       if(this.loginService.roles.indexOf('ROLE_SUPERADMIN')>=0){
        this.role = "Super Admin"
       }

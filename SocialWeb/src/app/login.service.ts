@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -20,11 +20,11 @@ export class LoginService {
     this.http.post(url,credential).subscribe((e:any)=>{
       console.log(e);
       if(e["token"]){
-      this.token=e["token"];
-      this.roles=e["authorities"]
-      this.username=credential.username;
-      this.isAuthenticated=true;
-      this.requestedRole=userRole;
+      sessionStorage.setItem("username",credential.username)
+      sessionStorage.setItem("token",e["token"])
+      sessionStorage.setItem("roles",e["authorities"])
+      sessionStorage.setItem("requestedRole",userRole)
+      sessionStorage.setItem("isAuthenticated","true")
         if (userRole === 'Admin' && this.roles.indexOf('ROLE_ADMIN')>=0) {
           this.router.navigate(['admin/profile']);
         }
@@ -37,6 +37,7 @@ export class LoginService {
       
       }
     })
+    
     return true;
 
   }

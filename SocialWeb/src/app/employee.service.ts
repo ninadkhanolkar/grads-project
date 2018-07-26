@@ -15,7 +15,7 @@ export class EmployeeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization':  this.loginService.token
+        'Authorization':  sessionStorage.getItem("token")
       })
     };
     console.log(this.loginService.token);
@@ -28,7 +28,7 @@ export class EmployeeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization':  this.loginService.token
+        'Authorization':  sessionStorage.getItem("token")
       })
     };
     const final = "http://localhost:8080/api/wiseconnect/v1/employees/";
@@ -40,7 +40,7 @@ export class EmployeeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization':  this.loginService.token
+        'Authorization':  sessionStorage.getItem("token")
       })
     };
     let url = "http://localhost:8080/api/wiseconnect/v1/admins/pendingEmployees";
@@ -51,7 +51,7 @@ export class EmployeeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization':  this.loginService.token
+        'Authorization':  sessionStorage.getItem("token")
       })
     };
     let final = `http://localhost:8080/api/wiseconnect/v1/admins/employees/${id}`;
@@ -62,7 +62,7 @@ export class EmployeeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization':  this.loginService.token
+        'Authorization':  sessionStorage.getItem("token")
       })
     };
     let final = `http://localhost:8080/api/wiseconnect/v1/admins/employees/${id}`;
@@ -73,7 +73,7 @@ export class EmployeeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization':  this.loginService.token
+        'Authorization':  sessionStorage.getItem("token")
       })
     };
     let url = `http://localhost:8080/api/wiseconnect/v1/${id}/reportees`;
