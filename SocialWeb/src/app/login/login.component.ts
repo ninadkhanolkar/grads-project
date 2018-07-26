@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngAfter
+
   onSubmit() {
     let username = this.credentialForm.value['username'];
     let password = this.credentialForm.value['password'];
