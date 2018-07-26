@@ -20,6 +20,7 @@ export class LoginService {
     this.http.post(url,credential).subscribe((e:any)=>{
       console.log(e);
       if(e["token"]){
+      this.roles=e["authorities"]
       sessionStorage.setItem("username",credential.username)
       sessionStorage.setItem("token",e["token"])
       sessionStorage.setItem("roles",e["authorities"])
