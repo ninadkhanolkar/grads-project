@@ -76,7 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/wiseconnect/v1/file/**").permitAll()
 				.antMatchers("/auth/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/wiseconnect/v1/employee/**").permitAll()
-				.antMatchers("/api/wiseconnect/v1/admins/**").permitAll() //hasAuthority("ROLE_SUPERADMIN")
+				.antMatchers("/api/wiseconnect/v1/admins/**").hasAuthority("ROLE_SUPERADMIN")
 				.antMatchers("/api/wiseconnect/v1/admin/**").hasAuthority("ROLE_ADMIN")
 				.antMatchers("/api/wiseconnect/v1/employees/**").hasAuthority("ROLE_USER")
 				.anyRequest().authenticated();
