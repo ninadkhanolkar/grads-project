@@ -10,7 +10,6 @@ import com.systems.wissen.jwt.JwtUserFactory;
 import com.systems.wissen.model.Admin;
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.model.UserCredential;
-import com.systems.wissen.repo.EmployeeRepository;
 import com.systems.wissen.repo.SuperAdminRepository;
 import com.systems.wissen.repo.UserCredentialRepository;
 
