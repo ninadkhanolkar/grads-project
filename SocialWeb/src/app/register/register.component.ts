@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { FileUploadRetreiveService } from '../file-upload-retreive.service';
 import { EmployeeService } from '../employee.service';
 import { DISABLED } from '@angular/forms/src/model';
-import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-register',
@@ -31,6 +30,8 @@ export class RegisterComponent implements OnInit {
   errorMessage: string = '';
   passwordError=false;
   bioPicError=false;
+  lastNameError=false;
+  lastNameErrorMessage:string='';
   passwordErrorMessage:string='';
   bioPicErrorMessage:string='';
   
@@ -42,12 +43,13 @@ export class RegisterComponent implements OnInit {
     , private allSkills: AllSkillsService
     , private fileUpload: FileUploadRetreiveService
     , private route: ActivatedRoute
-    , private employeeService: EmployeeService
-    , private loginservice:LoginService) { }
+    , private employeeService: EmployeeService) { }
 
   ngOnInit() {
 
-    this.employeeId = sessionStorage.getItem("username");
+    this.route.params.subscribe(params => console.log(params));
+    this.employeeId = this.route.snapshot.paramMap.get('empId');
+    console.log(this.employeeId);
     if (this.employeeId) {
       this.getEmp(this.employeeId);
     }
@@ -91,12 +93,13 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('firstName').valueChanges
     .subscribe(e => {
      
-      if (e.length >= 4) { this.firstNameErrorMessage = "";
+      if (e.length >= 4||e.length===0) { this.firstNameErrorMessage = "";
       this.firstNameError=false; return };
       this.firstNameError=true;
       this.firstNameErrorMessage = "FirstName must be 4 character long"
     })
      
+   
     this.registerForm.get('contactNumberWork').valueChanges
     .subscribe(e => {
       if (e < 1000000000) { this.contactErrorMessage = "Contact Number can't be smaller than 10 length";
@@ -146,7 +149,6 @@ export class RegisterComponent implements OnInit {
   getEmp(empId) {
     this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
-        console.log(employee)
         this.employeeInfo = employee;
         delete this.employeeInfo['bioPic'];
         delete this.employeeInfo['resume'];
@@ -200,11 +202,11 @@ export class RegisterComponent implements OnInit {
   }
 
   addSkill(num?) {
-    // this.registerForm.get('skills').value.forEach((e)=>{
-    //   console.log(e.allSkillId.allSkillId);
-    //   this.skills.splice(e.allSkillId.allSkillId-1,1);
+    this.registerForm.get('skills').value.forEach((e)=>{
+      console.log(e.allSkillId.allSkillId);
+      this.skills.splice(e.allSkillId.allSkillId-1,1);
       
-    // });
+    });
     (<FormArray>this.registerForm.get('skills')).push(this.createSkill(num));
     console.log(this.skills);
    
@@ -237,8 +239,8 @@ export class RegisterComponent implements OnInit {
   register(e) {
     e.preventDefault();
     this.submitted=true;
-    // if (this.registerForm.valid) {
-    if (true) {
+    if (this.registerForm.valid) {
+    // if (true) {
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value,"resume").subscribe(e => {
           console.log(e);
