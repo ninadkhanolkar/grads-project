@@ -8,14 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/**
- * Created by stephan on 20.03.16.
- */
 public class JwtUser implements UserDetails {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final String username;
     private final String password;
@@ -35,8 +29,6 @@ public class JwtUser implements UserDetails {
         this.authorities = authorities;
         this.enabled = enabled;
     }
-
-
 
     @Override
     public String getUsername() {

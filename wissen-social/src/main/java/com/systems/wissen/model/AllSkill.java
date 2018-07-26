@@ -30,9 +30,6 @@ public class AllSkill implements Serializable {
 	@JsonIgnore
 	private List<Skill> skills;
 
-	public AllSkill() {
-	}
-
 	public int getAllSkillId() {
 		return this.allSkillId;
 	}

@@ -29,9 +29,6 @@ public class Admin implements Serializable {
 	@JoinColumn(name = "role_id")
 	private Role role;
 
-	public Admin() {
-	}
-
 	public int getAdminId() {
 		return this.adminId;
 	}

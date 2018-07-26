@@ -32,9 +32,6 @@ public class Skill implements Serializable {
 	@JsonIgnore
 	private Employee employee;
 
-	public Skill() {
-	}
-
 	public int getSkillId() {
 		return this.skillId;
 	}

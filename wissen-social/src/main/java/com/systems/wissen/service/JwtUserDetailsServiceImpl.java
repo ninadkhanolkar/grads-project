@@ -13,9 +13,6 @@ import com.systems.wissen.model.UserCredential;
 import com.systems.wissen.repo.SuperAdminRepository;
 import com.systems.wissen.repo.UserCredentialRepository;
 
-/**
- * Created by stephan on 20.03.16.
- */
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
@@ -25,10 +22,8 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 	private SuperAdminRepository superAdminRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("Before");
+	public UserDetails loadUserByUsername(String username) {
 		UserCredential user = userCredentialRepository.getUserByEmpId(username);
-		System.out.println("in user details service");
 		if (user == null) {
 			Admin admin = superAdminRepository.getAdmin(username);
 			if (admin != null) {
@@ -40,12 +35,10 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 				user.setPassword(admin.getPassword());
 			}
 		}
-
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
 		} else {
 			return JwtUserFactory.create(user);
-			
 		}
 	}
 }

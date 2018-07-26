@@ -2,7 +2,6 @@ package com.systems.wissen.service;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,34 +15,37 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.systems.wissen.exception.WiseConnectRuntimeException;
+
 @Service
 @Transactional
 public class StorageService {
+	private static final String COULD_NOT_INITIALIZE_STORAGE = "Could not initialize storage!";
 	private final Path rootLocation = Paths.get("upload-dir");
 	private Path folderPath;
 	private static final Logger logger = Logger.getLogger(StorageService.class);
 
-	public void store(MultipartFile file, String name) {
+	public void store(MultipartFile file, String name) throws WiseConnectRuntimeException {
 		try {
 			Files.copy(file.getInputStream(), this.folderPath
 					.resolve(name + "." + file.getContentType().substring(file.getContentType().lastIndexOf('/') + 1)));
 		} catch (Exception e) {
 			logger.error("Exception is : ", e);
-			throw new RuntimeException("FAIL !");
+			throw new WiseConnectRuntimeException("FAIL !");
 		}
 	}
 
-	public Resource loadFile(String filename, String folder) {
+	public Resource loadFile(String filename, String folder) throws WiseConnectRuntimeException {
 		try {
 			Path file = rootLocation.resolve(folder + "/" + filename);
 			Resource resource = new UrlResource(file.toUri());
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
 			} else {
-				throw new RuntimeException("FAIL!");
+				throw new WiseConnectRuntimeException("FAIL!");
 			}
 		} catch (MalformedURLException e) {
-			throw new RuntimeException("FAIL!");
+			throw new WiseConnectRuntimeException("FAIL!");
 		}
 	}
 
@@ -51,21 +53,20 @@ public class StorageService {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
 	}
 
-	public void init() {
+	public void init() throws WiseConnectRuntimeException {
 		try {
 			Files.createDirectory(rootLocation);
 		} catch (IOException e) {
-			throw new RuntimeException("Could not initialize storage!");
+			throw new WiseConnectRuntimeException(COULD_NOT_INITIALIZE_STORAGE);
 		}
 	}
 
-	public void createFolder(String folder) {
+	public void createFolder(String folder) throws WiseConnectRuntimeException {
 		try {
 			folderPath = Paths.get(rootLocation.toString(), folder);
 			Files.createDirectory(folderPath);
-		} catch (FileAlreadyExistsException e) {
-		} catch (IOException e) {
-			throw new RuntimeException("Could not initialize storage!");
+		} catch (IOException g) {
+			throw new WiseConnectRuntimeException(COULD_NOT_INITIALIZE_STORAGE);
 		}
 	}
 }

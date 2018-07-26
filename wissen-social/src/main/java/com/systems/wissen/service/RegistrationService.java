@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,7 @@ public class RegistrationService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	private static Logger log = Logger.getLogger(RegistrationService.class);
 
 	public Map<String, Object> registerEmployee(JSONObject registrationObject) {
 		Employee employee = createEmployee(registrationObject);
@@ -33,7 +35,7 @@ public class RegistrationService {
 			employee.setDateOfBirth(
 					new SimpleDateFormat("yyyy-MM-dd").parse((String) registrationObject.get("dateOfBirth")));
 		} catch (ParseException e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		if (!registrationObject.get("contactNumberPersonal").toString().equals("")) {
 			employee.setContactNumberPersonal(
@@ -42,9 +44,11 @@ public class RegistrationService {
 		employee.setContactNumberWork(Long.parseLong(registrationObject.get("contactNumberWork").toString()));
 		Employee managerEmployee = null;
 		String managerId = (String) registrationObject.get("managerId");
+		managerEmployee = new Employee();
 		if (!(managerId.equals(""))) {
-			managerEmployee = new Employee();
 			managerEmployee.setEmpId((String) registrationObject.get("managerId"));
+		} else {
+			managerEmployee.setEmpId("WT001");
 		}
 		employee.setEmployee(managerEmployee);
 		employee.setCurrentPosition((String) registrationObject.get("currentPosition"));
@@ -81,7 +85,7 @@ public class RegistrationService {
 				skill.setEmployee(employee);
 				skills.add(skill);
 			} catch (Exception e) {
-				System.out.println(e);
+				log.error(e);
 			}
 		}
 		employee.setSkills(skills);

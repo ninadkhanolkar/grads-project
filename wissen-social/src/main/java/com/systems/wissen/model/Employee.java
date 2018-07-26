@@ -9,98 +9,97 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the employee database table.
  * 
  */
 @Entity
-@NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
+@NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="emp_id")
+	@Column(name = "emp_id")
 	private String empId;
 
-	@Column(name="application_status")
+	@Column(name = "application_status")
 	private int applicationStatus;
 
 	private String bio;
 
-	@Column(name="bio_pic")
+	@Column(name = "bio_pic")
 	private String bioPic;
 
-	@Column(name="contact_number_personal")
+	@Column(name = "contact_number_personal")
 	private long contactNumberPersonal;
 
-	@Column(name="contact_number_work")
+	@Column(name = "contact_number_work")
 	private long contactNumberWork;
 
-	@Column(name="current_position")
+	@Column(name = "current_position")
 	private String currentPosition;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="date_of_birth")
+	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
 
-	@Column(name="email_id")
+	@Column(name = "email_id")
 	private String emailId;
 
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
 	private String gender;
 
-	@Column(name="institute_name")
+	@Column(name = "institute_name")
 	private String instituteName;
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name="marital_status")
+	@Column(name = "marital_status")
 	private String maritalStatus;
 
-	@Column(name="qualification_degree")
+	@Column(name = "qualification_degree")
 	private String qualificationDegree;
 
 	private String resume;
 
-	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
+	// bi-directional many-to-one association to Address
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Address> addresses;
 
-	//bi-directional many-to-one association to Certification
-	@OneToMany(mappedBy="employee",cascade= CascadeType.ALL)
+	// bi-directional many-to-one association to Certification
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Certification> certifications;
 
-	//bi-directional many-to-one association to Employee
+	// bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="manager_id")
+	@JoinColumn(name = "manager_id")
 	@JsonBackReference
 	private Employee employee;
-	
+
 	@Transient
 	private String managerId;
-	
+
 	public String getManagerId() {
 		return managerId;
 	}
 
 	public void setManagerId() {
-		if(employee != null)
-		this.managerId = this.employee.empId;
-		else 
-			this.managerId="WT001";
+		if (employee != null)
+			this.managerId = this.employee.empId;
+		else
+			this.managerId = "WT001";
 	}
 
-	//bi-directional many-to-one association to Employee
-	@OneToMany(mappedBy="employee")
+	// bi-directional many-to-one association to Employee
+	@OneToMany(mappedBy = "employee")
 	@JsonIgnore
 	private List<Employee> employees;
 
-	//bi-directional many-to-one association to Skill
-	@OneToMany(mappedBy="employee",cascade= CascadeType.ALL)
+	// bi-directional many-to-one association to Skill
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Skill> skills;
 
 	public String getEmpId() {
@@ -206,7 +205,6 @@ public class Employee implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 	public String getMaritalStatus() {
 		return maritalStatus;

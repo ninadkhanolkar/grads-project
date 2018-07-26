@@ -23,7 +23,7 @@ import com.systems.wissen.service.JwtUserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages= {"com.systems.wissen"})
+@ComponentScan(basePackages = { "com.systems.wissen" })
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() {
 		return new JwtAuthenticationTokenFilter();
 	}
 
@@ -55,7 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -68,19 +67,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// don't create session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
-				.authorizeRequests()
-				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-				.antMatchers("/swagger**").permitAll()
-//				.antMatchers("/**").permitAll()
-				.antMatchers("/api/wiseconnect/v1/allskills/**").permitAll()
-				.antMatchers("/api/wiseconnect/v1/file/**").permitAll()
-				.antMatchers("/auth/**").permitAll()
+				.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().antMatchers("/swagger**")
+				.permitAll()
+				// .antMatchers("/**").permitAll()
+				.antMatchers("/api/wiseconnect/v1/allskills/**").permitAll().antMatchers("/api/wiseconnect/v1/file/**")
+				.permitAll().antMatchers("/auth/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/wiseconnect/v1/employee/**").permitAll()
 				.antMatchers("/api/wiseconnect/v1/admins/**").hasAuthority("ROLE_SUPERADMIN")
 				.antMatchers("/api/wiseconnect/v1/admin/**").hasAuthority("ROLE_ADMIN")
-				.antMatchers("/api/wiseconnect/v1/employees/**").hasAuthority("ROLE_USER")
-				.anyRequest().authenticated();
-
+				.antMatchers("/api/wiseconnect/v1/employees/**").hasAuthority("ROLE_USER").anyRequest().authenticated();
+ 
 		// Custom JWT based security filter
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 		// disable page caching
@@ -89,6 +85,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/webjars/**","/swagger-resources/**","/v2/**");
+		web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/webjars/**",
+				"/swagger-resources/**", "/v2/**");
 	}
 }

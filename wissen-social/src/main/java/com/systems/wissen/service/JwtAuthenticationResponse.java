@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
-/**
- * Created by stephan on 20.03.16.
- */
 public class JwtAuthenticationResponse implements Serializable {
 
     private static final long serialVersionUID = 1250166508152483573L;
@@ -20,7 +17,6 @@ public class JwtAuthenticationResponse implements Serializable {
     public JwtAuthenticationResponse(String token,Collection<? extends GrantedAuthority> authorities) {
         this.token = token;
         for(GrantedAuthority authority:authorities) {
-        	System.out.println(authority);
         	this.authorities.add(authority.toString());
         }
     }

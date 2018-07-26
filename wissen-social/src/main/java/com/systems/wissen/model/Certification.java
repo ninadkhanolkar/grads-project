@@ -32,9 +32,6 @@ public class Certification implements Serializable {
 	@JsonIgnore
 	private Employee employee;
 
-	public Certification() {
-	}
-
 	public int getCertificationId() {
 		return this.certificationId;
 	}

@@ -53,9 +53,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 
 	private void setManagerId(List<Employee> resultList) {
-		resultList.forEach((employee) -> {
-			employee.setManagerId();
-		});
+		resultList.forEach(Employee::setManagerId);
 	}
 
 	@Override
@@ -76,7 +74,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 
 	private List<EmployeeViewResponse> getListOfEmployeeViewResponse(Stream<Employee> stream) {
-		return stream.map((e) -> {
+		return stream.map(e -> {
 			EmployeeViewResponse employeeViewResponse = new EmployeeViewResponse();
 			employeeViewResponse.setFirstName(e.getFirstName());
 			employeeViewResponse.setLastName(e.getLastName());
@@ -141,8 +139,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		Query createQuery = manager.createQuery("update Employee set employee.empId=? where employee.empId=?");
 		createQuery.setParameter(0, "WT001");
 		createQuery.setParameter(1, employeeId);
-		int executeUpdate = createQuery.executeUpdate();
-		System.out.println(executeUpdate);
+		createQuery.executeUpdate();
 	}
 
 	@Override
