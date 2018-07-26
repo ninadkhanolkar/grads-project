@@ -33,7 +33,7 @@ foreign key (emp_id) references employee(emp_id) );
 
 create table role(
 role_id integer primary key auto_increment,
-role varchar(255) );
+role_name varchar(255) );
 
 insert into role(role) values('superadmin');
 insert into role(role) values('admin');
