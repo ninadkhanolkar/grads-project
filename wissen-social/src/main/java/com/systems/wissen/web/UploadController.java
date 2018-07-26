@@ -69,7 +69,7 @@ public class UploadController {
 			MediaType.ALL_VALUE })
 	@ResponseBody
 	public ResponseEntity<Resource> getFile(@PathVariable String empId, @PathVariable String type) {
-		Resource file = storageService.loadFile(type + ".jpeg", empId);
+		Resource file = storageService.loadFile(type + ".jpg", empId);
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.contentType(MediaType.IMAGE_JPEG).body(file);
