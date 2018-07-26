@@ -237,7 +237,7 @@ export class RegisterComponent implements OnInit {
   register(e) {
     e.preventDefault();
     this.submitted=true;
-    //if (this.registerForm.valid) {
+    // if (this.registerForm.valid) {
     if (true) {
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value,"resume").subscribe(e => {

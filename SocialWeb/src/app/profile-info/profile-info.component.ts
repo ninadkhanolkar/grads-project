@@ -43,7 +43,7 @@ export class ProfileInfoComponent implements OnInit {
     this.empId = sessionStorage.getItem("username");
     console.log(this.empId);
     this.getEmp(this.empId);
-    console.log("In profile-info"+window["sessionStorage"].getItem("username"))
+    console.log("In profile-info" + window["sessionStorage"].getItem("username"))
     this.role = sessionStorage.getItem("requestedRole");
   }
   
