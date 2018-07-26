@@ -54,7 +54,7 @@
   "dateOfBirth": "1996-05-04T18:30:00.000Z",
   "contactNumberPersonal": 9123219322,
   "contactNumberWork": 9238123893,
-  "managerId": "WT301",
+  "managerId": "WT001",
   "currentPosition": "Traniee Analyst",
   "address": {
     "street": "8th main",
@@ -148,5 +148,109 @@
 }
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+{
+  "empId": "WT301",
+  "firstName": "Saurabh",
+  "lastName": "Bengani",
+  "bioPic": "C:\\fakepath\\bioPic.jpg",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "saurabh.bengani@wissen.com",
+  "dateOfBirth": "1996-02-19T18:30:00.000Z",
+  "contactNumberPersonal": 9127238712,
+  "contactNumberWork": 1238768721,
+  "managerId": "",
+  "currentPosition": "Traniee Analyst",
+  "address": {
+    "street": "8th main",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "zipcode": 560054
+  },
+  "qualificationDegree": "BTech",
+  "instituteName": "VIT",
+  "bio": "Experienced Programmer skilled in C++,Java. Studied BTech at VIT,Vellore.",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 2,
+        "name": "JS"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 5,
+        "name": "Angular"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2018",
+      "certificationName": "JavaScript"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume.pdf"
+}
+-----------------------------------------------------------------------------------------------------------
+{
+  "empId": "WT302",
+  "firstName": "Subham",
+  "lastName": "Sahay",
+  "bioPic": "C:\\fakepath\\bioPic.jpg",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "Subham.Sahay@wissen.com",
+  "dateOfBirth": "1995-06-21T18:30:00.000Z",
+  "contactNumberPersonal": 9972192192,
+  "contactNumberWork": 1231287324,
+  "managerId": "WT300",
+  "currentPosition": "Trainee Analyst",
+  "address": {
+    "street": "4th cross",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "zipcode": 560054
+  },
+  "qualificationDegree": "BTech",
+  "instituteName": "VIT",
+  "bio": "I am a determined individual who always looks to broaden his career paths.I am a progressive thinker & respect each person’s space & values.I am open to new challenges and willing to work hard to reach my goals.",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 4,
+        "name": "Python"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2018",
+      "certificationName": "Angular"
+    },
+    {
+      "completionYear": "2016",
+      "certificationName": "HTML"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume.pdf"
+}
+-----------------------------------------------------------------------------
