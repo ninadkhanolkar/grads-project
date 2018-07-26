@@ -10,6 +10,7 @@ import com.systems.wissen.jwt.JwtUserFactory;
 import com.systems.wissen.model.Admin;
 import com.systems.wissen.model.Employee;
 import com.systems.wissen.model.UserCredential;
+import com.systems.wissen.repo.EmployeeRepository;
 import com.systems.wissen.repo.SuperAdminRepository;
 import com.systems.wissen.repo.UserCredentialRepository;
 
@@ -24,6 +25,9 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		UserCredential user = userCredentialRepository.getUserByEmpId(username);
+		if(user!=null && user.getEmployee().getApplicationStatus() != 1) {
+			throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+		}
 		if (user == null) {
 			Admin admin = superAdminRepository.getAdmin(username);
 			if (admin != null) {

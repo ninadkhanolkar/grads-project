@@ -49,9 +49,7 @@ public class RegistrationService {
 			managerEmployee.setEmpId((String) registrationObject.get("managerId"));
 		} else if (employee.getEmpId().equals("WT001")) {
 			managerEmployee = null;
-		}
-		else
-		{
+		} else {
 			managerEmployee.setEmpId("WT001");
 		}
 		employee.setEmployee(managerEmployee);
@@ -102,8 +100,7 @@ public class RegistrationService {
 		while (i.hasNext()) {
 			Certification certification = new Certification();
 			LinkedHashMap<?, ?> map2 = (LinkedHashMap<?, ?>) i.next();
-			System.out.println(map2.toString());
-			certification.setCertificationName( map2.get("certificationName").toString());
+			certification.setCertificationName(map2.get("certificationName").toString());
 			String completionYear = map2.get("completionYear").toString();
 			certification.setCompletionYear(Integer.parseInt(completionYear));
 			certification.setEmployee(employee);
