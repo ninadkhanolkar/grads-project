@@ -1,76 +1,48 @@
-<!-- <br/>
-<p>
-	<input 
-	#query
-	(keyup)="filter(query.value)"
-	type="text" class="form-control" placeholder="Search...">
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>FirstName</th>
-			<th>LastName</th>
-			<th>ProfileLink</th>
-		</tr>
-	</thead>
-	<tbody *ngFor="let employee of filteredEmployees">
-		<tr>
-			<td>{{employee.id}}</td>
-			<td>{{employee.firstName}}</td>
-			<td>{{employee.lastName}}</td>
-			<td>
-				<button type="button" class="btn btn-primary btn-sm" [routerLink]="['/profile-info',{p1:employee.url}]" >ViewProfile</button>
-			</td>
-		</tr>
-	</tbody>
-</table> -->
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <div class="container">
 	<div class="row">
-        <div class="col-md-6">
+		<div class="col-md-6">
 			<br/>
 			<br/>
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input #query
-					(keyup)="filter(query.value)"
-					type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
+			<div id="custom-search-input">
+				<div class="input-group col-md-12">
+					<input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+					<span class="input-group-btn">
+						<button class="btn btn-info btn-lg" type="button">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <table class="responstable">
-  
-  <tr>
-    <th>Employee</th>
-    <th data-th="Driver details"><span>Employee Id</span></th>
-    <th>FirstName</th>
-	<th>LastName</th>
-	<th>Profile</th>
-  </tr>
-  
-  <tr *ngFor="let employee of filteredEmployees">
-    <td><i class="fa fa-user" aria-hidden="true"></i></td>
-    <td>{{employee.id}}</td>
-    <td>{{employee.firstName}}</td>
-	<td>{{employee.lastName}}</td>
-	<td>
-			<button type="button" class="btn btn-primary btn-sm" [routerLink]="['profile-info',{p1:employee.id}]" >View</button>
+
+	<tr>
+		<th>Employee</th>
+		<th data-th="Driver details">
+			<span>Employee Id</span>
+		</th>
+		<th>FirstName</th>
+		<th>LastName</th>
+		<th>Profile</th>
+	</tr>
+
+	<tr *ngFor="let employee of filteredEmployees">
+		<td>
+			<i class="fa fa-user" aria-hidden="true"></i>
 		</td>
-  </tr>
-  
-  
-  
+		<td>{{employee.id}}</td>
+		<td>{{employee.firstName}}</td>
+		<td>{{employee.lastName}}</td>
+		<td>
+			<button type="button" class="btn btn-primary btn-sm" [routerLink]="['profile-info',{p1:employee.id}]">View</button>
+		</td>
+	</tr>
+
+
+
 </table>

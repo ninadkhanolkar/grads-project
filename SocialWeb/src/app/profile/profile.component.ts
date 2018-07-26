@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
       }
       
     }
-    this.empId=this.loginService.username;
+    this.empId = sessionStorage.getItem("username");
     
    
   }
