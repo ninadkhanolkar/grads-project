@@ -71,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				.antMatchers("/swagger**").permitAll()
+//				.antMatchers("/**").permitAll()
 				.antMatchers("/api/wiseconnect/v1/allskills/**").permitAll()
 				.antMatchers("/api/wiseconnect/v1/file/**").permitAll()
 				.antMatchers("/auth/**").permitAll()
