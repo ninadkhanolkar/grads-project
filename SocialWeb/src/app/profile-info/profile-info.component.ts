@@ -38,13 +38,16 @@ export class ProfileInfoComponent implements OnInit {
   skillsStack: any = [];
   isEditingProfile = false;
   role: String;
+  isMe:boolean
 
   ngOnInit() {
     if(this.route.snapshot.paramMap.get("p1")){
       this.empId=this.route.snapshot.paramMap.get("p1");
+      this.isMe=false;
     }
     else{
       this.empId = sessionStorage.getItem("username");
+      this.isMe=true;
     }
     
     console.log(this.empId);

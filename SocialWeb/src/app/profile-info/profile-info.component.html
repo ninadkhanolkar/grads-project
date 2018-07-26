@@ -5,7 +5,7 @@
 
 		<!-- Page Container -->
 		<div class="w3-content" style="max-width:1400px;">
-				<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
+				<div *ngIf='isEmployee() && isMe' class="col-sm-9" contenteditable="false" >
 						<br /> <br/>
 						<button type="button" class="btn btn-primary"  [routerLink]="['employees',{type:'employees'}]">View Employees</button>
 						&nbsp;&nbsp;
