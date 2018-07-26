@@ -3,7 +3,7 @@
 <div class="container target">
 	<div class="row">
 		<div class="col-sm-10">
-			<h1 style="color:#000000">Wissen</h1>
+			<h1 style="color:#ffffff">Wissen</h1>
 			<br>
 		</div>
 	
@@ -35,7 +35,17 @@
 			<router-outlet></router-outlet>
 		</div>
 		
-		
+		<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
+			<br /> <br/>
+			<button type="button" class="btn btn-success" [routerLink]="['profile-info']">View Profile</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-info"  [routerLink]="['register']">Edit Profile</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-info"  [routerLink]="['../reportees',{type:'reportees'}]">List of Reportee</button>
+			<br/>
+			<br/>
+			<router-outlet></router-outlet>
+		</div>
 		<div id="push"></div>
 	</div>
 </div>
