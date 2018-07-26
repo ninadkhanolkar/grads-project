@@ -1,11 +1,8 @@
-
-
-
 <div class="w3-light-grey">
 
 		<!-- Page Container -->
 		<div class="w3-content" style="max-width:1400px;">
-				<div *ngIf='isEmployee()' class="col-sm-9" contenteditable="false" >
+				<div *ngIf='isEmployee() && isMe' class="col-sm-9" contenteditable="false" >
 						<br /> <br/>
 						<button type="button" class="btn btn-primary"  [routerLink]="['employees',{type:'employees'}]">View Employees</button>
 						&nbsp;&nbsp;
@@ -21,119 +18,157 @@
 		  
 			<!-- Left Column -->
 			<div class="w3-third">
-			<br>
-			  <div class="w3-white w3-text-grey w3-card-4">
-				<div class="w3-display-container">
-					
-				<div class="container">
-					<br>
-						<img src={{image}} width="500" height="500" />
+				<br>
+				<div class="w3-white w3-text-grey w3-card-4">
+					<div class="w3-display-container">
+
+						<div class="container">
+							<br>
+							<img src={{image}} width="500" height="500" />
+						</div>
+						<div style="color:#30458b" class="w3-container centertext ">
+							<br>
+							<h3 style="font-family: 'Merienda', cursive;">{{employeeName}}</h3>
+							<br/>
+						</div>
 					</div>
-				  <div style="color:#30458b" class="w3-container centertext ">
+					<div class="w3-container">
+
+						<p>
+							<i class="fa fa-briefcase fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{currentPosition}}</p>
+						<p>
+							<i class="fa fa-home fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{city}}, {{country}}</p>
+						<p>
+							<i class="fa fa-envelope fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{emailId}}</p>
+						<p>
+							<i class="fa fa-phone fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{contact}} , {{phone}}</p>
+						<hr>
+
+						<p class="w3-large">
+							<b>
+								<i style="color:#30458b" class="fa fa-asterisk fa-fw w3-margin-right "></i>Skills</b>
+						</p>
+						<div *ngFor="let skill of skillsStack">
+							&nbsp;<i style="color:#30458b" class="fa fa-long-arrow-right" aria-hidden="true">
+								&nbsp;
+								<b style="font-size : 15px;">{{skill.name}}</b>
+								<br>
+								<br>
+							</i>
+						</div>
+						<hr>
+						<p class="w3-large">
+							<b>
+								<i style="color:#30458b" class="fa fa-asterisk fa-fw w3-margin-right "></i>Resume</b>
+						</p>
+						<a href="{{url1}}">
+							<button type="button" class="btn btn-primary">Resume</button>
+						</a>
+
+						<hr/>
+						<p class="w3-large w3-text-theme">
+							<b>
+								<i style="color:#30458b" class="fa fa-globe fa-fw w3-margin-right"></i>Languages</b>
+						</p>
+						<p>English</p>
+						<div class="w3-light-grey w3-round-xlarge">
+							<div class="w3-round-xlarge w3-indigo" style="height:24px;width:100%"></div>
+						</div>
 						<br>
-						<h3 style="font-family: 'Merienda', cursive;">{{employeeName}}</h3>
-						<br/>
-				  </div>
-				</div>
-				<div class="w3-container">
-						<p><i class="fa fa-id-badge fa-fw w3-margin-right w3-large "  style="color:#30458b"></i>{{empId}}</p>
-				  <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{currentPosition}}</p>
-				  <p><i class="fa fa-home fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{city}}, {{country}}</p>
-				  <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{emailId}}</p>
-				  <p><i class="fa fa-phone fa-fw w3-margin-right w3-large " style="color:#30458b"></i>{{contact}} , {{phone}}</p>
-				  <hr>
-		
-				  <p class="w3-large"><b><i style="color:#30458b" class="fa fa-asterisk fa-fw w3-margin-right "></i>Skills</b></p>
-						<div *ngFor="let skill of skillsStack" >
-						<p><b>{{skill.name}}</b></p>
-						<br/>
+						<p>Hindi</p>
+						<div class="w3-light-grey w3-round-xlarge">
+							<div class="w3-round-xlarge w3-indigo" style="height:24px;width:75%"></div>
+						</div>
+						<br>
+						<p>Kannada</p>
+						<div class="w3-light-grey w3-round-xlarge">
+							<div class="w3-round-xlarge w3-indigo" style="height:24px;width:65%"></div>
+						</div>
+						<br>
 					</div>
-					<hr>
-					<p class="w3-large"><b><i style="color:#30458b" class="fa fa-asterisk fa-fw w3-margin-right "></i>Resume</b></p>
-					<a href="{{url1}}" download><button type="button" class="btn btn-primary">Resume</button></a>
-				
-		       <hr/>
-				  <p class="w3-large w3-text-theme"><b><i style="color:#30458b" class="fa fa-globe fa-fw w3-margin-right"></i>Languages</b></p>
-				  <p>English</p>
-				  <div class="w3-light-grey w3-round-xlarge">
-					<div class="w3-round-xlarge w3-indigo" style="height:24px;width:100%"></div>
-				  </div>
-				  <p>Hindi</p>
-				  <div class="w3-light-grey w3-round-xlarge">
-					<div class="w3-round-xlarge w3-indigo" style="height:24px;width:75%"></div>
-				  </div>
-				  <p>Kannada</p>
-				  <div class="w3-light-grey w3-round-xlarge">
-					<div class="w3-round-xlarge w3-indigo" style="height:24px;width:65%"></div>
-				  </div>
-				  <br>
 				</div>
-			  </div><br>
-		
-			<!-- End Left Column -->
+				<br>
+
+				<!-- End Left Column -->
 			</div>
-		
+
 			<!-- Right Column -->
 			<div class="w3-twothird">
-					<br>
-					<div class="w3-container w3-card w3-white">
-							<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-book fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Bio</h2>
-							<div class="w3-container">
-								<h5 class="w3-opacity" style="font-family: 'Roboto' 18px, sans-serif">{{bio}}</h5>
-							</div>
+				<br>
+				<div class="w3-container w3-card w3-white">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fa fa-book fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Bio</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity" style="font-family: 'Roboto' 18px, sans-serif">{{bio}}</h5>
 					</div>
-					<br>
-			  <div class="w3-container w3-card w3-white w3-margin-bottom">
-				<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge"  style="color:#30458b"></i>Work Experience</h2>
-				<div class="w3-container">
-					<h5 class="w3-opacity"><b>{{currentPosition}} , Wissen Technology</b></h5>
-				  <h6 class="w3-text-indigo"  style="color:#30458b"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-indigo w3-round">Current</span></h6>
-				  <p></p>
-	
 				</div>
+				<br>
+				<div class="w3-container w3-card w3-white w3-margin-bottom">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Work Experience</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>{{currentPosition}} , Wissen Technology</b>
+						</h5>
+						<h6 class="w3-text-indigo" style="color:#30458b">
+							<i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 -
+							<span class="w3-tag w3-indigo w3-round">Current</span>
+						</h6>
+						<p></p>
+
+					</div>
 
 				</div>
-		
+
 				<div class="w3-container w3-card w3-white">
-						<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-book fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Education</h2>
-						<div class="w3-container">
-							<h5 class="w3-opacity"><b>{{degree}}</b></h5>
-							<h5 class="w3-opacity"><b>{{institute}}</b></h5>
-			
-						</div>
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fa fa-book fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Education</h2>
+					<div class="w3-container">
+						<h5 class="w3-opacity">
+							<b>{{degree}}</b>
+						</h5>
+						<h5 class="w3-opacity">
+							<b>{{institute}}</b>
+						</h5>
+
+					</div>
 				</div>
 				<br>
 				<div class="w3-container w3-card w3-white">
-						<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Certifications</h2>
-						<div class="w3-container" *ngFor="let c of certifications">
-							<h5 class="w3-opacity"><b>{{c.certificationName}}</b></h5>
-							<h6 class="w3-text-indigo"><i class="fa fa-calendar fa-fw w3-margin-right" style="color:#30458b"></i>{{c.completionYear}}</h6>
-							<p>{{c.certificationName}} - {{c.completionYear}}</p>
-							<hr>
-						</div>
-						
-						</div>
-			<!-- End Right Column -->
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge" style="color:#30458b"></i>Certifications</h2>
+					<div class="w3-container" *ngFor="let c of certifications">
+						<h5 class="w3-opacity">
+							<b>{{c.certificationName}}</b>
+						</h5>
+						<h6 class="w3-text-indigo">
+							<i class="fa fa-calendar fa-fw w3-margin-right" style="color:#30458b"></i>{{c.completionYear}}</h6>
+						<p>{{c.certificationName}} - {{c.completionYear}}</p>
+						<hr>
+					</div>
+
+				</div>
+				<!-- End Right Column -->
 			</div>
-			
-		  <!-- End Grid -->
-		  </div>
-		  
-		  <!-- End Page Container -->
+
+			<!-- End Grid -->
 		</div>
-		
-		<footer class="w3-container w3-indigo w3-center w3-margin-top">
-		  <p>Find me on social media.</p>
-		  <i class="fa fa-facebook-official w3-hover-opacity"></i> &nbsp;
-		  <i class="fa fa-instagram w3-hover-opacity"></i>&nbsp;
-		  <i class="fa fa-snapchat w3-hover-opacity"></i>&nbsp;
-		  <i class="fa fa-pinterest-p w3-hover-opacity"></i>&nbsp;
-		  <i class="fa fa-twitter w3-hover-opacity"></i>&nbsp;
-		  <i class="fa fa-linkedin w3-hover-opacity"></i>&nbsp;
-		 
-		</footer>
-		
+
+		<!-- End Page Container -->
 	</div>
+
+	<footer class="w3-container w3-indigo w3-center w3-margin-top">
+		<p>Find me on social media.</p>
+		<i class="fa fa-facebook-official w3-hover-opacity"></i> &nbsp;
+		<i class="fa fa-instagram w3-hover-opacity"></i>&nbsp;
+		<i class="fa fa-snapchat w3-hover-opacity"></i>&nbsp;
+		<i class="fa fa-pinterest-p w3-hover-opacity"></i>&nbsp;
+		<i class="fa fa-twitter w3-hover-opacity"></i>&nbsp;
+		<i class="fa fa-linkedin w3-hover-opacity"></i>&nbsp;
+
+	</footer>
+
+</div>
 
 
 <router-outlet></router-outlet>

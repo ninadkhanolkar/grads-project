@@ -97,7 +97,17 @@ const routes: Routes = [
             path: 'register', component: RegisterComponent
           },
           {
-            path: 'employees', component: TableComponent
+            path: 'employees', 
+            children: [
+              {
+                path: '',
+                component: TableComponent,
+              },
+              {
+                path: 'profile-info',
+                component: ProfileInfoComponent,
+              },
+            ]
           },
           {
             path: 'reportees',
