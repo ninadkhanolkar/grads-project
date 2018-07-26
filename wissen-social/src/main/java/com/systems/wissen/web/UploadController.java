@@ -30,7 +30,7 @@ public class UploadController {
 	@Autowired
 	StorageService storageService;
 
-	private List<String> files = new ArrayList<>();
+	private List<String> files = new ArrayList<String>();
 	private static final Logger logger = Logger.getLogger(UploadController.class);
 
 	@PostMapping(value = "{type}")
@@ -44,7 +44,7 @@ public class UploadController {
 			} else if (type.equals("bioPic")) {
 				storageService.store(file, "bioPic");
 			} else {
-				throw new WiseConnectRuntimeException("Unsupported file");
+				throw new Exception("Unsupported file");
 			}
 			files.add(file.getOriginalFilename());
 			message = "You successfully uploaded " + file.getOriginalFilename() + "!";
@@ -56,14 +56,34 @@ public class UploadController {
 		}
 	}
 
+	// @GetMapping(value="{type}")
+	// public ResponseEntity<List<String>> getListFiles(Model model) {
+	// List<String> fileNames = files
+	// .stream().map(fileName -> MvcUriComponentsBuilder
+	// .fromMethodName(UploadController.class, "getFile",
+	// fileName).build().toString())
+	// .collect(Collectors.toList());
+	//
+	// return ResponseEntity.ok().body(fileNames);
+	// }
+
 	@GetMapping(value = "{empId}/{type}", produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE,
-			MediaType.ALL_VALUE })
+			MediaType.ALL_VALUE, MediaType.APPLICATION_PDF_VALUE })
 	@ResponseBody
 	public ResponseEntity<Resource> getFile(@PathVariable String empId, @PathVariable String type)
 			throws WiseConnectRuntimeException {
-		Resource file = storageService.loadFile(type + ".jpg", empId);
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
-				.contentType(MediaType.IMAGE_JPEG).body(file);
+		Resource file;
+		if (type.equals("bioPic")) {
+			file = storageService.loadFile(type + ".jpeg", empId);
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+					.contentType(MediaType.IMAGE_JPEG).body(file);
+		} else {
+			file = storageService.loadFile(type + ".pdf", empId);
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+					.contentType(MediaType.APPLICATION_PDF).body(file);
+		}
+
 	}
 }
