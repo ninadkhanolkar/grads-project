@@ -16,7 +16,7 @@ export class AdminService {
         'Authorization':  sessionStorage.getItem("token")
       })
     };
-    this.http.get(url,httpOptions)
+    return this.http.get(url,httpOptions)
 
   }
 }

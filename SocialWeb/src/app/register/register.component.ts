@@ -258,6 +258,7 @@ export class RegisterComponent implements OnInit {
       
       this.registrationService.register(this.registerForm.value).subscribe(e => {
       });
+      sessionStorage.setItem('registered',"true")
       this.router.navigateByUrl("/");
     }
     if (this.registerForm.invalid) {

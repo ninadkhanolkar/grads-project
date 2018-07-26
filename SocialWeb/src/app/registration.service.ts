@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegistrationService {
 
+
   constructor(private http:HttpClient) { }
 
   register(data){

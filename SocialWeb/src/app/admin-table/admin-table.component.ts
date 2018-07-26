@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-table',
@@ -9,14 +10,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminTableComponent implements OnInit {
 
-  constructor(private adminService:AdminService) { }
+  adminCredentials: any = [];
+  filteredAdmins:any = [];
+  constructor(private adminService:AdminService,private subscription:Subscription) { }
 
   ngOnInit() {
 
   }
 
   getAdmins(){
-     this.adminService.getAdmins()
+    this.subscription=this.adminService.getAdmins()
+    .subscribe((credentials) => {
+      this.filteredAdmins =this.adminCredentials= credentials;
+    });
   }
 
 }

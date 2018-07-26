@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { RegistrationService } from '../registration.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,10 @@ export class LoginComponent implements OnInit {
   credentialForm: FormGroup;
   nullurl: String = "";
   invalid:boolean=false;
+  registered:boolean=false;
   private credential = { username: '', password: '' };
 
-  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) { }
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService,private registrationService:RegistrationService) { }
 
   ngOnInit() {
 
@@ -37,9 +39,14 @@ export class LoginComponent implements OnInit {
     return this.invalid;
   }
 
+  isRegistered(){
+    return this.registered;
+  }
+
   ngDoCheck(){
     console.log("in do check")
     this.invalid=sessionStorage.getItem('invalidCredentials')==="true"
+    this.registered=sessionStorage.getItem('registered')==="true"
   }
 
 
