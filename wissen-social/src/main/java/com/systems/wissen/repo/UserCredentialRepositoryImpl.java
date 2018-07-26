@@ -44,7 +44,7 @@ public class UserCredentialRepositoryImpl implements UserCredentialRepository {
 	public UserCredential getUserByEmpId(String empId) {
 
 		TypedQuery<UserCredential> createQuery = manager.createQuery(
-				"from UserCredential u, Employee e where u.employee.empId = ? e.applicationStatus = 1",
+				"from UserCredential u where u.employee.empId = ?",
 				UserCredential.class);
 		createQuery.setParameter(0, empId);
 		UserCredential singleResult = null;

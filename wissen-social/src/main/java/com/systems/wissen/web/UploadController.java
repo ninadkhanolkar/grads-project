@@ -74,7 +74,7 @@ public class UploadController {
 			throws WiseConnectRuntimeException {
 		Resource file;
 		if (type.equals("bioPic")) {
-			file = storageService.loadFile(type + ".jpeg", empId);
+			file = storageService.loadFile(type + ".jpg", empId);
 			return ResponseEntity.ok()
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 					.contentType(MediaType.IMAGE_JPEG).body(file);
