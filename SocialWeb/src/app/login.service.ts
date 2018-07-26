@@ -29,7 +29,7 @@ export class LoginService {
           this.router.navigate(['admin/profile']);
         }
         else if (userRole === 'Employee' && this.roles.indexOf('ROLE_USER')>=0) {
-          this.router.navigate(['employee/profile']);
+          this.router.navigate(['employee/profile/profile-info']);
         }
         else{
              this.clearValues();
