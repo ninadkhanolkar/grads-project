@@ -19,7 +19,7 @@ export class EmployeeService {
       })
     };
     console.log(this.loginService.token);
-    let url = "http://localhost:8080/api/wiseconnect/v1/admin/approved-employees/";
+    let url = "http://localhost:8080/api/wiseconnect/v1/employees/approved-employees/";
     return this.http.get(url,httpOptions);
   }
 

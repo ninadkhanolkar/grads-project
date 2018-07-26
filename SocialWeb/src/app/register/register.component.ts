@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
 
-    this.employeeId = this.loginservice.username;
+    this.employeeId = sessionStorage.getItem("username");
     if (this.employeeId) {
       this.getEmp(this.employeeId);
     }

@@ -50,7 +50,7 @@ export class TableComponent implements OnInit,OnDestroy {
   }
 
   getCredentials() {
-    this.employeeService.loadEmployee()
+    this.subscription=this.employeeService.loadEmployee()
       .subscribe((credentials) => {
         this.employeeCredentials = credentials;
         console.log('hi');
