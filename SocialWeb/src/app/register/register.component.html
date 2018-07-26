@@ -20,7 +20,7 @@
                         <mat-form-field class="example-full-width">
                             <input matInput placeholder="Last Name" formControlName='lastName'>
                         </mat-form-field>
-                        <div class="alert alert-danger" *ngIf="firstNameError" role="alert">
+                        <div class="alert alert-danger" *ngIf="lastNameError" role="alert">
                                 {{lastNameErrorMessage}} 
                               </div>
                         <br/>
@@ -32,7 +32,7 @@
                             <input type="password" matInput placeholder="Confirm Password" formControlName='confirmPassword'>
                         </mat-form-field>
                         
-                        <div class="alert alert-danger" *ngIf="passwordError" role="alert">
+                        <div class="alert alert-danger" *ngIf="passwordError && submitted" role="alert">
                             {{passwordErrorMessage}} 
                           </div>
 
@@ -77,6 +77,9 @@
                         <mat-form-field class="example-full-width">
                             <input type='number' matInput placeholder="Mobile" formControlName='contactNumberPersonal'>
                         </mat-form-field>
+                        <div class="alert alert-danger" *ngIf="contactPersonalError" role="alert">
+                                {{contactPersonalErrorMessage}} 
+                              </div>
                         <mat-form-field class="example-full-width">
                             <input type='number' matInput placeholder="Work phone" formControlName='contactNumberWork'>
                         </mat-form-field>
@@ -193,7 +196,9 @@
                         <div>
                             &nbsp;&nbsp;
                         </div>
-
+                        <div class="alert alert-danger" *ngIf="contactError" role="alert">
+                                {{resumeErrorMessage}} 
+                              </div>
                         <button class='btn btn-primary'>Submit</button>
 
                     </form>

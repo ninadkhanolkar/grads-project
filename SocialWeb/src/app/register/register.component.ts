@@ -34,7 +34,10 @@ export class RegisterComponent implements OnInit {
   lastNameErrorMessage:string='';
   passwordErrorMessage:string='';
   bioPicErrorMessage:string='';
-  
+  contactPersonalErrorMessage:string='';
+  contactPersonalError=false;
+  resumeErrorMessage:string='';
+  resumeError=false;
   //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
@@ -65,7 +68,7 @@ export class RegisterComponent implements OnInit {
       maritalStatus: ['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
       dateOfBirth: ['', Validators.required],
-      contactNumberPersonal: ['', Validators.min(1000000000)],
+      contactNumberPersonal: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       contactNumberWork: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       managerId: [''],
       currentPosition: ['', Validators.required],
@@ -99,9 +102,15 @@ export class RegisterComponent implements OnInit {
       this.firstNameErrorMessage = "FirstName must be 4 character long"
     })
      
-   
+     
     this.registerForm.get('contactNumberWork').valueChanges
     .subscribe(e => {
+      console.log(e)
+      if(!e && e!==0){
+        this.contactError=false;
+        this.contactErrorMessage='';
+        return;
+      }
       if (e < 1000000000) { this.contactErrorMessage = "Contact Number can't be smaller than 10 length";
       this.contactError=true;
         return };
@@ -115,6 +124,22 @@ export class RegisterComponent implements OnInit {
      
     })
     
+    this.registerForm.get('contactNumberPersonal').valueChanges
+    .subscribe(e => {
+      if (e < 1000000000) { this.contactPersonalErrorMessage = "Contact Number can't be smaller than 10 length";
+      this.contactPersonalError=true;
+        return };
+  
+      if (e >= 10000000000) { this.contactPersonalErrorMessage = "Contact Number can't be greater than 10 length";
+    this.contactPersonalError=true;
+      return };
+      console.log(e);
+      this.contactPersonalError=false;
+      this.contactPersonalErrorMessage='';
+     
+    })
+
+
     this.registerForm.get('bioPic').valueChanges
     .subscribe(e => {
      
@@ -124,13 +149,13 @@ export class RegisterComponent implements OnInit {
       this.bioPicErrorMessage = "Bio Pic can't be empty"
     })
     
-    this.registerForm.get('emailId').valueChanges
+    this.registerForm.get('resume').valueChanges
     .subscribe(e => {
      
-      if (e !== '') { this.bioPicErrorMessage = ""; 
-      this.bioPicError=false;return };
-      this.bioPicError=true;
-      this.bioPicErrorMessage = "Bio Pic can't be empty"
+      if (e !== '') { this.resumeErrorMessage = ""; 
+      this.resumeError=false;return };
+      this.resumeError=true;
+      this.resumeErrorMessage = "Bio Pic can't be empty"
     })
     
   }
