@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -32,8 +33,12 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 	}
 
 	@Override
-	public void removeAdmin(int id) {
-		entityManager.remove(entityManager.find(Admin.class, id));
+	public void removeAdmin(String id) {
+		String jpql="delete from Admin a where a.id=?";
+		Query query=entityManager.createQuery(jpql);
+		query.setParameter(0, id);
+		query.executeUpdate();
+		//entityManager.remove(entityManager.find(Admin.class, id));
 	}
 
 	@Override

@@ -34,7 +34,7 @@ public class SuperAdminController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void removeAdmin(@PathVariable int id) {
+	public void removeAdmin(@PathVariable String id) {
 		superAdminRepository.removeAdmin(id);
 	}
 }

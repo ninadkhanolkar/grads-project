@@ -7,7 +7,7 @@ import com.systems.wissen.model.Admin;
 public interface SuperAdminRepository {
 	Admin addAdmin(Admin admin);
 
-	void removeAdmin(int adminId);
+	void removeAdmin(String id);
 
 	public List<AdminDao> getAdminDao();
 
