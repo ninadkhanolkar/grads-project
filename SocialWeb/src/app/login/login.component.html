@@ -46,6 +46,7 @@
       <mat-radio-button class="example-radio-button" value="Admin">Admin</mat-radio-button>
     </mat-radio-group>
     <br>
+    <div class="alert alert-danger makeSmall" *ngIf="isInvalid()">Invalid</div>
     <input type="submit" value="Login">
     <br>
     <input type='button' class="btn btn-primary" [routerLink]="['/register',{url:nullurl}]" value="Register">

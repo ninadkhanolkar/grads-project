@@ -7,51 +7,61 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  isAuthenticated:boolean=false;
-  token:any;
-  roles:any=[]
-  username:any;
-  requestedRole:any;
-  constructor(private http:HttpClient,private router:Router) { }
-   
-  tryLogin(credential,userRole){
+  isAuthenticated: boolean = false;
+  token: any;
+  roles: any = []
+  username: any;
+  requestedRole: any;
+  constructor(private http: HttpClient, private router: Router) { }
+
+  tryLogin(credential, userRole) {
     this.clearValues();
     let url = "http://localhost:8080/auth";
-    this.http.post(url,credential).subscribe((e:any)=>{
+    this.http.post(url, credential).subscribe((e: any) => {
       console.log(e);
-      if(e["token"]){
-      this.roles=e["authorities"]
-      sessionStorage.setItem("username",credential.username)
-      sessionStorage.setItem("token",e["token"])
-      sessionStorage.setItem("roles",e["authorities"])
-      sessionStorage.setItem("requestedRole",userRole)
-      sessionStorage.setItem("isAuthenticated","true")
-        if (sessionStorage.getItem("requestedRole") === 'Admin' && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN')>=0) {
+      if (e["token"]) {
+        this.roles = e["authorities"]
+        sessionStorage.setItem("username", credential.username)
+        sessionStorage.setItem("token", e["token"])
+        sessionStorage.setItem("roles", e["authorities"])
+        sessionStorage.setItem("requestedRole", userRole)
+        sessionStorage.setItem("isAuthenticated", "true")
+        if (sessionStorage.getItem("requestedRole") === 'Admin' && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN') >= 0) {
           this.router.navigate(['admin/profile']);
         }
-        else if (sessionStorage.getItem("requestedRole") === 'Employee' &&sessionStorage.getItem("roles").indexOf('ROLE_USER')>=0&&sessionStorage.getItem("roles").indexOf('ROLE_ADMIN')<0) {
+        else if (sessionStorage.getItem("requestedRole") === 'Employee' && sessionStorage.getItem("roles").indexOf('ROLE_USER') >= 0 && sessionStorage.getItem("roles").indexOf('ROLE_ADMIN') < 0) {
           this.router.navigate(['employee/profile/profile-info']);
         }
-        else{
-             this.clearValues();
+        else {
+          this.clearValues();
+          console.log("adsc")
+          this.router.navigate([''])
+          sessionStorage.setItem("invalidCredentials", "true")
         }
-      
+
       }
-    })
-    
+    },
+    (error)=>{
+      this.clearValues();
+      console.log("adsc")
+      this.router.navigate([''])
+      sessionStorage.setItem("invalidCredentials", "true")
+    }
+  )
+
     return true;
 
   }
 
-  logout(){
+  logout() {
     this.clearValues();
   }
 
-  clearValues(){
-    this.username="";
-    this.token="";
-    this.isAuthenticated=false;
-    this.roles="";
+  clearValues() {
+    this.username = "";
+    this.token = "";
+    this.isAuthenticated = false;
+    this.roles = "";
     sessionStorage.clear();
   }
 

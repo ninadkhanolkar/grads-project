@@ -12,7 +12,10 @@
     margin: 200px auto;
     width:30% 
 }
-
+.makeSmall{
+	height:45px;
+	width:300px;
+}
 .example-radio-group {
   display: inline-flex;
   flex-direction: row;

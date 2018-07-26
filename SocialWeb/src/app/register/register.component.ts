@@ -34,10 +34,15 @@ export class RegisterComponent implements OnInit {
   lastNameErrorMessage:string='';
   passwordErrorMessage:string='';
   bioPicErrorMessage:string='';
+<<<<<<< HEAD
   contactPersonalErrorMessage:string='';
   contactPersonalError=false;
   resumeErrorMessage:string='';
   resumeError=false;
+=======
+  isDisabled:boolean=false;
+  
+>>>>>>> 30821007578c332f9e770b9c33800038e4f269a4
   //filteredSkills: Observable<string[]>;
 
   constructor(private fb: FormBuilder
@@ -50,25 +55,31 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.params.subscribe(params => console.log(params));
-    this.employeeId = this.route.snapshot.paramMap.get('empId');
+    
+    this.employeeId = sessionStorage.getItem('username');
     console.log(this.employeeId);
     if (this.employeeId) {
       this.getEmp(this.employeeId);
+      this.isDisabled=true;
     }
 
     this.registerForm = this.fb.group({
-      empId: ['', Validators.required],
+      empId: [{value:'',disabled: this.isDisabled}, Validators.required],
       firstName: ['', [Validators.required,Validators.minLength(4)]],
       lastName: [''],
       bioPic: [''],
-      gender: ['Male'],
+      gender: [{value:'Male',disabled: this.isDisabled}],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', Validators.required],
       maritalStatus: ['Unmarried'],
       emailId: ['', [Validators.required, Validators.email]],
+<<<<<<< HEAD
       dateOfBirth: ['', Validators.required],
       contactNumberPersonal: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
+=======
+      dateOfBirth: [{value:'',disabled: this.isDisabled}, Validators.required],
+      contactNumberPersonal: ['', Validators.min(1000000000)],
+>>>>>>> 30821007578c332f9e770b9c33800038e4f269a4
       contactNumberWork: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       managerId: [''],
       currentPosition: ['', Validators.required],
@@ -196,6 +207,7 @@ export class RegisterComponent implements OnInit {
           zipcode: this.employeeInfo.addresses[0].zipcode
         });
       });
+
   }
 
 
@@ -264,7 +276,7 @@ export class RegisterComponent implements OnInit {
   register(e) {
     e.preventDefault();
     this.submitted=true;
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid ) {
     // if (true) {
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value,"resume").subscribe(e => {
