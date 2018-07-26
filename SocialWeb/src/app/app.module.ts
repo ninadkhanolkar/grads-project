@@ -1,51 +1,55 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import 'hammerjs';
-import {AppComponent} from './app.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {LoginComponent} from './login/login.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
-import {ProfileComponent} from './profile/profile.component';
-import {RouterModule, Routes} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RegisterComponent} from './register/register.component';
-import {EmployeeService} from './employee.service';
-import {PendingApprovalComponent} from './pending-approval/pending-approval.component';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import {TableComponent} from './table/table.component'
-import {HttpClientModule} from '@angular/common/http';
-import {MatSelectModule} from '@angular/material/select';
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './login/login.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
+import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './register/register.component';
+import { EmployeeService } from './employee.service';
+import { PendingApprovalComponent } from './pending-approval/pending-approval.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { TableComponent } from './table/table.component'
+import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
 
-import {ProfileInfoComponent} from './profile-info/profile-info.component';
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { AdminTableComponent } from './admin-table/admin-table.component';
+import { AdminEmployeeAccessGuard } from './admin-employee-access.guard';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent},
   // {path: 'profile-info', component: ProfileInfoComponent},
-  {path: 'register', component: RegisterComponent},
-  { path: 'admin/profile',
-    
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'admin/profile',
+    canActivate: [AdminEmployeeAccessGuard],
     children: [
       {
-        path:'',
+        path: '',
         component: ProfileComponent,
+
       },
 
       {
         path: 'pendingApproval',
-        children:[
+        children: [
           {
-            path:'',
+            path: '',
             component: PendingApprovalComponent,
           },
           {
@@ -53,14 +57,14 @@ const routes: Routes = [
             component: ProfileInfoComponent,
           },
         ]
-        
+
       },
       {
         path: 'table',
-        
-        children:[
+
+        children: [
           {
-            path:'',
+            path: '',
             component: TableComponent,
           },
           {
@@ -69,22 +73,24 @@ const routes: Routes = [
           },
         ]
       },
-      
+
     ]
   },
-  { path: 'employee/profile',
-    
+  {
+    path: 'employee/profile',
+    canActivate: [AdminEmployeeAccessGuard],
     children: [
       {
-        path:'',
+        path: '',
         component: ProfileComponent,
+        
       },
       {
         path: 'profile-info',
-        
-        children:[
+
+        children: [
           {
-            path:'',
+            path: '',
             component: ProfileInfoComponent,
           },
           {
@@ -95,9 +101,9 @@ const routes: Routes = [
           },
           {
             path: 'reportees',
-            children:[
+            children: [
               {
-                path:'',
+                path: '',
                 component: TableComponent,
               },
               {
@@ -107,13 +113,13 @@ const routes: Routes = [
             ]
           },
         ]
-        
+
       },
       {
         path: 'register', component: RegisterComponent
       },
-      
-      
+
+
     ]
   }
 ];
@@ -156,4 +162,4 @@ const routes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
