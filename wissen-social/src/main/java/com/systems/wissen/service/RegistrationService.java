@@ -47,7 +47,11 @@ public class RegistrationService {
 		managerEmployee = new Employee();
 		if (!(managerId.equals(""))) {
 			managerEmployee.setEmpId((String) registrationObject.get("managerId"));
-		} else {
+		} else if (employee.getEmpId().equals("WT001")) {
+			managerEmployee = null;
+		}
+		else
+		{
 			managerEmployee.setEmpId("WT001");
 		}
 		employee.setEmployee(managerEmployee);
