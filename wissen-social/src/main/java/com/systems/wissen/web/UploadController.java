@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.systems.wissen.exception.WiseConnectRuntimeException;
 import com.systems.wissen.service.StorageService;
 
 @RestController
@@ -29,8 +30,9 @@ public class UploadController {
 	@Autowired
 	StorageService storageService;
 
-	private List<String> files = new ArrayList<String>();
+	private List<String> files = new ArrayList<>();
 	private static final Logger logger = Logger.getLogger(UploadController.class);
+
 	@PostMapping(value = "{type}")
 	public ResponseEntity<String> handleUpload(@RequestParam("file") MultipartFile file,
 			@RequestParam("empId") String empId, @PathVariable String type) {
@@ -42,7 +44,7 @@ public class UploadController {
 			} else if (type.equals("bioPic")) {
 				storageService.store(file, "bioPic");
 			} else {
-				throw new Exception("Unsupported file");
+				throw new WiseConnectRuntimeException("Unsupported file");
 			}
 			files.add(file.getOriginalFilename());
 			message = "You successfully uploaded " + file.getOriginalFilename() + "!";
@@ -54,21 +56,11 @@ public class UploadController {
 		}
 	}
 
-	// @GetMapping(value="{type}")
-	// public ResponseEntity<List<String>> getListFiles(Model model) {
-	// List<String> fileNames = files
-	// .stream().map(fileName -> MvcUriComponentsBuilder
-	// .fromMethodName(UploadController.class, "getFile",
-	// fileName).build().toString())
-	// .collect(Collectors.toList());
-	//
-	// return ResponseEntity.ok().body(fileNames);
-	// }
-
 	@GetMapping(value = "{empId}/{type}", produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE,
 			MediaType.ALL_VALUE })
 	@ResponseBody
-	public ResponseEntity<Resource> getFile(@PathVariable String empId, @PathVariable String type) {
+	public ResponseEntity<Resource> getFile(@PathVariable String empId, @PathVariable String type)
+			throws WiseConnectRuntimeException {
 		Resource file = storageService.loadFile(type + ".jpg", empId);
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")

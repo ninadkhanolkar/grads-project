@@ -2,8 +2,6 @@ package com.systems.wissen.web;
 
 import java.security.Principal;
 
-import javax.security.sasl.AuthenticationException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,10 +34,9 @@ public class AuthenticationController {
 	private JwtTokenUtil jwtTokenUtil;
 
 	@RequestMapping(value = "/auth", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest)
-			throws AuthenticationException {
+	public ResponseEntity<JwtAuthenticationResponse> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest){
 		Authentication authentication = null;
-		authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+			authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());

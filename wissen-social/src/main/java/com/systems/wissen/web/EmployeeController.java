@@ -28,16 +28,8 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/api/wiseconnect/v1/admins/employees", method = RequestMethod.GET)
 	public List<Employee> get() {
-		List<Employee> allEmployees = employeeRepository.getAllEmployees();
-		return allEmployees;
+		return employeeRepository.getAllEmployees();
 	}
-
-	// @RequestMapping(value = "/api/wiseconnect/v1/admins/approvedEmployees",
-	// method = RequestMethod.GET)
-	// public List<Employee> getApprovedEmployees() {
-	// List<Employee> allEmployees = employeeRepository.getAllApprovedEmployees();
-	// return allEmployees;
-	// }
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employees/{employeeId}", method = RequestMethod.GET)
 	public Employee get(@PathVariable String employeeId) {
@@ -48,24 +40,21 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employees/approved-employees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getAll() {
-		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllEmployeeViewResponse();
-		return allEmployeeViewResponse;
+		return employeeRepository.getAllEmployeeViewResponse();
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/{empId}/reportees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getReportees(@PathVariable String empId) {
-		List<EmployeeViewResponse> allReporteeViewResponse = employeeRepository.getReporteeOfEmployee(empId);
-		return allReporteeViewResponse;
+		return employeeRepository.getReporteeOfEmployee(empId);
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/admins/pendingEmployees", method = RequestMethod.GET)
 	public List<EmployeeViewResponse> getPendingEmployee() {
-		List<EmployeeViewResponse> allEmployeeViewResponse = employeeRepository.getAllPendingEmployeeViewResponse();
-		return allEmployeeViewResponse;
+		return employeeRepository.getAllPendingEmployeeViewResponse();
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/employee", method = RequestMethod.POST)
-	public Map<?, ?> post(@RequestBody Map<?, ?> registrationObject) {
+	public Map<Object, Object> post(@RequestBody Map<Object, Object> registrationObject) {
 		JSONObject resultObject = new JSONObject(registrationObject);
 		employeeRepository.registerEmployee(resultObject);
 		return registrationObject;
@@ -73,8 +62,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/api/wiseconnect/v1/admins/employees/{employeeId}", method = RequestMethod.PUT)
 	public ResponseMessage put(@PathVariable String employeeId) {
-		ResponseMessage responseObject = employeeRepository.changeEmployeeApplicationStatus(employeeId);
-		return responseObject;
+		return employeeRepository.changeEmployeeApplicationStatus(employeeId);
 	}
 
 	@RequestMapping(value = "/api/wiseconnect/v1/admins/employees/{employeeId}", method = RequestMethod.DELETE)

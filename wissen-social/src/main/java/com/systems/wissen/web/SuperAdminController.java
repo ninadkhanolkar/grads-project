@@ -25,8 +25,7 @@ public class SuperAdminController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<AdminDao> getAllAdmins() {
-		List<AdminDao> admins = this.superAdminRepository.getAdminDao();
-		return admins;
+		return superAdminRepository.getAdminDao();
 	}
 
 	@PostMapping(consumes = { "application/json" }, produces = { "application/json" })
@@ -36,6 +35,6 @@ public class SuperAdminController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void removeAdmin(@PathVariable int id) {
-		this.superAdminRepository.removeAdmin(id);
+		superAdminRepository.removeAdmin(id);
 	}
 }

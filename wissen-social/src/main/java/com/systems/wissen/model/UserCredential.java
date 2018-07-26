@@ -39,9 +39,6 @@ public class UserCredential implements Serializable {
 	@Column(name="role_id")
 	private int roleId;
 
-	public UserCredential() {
-	}
-
 	public int getUserCredentialId() {
 		return this.userCredentialId;
 	}
@@ -49,7 +46,6 @@ public class UserCredential implements Serializable {
 	public void setUserCredentialId(int userCredentialId) {
 		this.userCredentialId = userCredentialId;
 	}
-
 
 	public String getPassword() {
 		return this.password;

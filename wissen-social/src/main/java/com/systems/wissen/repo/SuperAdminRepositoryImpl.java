@@ -21,7 +21,7 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -33,10 +33,9 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 
 	@Override
 	public void removeAdmin(int id) {
-       entityManager.remove(entityManager.find(Admin.class, id));
+		entityManager.remove(entityManager.find(Admin.class, id));
 	}
 
-	
 	@Override
 	public List<AdminDao> getAdminDao() {
 		List<Admin> list = entityManager.createQuery("from Admin a", Admin.class).getResultList();
@@ -45,17 +44,17 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 	}
 
 	private List<AdminDao> getAdminDTOResponse(Stream<Admin> stream) {
-		return stream.map((a) -> {
+		return stream.map(a -> {
 			AdminDao adminDTO = new AdminDao();
 			adminDTO.setId(a.getId());
 			adminDTO.setRole(a.getRole().getRoleId());
 			return adminDTO;
 		}).collect(Collectors.toList());
 	}
-	
-	public Admin getAdmin(String id){
-		String jpql="from Admin a where a.id=?";
-		TypedQuery<Admin> query=entityManager.createQuery(jpql, Admin.class);
+
+	public Admin getAdmin(String id) {
+		String jpql = "from Admin a where a.id=?";
+		TypedQuery<Admin> query = entityManager.createQuery(jpql, Admin.class);
 		query.setParameter(0, id);
 		return query.getSingleResult();
 	}

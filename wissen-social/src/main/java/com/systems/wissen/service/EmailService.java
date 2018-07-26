@@ -8,7 +8,6 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -19,13 +18,14 @@ import com.systems.wissen.model.Employee;
 
 @Service
 public class EmailService {
-	private final static String HOST = "smtp.gmail.com";
+	private static final String HOST = "smtp.gmail.com";
 	private static final Logger logger = Logger.getLogger(EmailService.class);
 	public void sendEmail(Employee find) {
 		Properties properties = setProperties();
 		Employee employeeById = find;
 		Authenticator authenticator = new Authenticator()
 	    {
+			@Override
 	    protected PasswordAuthentication getPasswordAuthentication() 
 	        {
 	        return new PasswordAuthentication("noreply.wiseconnect@gmail.com", "qwerty@123");
@@ -51,7 +51,7 @@ public class EmailService {
 	}
 
 	private MimeMessage createMessage(Employee employeeById, Session defaultInstance)
-			throws MessagingException, AddressException {
+			throws MessagingException {
 		MimeMessage message = new MimeMessage(defaultInstance);
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(employeeById.getEmailId()));
 		message.setSubject("WiseConnect : Application Status");

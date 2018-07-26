@@ -23,15 +23,12 @@ public class Role implements Serializable {
 	private int roleId;
 
 	@JsonIgnore
-	private String role;
+	private String roleName;
 
 	//bi-directional many-to-one association to Admin
 	@OneToMany(mappedBy="role")
 	@JsonIgnore
 	private List<Admin> admins;
-
-	public Role() {
-	}
 
 	public int getRoleId() {
 		return this.roleId;
@@ -42,11 +39,11 @@ public class Role implements Serializable {
 	}
 
 	public String getRole() {
-		return this.role;
+		return this.roleName;
 	}
 
 	public void setRole(String role) {
-		this.role = role;
+		this.roleName = role;
 	}
 
 	public List<Admin> getAdmins() {
