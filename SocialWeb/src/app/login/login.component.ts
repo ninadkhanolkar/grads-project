@@ -11,6 +11,7 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
   credentialForm: FormGroup;
   nullurl: String = "";
+  invalid:boolean=false;
   private credential = { username: '', password: '' };
 
   constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService) { }
@@ -31,8 +32,16 @@ export class LoginComponent implements OnInit {
       role: ['Employee']
     });
   }
+ 
+  isInvalid(){
+    return this.invalid;
+  }
 
-  ngAfter
+  ngDoCheck(){
+    console.log("in do check")
+    this.invalid=sessionStorage.getItem('invalidCredentials')==="true"
+  }
+
 
   onSubmit() {
     let username = this.credentialForm.value['username'];
