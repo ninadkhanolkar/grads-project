@@ -252,4 +252,323 @@
   ],
   "resume": "C:\\fakepath\\resume.pdf"
 }
------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+{
+  "empId": "WT007",
+  "firstName": "Raghu",
+  "lastName": "Pareddy",
+  "bioPic": "C:\\fakepath\\Raghu-Pareddy.jpg",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Married",
+  "emailId": "raghu.pareddy@wissen.com",
+  "dateOfBirth": "1970-11-09T18:30:00.000Z",
+  "contactNumberPersonal": 9848543953,
+  "contactNumberWork": 8743544343,
+  "managerId": "",
+  "currentPosition": "CEO",
+  "address": {
+    "street": "5th Street",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "zipcode": 560012
+  },
+  "qualificationDegree": "MS, CSE",
+  "instituteName": "Oregon University",
+  "bio": "Raghu is an executive with over 25 years of experience leveraging solid leadership and technical expertise to deliver large systems.",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 3,
+        "name": "Machine Learning"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 7,
+        "name": "Networking"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2000",
+      "certificationName": "Java"
+    },
+    {
+      "completionYear": "2005",
+      "certificationName": "Data Scientist "
+    }
+  ],
+  "resume": "C:\\fakepath\\resume_17-06-18.pdf"
+}
+-------------------------------------------------------------------------------
+{
+  "empId": "WT307",
+  "firstName": "Akash",
+  "lastName": "Kadel",
+  "bioPic": "",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "akash.kadel@wissen.com",
+  "dateOfBirth": "1997-06-23T18:30:00.000Z",
+  "contactNumberPersonal": 9087654321,
+  "contactNumberWork": 9807654321,
+  "managerId": "WT350",
+  "currentPosition": "Analyst",
+  "address": {
+    "street": "311",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipcode": 520011
+  },
+  "qualificationDegree": "B.E",
+  "instituteName": "VJTI",
+  "bio": "Analyst at Wissen Technology",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 2,
+        "name": "JS"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2012",
+      "certificationName": "Java"
+    },
+    {
+      "completionYear": "2014",
+      "certificationName": "CSS"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume_17-06-18.pdf"
+}
+---------------------------------------------------------------------------------
+
+{
+  "empId": "WT308",
+  "firstName": "Rushabh",
+  "lastName": "Kapadia",
+  "bioPic": "",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "rushabh.kapadia@wissen.com",
+  "dateOfBirth": "1997-07-24T18:30:00.000Z",
+  "contactNumberPersonal": 9087654321,
+  "contactNumberWork": 9807654321,
+  "managerId": "WT350",
+  "currentPosition": "Analyst",
+  "address": {
+    "street": "311",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipcode": 520011
+  },
+  "qualificationDegree": "B.E",
+  "instituteName": "VJTI",
+  "bio": "Analyst at Wissen Technology",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 2,
+        "name": "DBMS"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2012",
+      "certificationName": "DS"
+    },
+    {
+      "completionYear": "2014",
+      "certificationName": "JS"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume_17-06-18.pdf"
+}
+----------------------------------------------------------------------------
+{
+  "empId": "WT306",
+  "firstName": "Komal",
+  "lastName": "Naik",
+  "bioPic": "",
+  "gender": "Female",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Unmarried",
+  "emailId": "komal.naik@wissen.com",
+  "dateOfBirth": "1997-05-19T18:30:00.000Z",
+  "contactNumberPersonal": 9087654321,
+  "contactNumberWork": 9807654321,
+  "managerId": "WT350",
+  "currentPosition": "Analyst",
+  "address": {
+    "street": "311",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipcode": 520011
+  },
+  "qualificationDegree": "B.E",
+  "instituteName": "K.J. Somaiya",
+  "bio": "Analyst at Wissen Technology",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 4,
+        "name": "Python"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2012",
+      "certificationName": "Algorithms"
+    },
+    {
+      "completionYear": "2014",
+      "certificationName": "JS"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume_17-06-18.pdf"
+}
+---------------------------------------------------------------------
+{
+  "empId": "WT009",
+  "firstName": "Sameer",
+  "lastName": "Patil",
+  "bioPic": "",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Married",
+  "emailId": "sameer.patil@wissen.com",
+  "dateOfBirth": "1985-07-19T18:30:00.000Z",
+  "contactNumberPersonal": 9087654321,
+  "contactNumberWork": 9807654321,
+  "managerId": "WT007",
+  "currentPosition": "ED",
+  "address": {
+    "street": "312",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipcode": 520011
+  },
+  "qualificationDegree": "BE CSE",
+  "instituteName": "IIT Varnasi",
+  "bio": "ED at Wissen Technology. Sameer is a seasoned technology professional, with over 20 years of rich experience",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 4,
+        "name": "Python"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2012",
+      "certificationName": "Algorithms"
+    },
+    {
+      "completionYear": "2014",
+      "certificationName": "JS"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume_17-06-18.pdf"
+}
+----------------------------------------------------------------------------
+{
+  "empId": "WT010",
+  "firstName": "Pradeep",
+  "lastName": "Chandiramani",
+  "bioPic": "",
+  "gender": "Male",
+  "password": "12345678",
+  "confirmPassword": "12345678",
+  "maritalStatus": "Married",
+  "emailId": "pradeep.chandiramani@wissen.com",
+  "dateOfBirth": "1985-09-19T18:30:00.000Z",
+  "contactNumberPersonal": 9087654321,
+  "contactNumberWork": 9807654321,
+  "managerId": "WT007",
+  "currentPosition": "ED",
+  "address": {
+    "street": "312",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "zipcode": 560087
+  },
+  "qualificationDegree": "BE CSE",
+  "instituteName": "K J Somaiya",
+  "bio": "ED at Wissen Technology.Senior technologist with experience of over 12 years delivering top quality enterprise for global banking corporations",
+  "skills": [
+    {
+      "allSkillId": {
+        "allSkillId": 1,
+        "name": "Java"
+      }
+    },
+    {
+      "allSkillId": {
+        "allSkillId": 4,
+        "name": "Python"
+      }
+    }
+  ],
+  "certifications": [
+    {
+      "completionYear": "2012",
+      "certificationName": "Algorithms"
+    },
+    {
+      "completionYear": "2014",
+      "certificationName": "JS"
+    }
+  ],
+  "resume": "C:\\fakepath\\resume_17-06-18.pdf"
+}
+------------------------------------------------------------------------------------------
