@@ -28,11 +28,11 @@
                         <mat-form-field class="example-full-width">
                             <input type="password" matInput placeholder="Password" formControlName='password'>
                         </mat-form-field>
-                        <mat-form-field class="example-full-width">
+                        <mat-form-field *ngIf="!isDisabled" class="example-full-width">
                             <input type="password" matInput placeholder="Confirm Password" formControlName='confirmPassword'>
                         </mat-form-field>
                         
-                        <div class="alert alert-danger" *ngIf="passwordError && submitted" role="alert">
+                        <div class="alert alert-danger" *ngIf="passwordError && submitted && !isDisabled" role="alert">
                             {{passwordErrorMessage}} 
                           </div>
 
