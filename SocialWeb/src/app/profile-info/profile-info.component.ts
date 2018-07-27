@@ -50,9 +50,7 @@ export class ProfileInfoComponent implements OnInit {
       this.isMe=true;
     }
     
-    console.log(this.empId);
     this.getEmp(this.empId);
-    console.log("In profile-info" + window["sessionStorage"].getItem("username"))
     this.role = sessionStorage.getItem("requestedRole");
   }
   
@@ -61,7 +59,6 @@ export class ProfileInfoComponent implements OnInit {
     this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
         this.employeeInfo = employee;
-        console.log(employee);
         this.id = this.employeeInfo.empId;
 
         this.fileService.getFile(this.id, 'bioPic').subscribe((e) => {
@@ -92,14 +89,11 @@ export class ProfileInfoComponent implements OnInit {
         this.contact = this.employeeInfo.contactNumberPersonal;
         this.phone = this.employeeInfo.contactNumberWork;
         this.employeeInfo.certifications.forEach((c) => {
-          console.log(c)
           this.certifications.push(c);
         });
         this.employeeInfo.skills.forEach((s) => {
           this.skillsStack.push(s.allSkill);
-          console.log(s.allSkill);
         });
-        console.log(this.certifications);
       });
   }
   createImageFromBlob(image: Blob) {

@@ -42,7 +42,6 @@ export class PendingApprovalComponent implements OnInit {
   viewProfile(empId) {
     this.employeeService.fetchDetails(empId)
       .subscribe((employee) => {
-        console.log(employee);
       });
       this.router.navigate(['profile-info',{p1:empId}],{ relativeTo: this.route })
       

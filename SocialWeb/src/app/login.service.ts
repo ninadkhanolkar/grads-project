@@ -19,7 +19,7 @@ export class LoginService {
     this.clearValues();
     let url = "http://localhost:8080/auth";
     this.http.post(url, credential).subscribe((e: any) => {
-      console.log(e);
+      // console.log(e);
       if (e["token"]) {
         this.roles = e["authorities"]
         sessionStorage.setItem("username", credential.username)
@@ -36,7 +36,6 @@ export class LoginService {
         }
         else {
           this.clearValues();
-          console.log("adsc")
           this.router.navigate([''])
           sessionStorage.setItem("invalidCredentials", "true")
           this.isInvalid=true;
@@ -46,7 +45,6 @@ export class LoginService {
     },
       (error) => {
         this.clearValues();
-        console.log("adsc")
         this.isInvalid=true;
         this.router.navigate([''])
         sessionStorage.setItem("invalidCredentials", "true")

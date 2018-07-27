@@ -18,7 +18,6 @@ export class EmployeeService {
         'Authorization':  sessionStorage.getItem("token")
       })
     };
-    console.log(this.loginService.token);
     let url = "http://localhost:8080/api/wiseconnect/v1/employees/approved-employees/";
     return this.http.get(url,httpOptions);
   }
@@ -32,7 +31,6 @@ export class EmployeeService {
       })
     };
     const final = "http://localhost:8080/api/wiseconnect/v1/employees/";
-    console.log(final);
     return this.http.get(final+empId,httpOptions);
   }
 
@@ -43,7 +41,7 @@ export class EmployeeService {
         'Authorization':  sessionStorage.getItem("token")
       })
     };
-    let url = "http://localhost:8080/api/wiseconnect/v1/admins/pendingEmployees";
+    let url = "http://localhost:8080/api/wiseconnect/v1/admin/pendingEmployees";
     return this.http.get(url,httpOptions);
   }
 
@@ -54,7 +52,7 @@ export class EmployeeService {
         'Authorization':  sessionStorage.getItem("token")
       })
     };
-    let final = `http://localhost:8080/api/wiseconnect/v1/admins/employees/${id}`;
+    let final = `http://localhost:8080/api/wiseconnect/v1/admin/employees/${id}`;
     return this.http.put(final, id,httpOptions);
   }
 
@@ -65,7 +63,7 @@ export class EmployeeService {
         'Authorization':  sessionStorage.getItem("token")
       })
     };
-    let final = `http://localhost:8080/api/wiseconnect/v1/admins/employees/${id}`;
+    let final = `http://localhost:8080/api/wiseconnect/v1/admin/employees/${id}`;
     return this.http.delete(final,httpOptions);
   }
 

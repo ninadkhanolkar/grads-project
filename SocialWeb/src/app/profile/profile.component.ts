@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     if(sessionStorage.getItem("requestedRole")){
-      console.log("session role "+sessionStorage.getItem("roles"))
       if(sessionStorage.getItem("roles").indexOf('ROLE_SUPERADMIN')>=0){
        this.role = "Super Admin"
       }

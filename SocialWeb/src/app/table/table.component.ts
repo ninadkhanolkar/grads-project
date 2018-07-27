@@ -43,7 +43,6 @@ export class TableComponent implements OnInit,OnDestroy {
     }
     else if (this.type === 'reportees') {
       this.id = sessionStorage.getItem("username");
-      console.log(this.id)
       this.getReportees(this.id);
     }
 
@@ -62,7 +61,6 @@ export class TableComponent implements OnInit,OnDestroy {
   getReportees(id) {
    this.subscription= this.employeeService.loadReportees(id).subscribe((credentials) => {
      this.filteredEmployees= this.employeeCredentials = credentials;
-     console.log(this.employeeCredentials);
     })
   }
 

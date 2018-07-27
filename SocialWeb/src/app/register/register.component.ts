@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.employeeId = sessionStorage.getItem('username');
-    console.log(this.employeeId);
     if (this.employeeId) {
       this.getEmp(this.employeeId);
       this.isDisabled = true;
@@ -90,8 +89,6 @@ export class RegisterComponent implements OnInit {
 
     this.allSkills.getSkills().subscribe(skills => {
       this.skills = skills;
-
-      console.log(this.skills);
     })
 
     this.registerForm.get('firstName').valueChanges
@@ -108,7 +105,6 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm.get('contactNumberWork').valueChanges
       .subscribe(e => {
-        console.log(e)
         if (!e && e !== 0) {
           this.contactError = false;
           this.contactErrorMessage = '';
@@ -144,7 +140,6 @@ export class RegisterComponent implements OnInit {
           this.contactPersonalError = true;
           return
         };
-        console.log(e);
         this.contactPersonalError = false;
         this.contactPersonalErrorMessage = '';
 
@@ -192,7 +187,6 @@ export class RegisterComponent implements OnInit {
         this.employeeInfo = employee;
         delete this.employeeInfo['bioPic'];
         delete this.employeeInfo['resume'];
-        console.log(this.employeeInfo);
         this.removeSkill(0);
         this.employeeInfo.skills.forEach(element => {
           this.addSkill(element.allSkill);
@@ -244,14 +238,10 @@ export class RegisterComponent implements OnInit {
 
   addSkill(num?) {
     this.registerForm.get('skills').value.forEach((e) => {
-      console.log(e.allSkillId.allSkillId);
       this.skills.splice(e.allSkillId.allSkillId - 1, 1);
 
     });
     (<FormArray>this.registerForm.get('skills')).push(this.createSkill(num));
-    console.log(this.skills);
-
-
   }
 
   removeSkill(i: number) {
@@ -290,18 +280,12 @@ export class RegisterComponent implements OnInit {
       }
       if (this.resume) {
         this.fileUpload.uploadFile(this.resume, this.registerForm.get('empId').value, "resume").subscribe(e => {
-          console.log(e);
         });
       }
       if (this.bioPic) {
         this.fileUpload.uploadFile(this.bioPic, this.registerForm.get('empId').value, "bioPic").subscribe(e => {
-          console.log(e);
         });
       }
-      console.log(JSON.stringify(this.registerForm.value));
-
-      console.log(this.registerForm.value);
-
       this.registrationService.register(this.registerForm.value).subscribe(e => {
       });
       sessionStorage.clear();
@@ -313,15 +297,4 @@ export class RegisterComponent implements OnInit {
     }
 
   }
-
-  // isVisible(skill){
-  //   this.registerForm.get('skills').value.forEach((e)=>{
-  //     // console.log(e.allSkillId.allSkillId);
-  //     // this.skills.splice(e.allSkillId.allSkillId-1,1);
-  //     if(e===skill){
-  //       return false;
-  //     }
-  //   });
-  //   return true;
-  // }
 }

@@ -24,7 +24,6 @@ export class AdminTableComponent implements OnInit {
   getAdmins(){
     this.subscription=this.adminService.getAdmins()
     .subscribe((credentials) => {
-      console.log(credentials)
       this.filteredAdmins =this.adminCredentials= credentials;
     });
   }
