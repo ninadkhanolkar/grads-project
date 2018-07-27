@@ -55,8 +55,8 @@ public class EmailService {
 		MimeMessage message = new MimeMessage(defaultInstance);
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(employeeById.getEmailId()));
 		message.setSubject("WiseConnect : Application Status");
-		message.setText("Thank you for your interest in WiseConnect. We received your application, We have reviewed your application and, unfortunately,\r\n" + 
-				"we have decided to reject your application. We thank you again for your interest in WiseConnect and wish you success for your future endeavours.\r\n" + 
+		message.setText("Thank you for your interest in WiseConnect. After reviewing your application ,we have decided to reject your application\r\n" + 
+				" due to discrepancy in information provided. We thank you again for your interest in WiseConnect .\r\n" + 
 				"\r\n" + 
 				"Thanks,\r\n" + 
 				"WiseConnect Admin");
