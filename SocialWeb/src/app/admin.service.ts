@@ -30,4 +30,15 @@ export class AdminService {
     };
     return this.http.delete(url,httpOptions);
   }
+
+  addAdmin(payload){
+    let url="http://localhost:8080/api/wiseconnect/v1/admins/"
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization':  sessionStorage.getItem("token")
+      })
+    };
+    return this.http.post(url,payload,httpOptions)
+  }
 }

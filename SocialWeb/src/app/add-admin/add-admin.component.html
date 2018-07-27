@@ -1,3 +1,26 @@
-<p>
-  add-admin works!
-</p>
+<div class='row'>
+  <div class='col-1 col-sm-3 col-md-3'></div>
+  <div class='col-10 col-sm-8 col-md-8'>
+    &nbsp;
+    <div class='card'>
+      <div class='card-header'>Add Admin</div>
+      <div class='card-body'>
+        <form class="example-form" [formGroup]="adminForm" (submit)="add($event)">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="id" formControlName='id'>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input type="password" matInput placeholder="password" formControlName='password'>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input type="password" matInput placeholder="Confirm Password" formControlName='confirmPassword'>
+            </mat-form-field>
+            <button class='btn btn-primary'>Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class='col-1 col-sm-2 col-md-2'>
+
+  </div>
+</div>
