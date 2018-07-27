@@ -153,4 +153,19 @@ opacity:0.9;
 .progress-meter > .meter.meter-right > .meter-text {
 	text-align: right;
 }
+.image{
+  position:relative;
+  left:350px;
+}
 
+.profile{
+  position:relative;
+  left:650px;
+  top:-280px;
+}
+
+.adjust{
+  position:relative;
+  top:-200px;
+  left:300px;
+}
