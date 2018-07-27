@@ -27,8 +27,9 @@ public class StorageService {
 
 	public void store(MultipartFile file, String name) throws WiseConnectRuntimeException {
 		try {
-			Files.copy(file.getInputStream(), this.folderPath
-					.resolve(name + "." + file.getContentType().substring(file.getContentType().lastIndexOf('/') + 1)));
+			if (file != null)
+				Files.copy(file.getInputStream(), this.folderPath.resolve(
+						name + "." + file.getContentType().substring(file.getContentType().lastIndexOf('/') + 1)));
 		} catch (Exception e) {
 			logger.error("Exception is : ", e);
 			throw new WiseConnectRuntimeException("FAIL !");

@@ -38,7 +38,6 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
 		Query query=entityManager.createQuery(jpql);
 		query.setParameter(0, id);
 		query.executeUpdate();
-		//entityManager.remove(entityManager.find(Admin.class, id));
 	}
 
 	@Override

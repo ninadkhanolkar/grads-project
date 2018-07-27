@@ -21,15 +21,16 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any()).build().apiInfo(apiInfo());
 	}
-	
+
 	private ApiInfo apiInfo() {
-	    String title="WiseConnect Rest API";
-		String description="";
-		String version="V1";
-		String termsOfServiceUrl="For Use of Wissen employees";
-		Contact contact=new Contact("WiseConnect", "www.wissen.com", "wise-connect@wissen.com");
-		String license="Apache Commons";
-		String licenseUrl="API license URL";
-		return new ApiInfo(title, description, version, termsOfServiceUrl, contact, license, licenseUrl, Collections.emptyList());
+		String title = "WiseConnect Rest API";
+		String description = "";
+		String version = "V1";
+		String termsOfServiceUrl = "For Use of Wissen employees";
+		Contact contact = new Contact("WiseConnect", "www.wissen.com", "wise-connect@wissen.com");
+		String license = "Apache Commons";
+		String licenseUrl = "API license URL";
+		return new ApiInfo(title, description, version, termsOfServiceUrl, contact, license, licenseUrl,
+				Collections.emptyList());
 	}
 }
