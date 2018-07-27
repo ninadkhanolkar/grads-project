@@ -77,6 +77,10 @@ const routes: Routes = [
       {
         path: 'view-admins',
         component: AdminTableComponent
+      },
+      {
+        path: 'add-admin',
+        component: AddAdminComponent
       }
 
     ]
