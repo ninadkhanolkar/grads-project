@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngDoCheck(){
-    console.log("in do check")
+    // console.log("in do check")
     this.invalid=this.loginService.isInvalid;//sessionStorage.getItem('invalidCredentials')==="true"
     this.registered=sessionStorage.getItem('registered')==="true"
     sessionStorage.setItem('registered','false');
