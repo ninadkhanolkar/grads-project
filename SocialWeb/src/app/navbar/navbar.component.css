@@ -1,0 +1,19 @@
+.example-spacer{
+	flex:1 1 auto;
+}
+
+
+.topright {
+    position: absolute;
+    top: 0px;
+    right: 16px;
+		font-size: 10px;
+		font-weight: 600;
+		margin-bottom: 40px;
+		
+}
+h3{
+	color:#ffffff;
+	padding-top:10px;
+	padding-bottom:5px;
+}

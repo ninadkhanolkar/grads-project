@@ -1,0 +1,66 @@
+<!-- <table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>FirstName</th>
+			<th>LastName</th>
+			<th>ProfileLink</th>
+			<th>Accept</th>
+			<th>Reject</th>
+		</tr>
+	</thead>
+	<tbody *ngFor="let employee of pendingEmployeeDetails">
+		<tr>
+			<td>{{employee.id}}</td>
+			<td>{{employee.firstName}}</td>
+			<td>{{employee.lastName}}</td>
+			<td>
+				<button type="button" class="btn btn-primary btn-sm" (click)="viewProfile(employee.id)">Profile</button>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary btn-sm" (click)="acceptEmployee(employee.id)">Accept</button>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary btn-sm" (click)="rejectEmployee(employee.id)">Reject</button>
+			</td>
+		</tr>
+	</tbody>
+</table> -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<table class="responstable">
+
+		<tr>
+				<th>Id</th>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>ProfileLink</th>
+				<th>Accept</th>
+				<th>Reject</th>
+		</tr>
+	
+		<tr *ngFor="let employee of pendingEmployeeDetails">
+				<td>{{employee.id}}</td>
+				<td>{{employee.firstName}}</td>
+				<td>{{employee.lastName}}</td>
+				<td>
+					<button type="button" class="btn btn-primary btn-sm" (click)="viewProfile(employee.id)">Profile</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-primary btn-sm" (click)="acceptEmployee(employee.id)">Accept</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-primary btn-sm" (click)="rejectEmployee(employee.id)">Reject</button>
+				</td>
+		</tr>
+	
+	
+	
+	</table>
+<router-outlet></router-outlet>
